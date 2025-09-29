@@ -10,7 +10,7 @@ if(MSVC)
 endif()
 
 find_package(ament_cmake REQUIRED)
-find_package(gazebo_ros_pkgs REQUIRED)
+find_package(ros_gz_interfaces REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -66,3 +66,4 @@ ament_export_dependencies(rclcpp)
 ament_export_dependencies(sensor_msgs)
 ament_export_dependencies(tf2)
 ament_package()
+
