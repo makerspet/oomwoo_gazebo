@@ -43,7 +43,7 @@ install(TARGETS ${EXEC_NAME}
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY launch models worlds map
+install(DIRECTORY launch models worlds map urdf config rviz
   DESTINATION share/${PROJECT_NAME}/
 )
 
@@ -59,11 +59,10 @@ install(
 # Macro for ament package
 ################################################################################
 ament_export_include_directories(include)
-ament_export_dependencies(gazebo_ros_pkgs)
+# ament_export_dependencies(gazebo_ros_pkgs)
 ament_export_dependencies(geometry_msgs)
 ament_export_dependencies(nav_msgs)
 ament_export_dependencies(rclcpp)
 ament_export_dependencies(sensor_msgs)
 ament_export_dependencies(tf2)
 ament_package()
-
