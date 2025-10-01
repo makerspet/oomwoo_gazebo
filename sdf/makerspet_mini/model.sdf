@@ -172,7 +172,7 @@
           <ambient>0 0 0 1</ambient>
         </material>
       </visual>
-      <sensor name='laser_scan_sensor' type='ray'>
+      <sensor name='laser_scan_sensor' type='gpu_lidar'>
         <visualize>false</visualize>
         <always_on>true</always_on>
         <update_rate>5</update_rate>
@@ -182,8 +182,8 @@
             <horizontal>
               <samples>360</samples>
               <resolution>1</resolution>
-              <min_angle>0</min_angle>
-              <max_angle>6.2831853071795862</max_angle>
+              <min_angle>-3.1400000000000001</min_angle>
+              <max_angle>3.1400000000000001</max_angle>
             </horizontal>
           </scan>
           <range>

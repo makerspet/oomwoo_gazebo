@@ -47,11 +47,10 @@
 
   <!-- gazebo reference="laser_frame" -->
   <gazebo reference="base_scan">
-    <!-- sensor name="laser" type="gpu_lidar" -->
-    <sensor type="ray" name="laser_scan_sensor">
-    <!-- pose> 0 0 0 0 0 0 </pose -->
+    <sensor name="laser_scan_sensor" type="gpu_lidar">
+    <!-- sensor type="ray" name="laser_scan_sensor" -->
+    <pose> 0 0 0 0 0 0 </pose>
     <visualize>false</visualize>
-    <!-- visualize>true</visualize -->
     <always_on>true</always_on>
     <update_rate>5</update_rate>
 
@@ -62,10 +61,10 @@
         <horizontal>
           <samples>360</samples>
           <resolution>1</resolution>
-          <!-- min_angle>-3.14</min_angle -->
-          <!-- max_angle>3.14</max_angle -->
-          <min_angle>0</min_angle>
-          <max_angle>${2*pi}</max_angle>
+          <min_angle>-3.14</min_angle>
+          <max_angle>3.14</max_angle>
+          <!-- min_angle>0</min_angle -->
+          <!-- max_angle>${2*pi}</max_angle -->
         </horizontal>
       </scan>
       <range>
@@ -81,8 +80,6 @@
       <!-- frame_id>laser_frame</frame_id -->
       <!-- frame_id>base_scan</frame_id -->
     </lidar>
-    <!-- always_on>1</always_on -->
-    <!-- visualize>true</visualize -->
     </sensor>
   </gazebo>
 </robot>
