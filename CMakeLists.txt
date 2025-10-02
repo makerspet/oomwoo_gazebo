@@ -43,7 +43,7 @@ install(TARGETS ${EXEC_NAME}
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY launch models worlds map rviz
+install(DIRECTORY launch models worlds map
   DESTINATION share/${PROJECT_NAME}/
 )
 
@@ -66,3 +66,4 @@ ament_export_dependencies(rclcpp)
 ament_export_dependencies(sensor_msgs)
 ament_export_dependencies(tf2)
 ament_package()
+
