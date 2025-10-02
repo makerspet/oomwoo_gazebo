@@ -15,6 +15,7 @@
 # limitations under the License.
 
 import os, re
+import xacro
 from ament_index_python.packages import get_package_share_path
 from launch import LaunchDescription, LaunchContext
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, OpaqueFunction
@@ -24,6 +25,8 @@ from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.actions import Node
 from kaiaai import config
 
+
+pkg_ros_gz_sim = get_package_share_path('ros_gz_sim')
 
 def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose, world):
     robot_model_str = context.perform_substitution(robot_model)
@@ -36,32 +39,48 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
       robot_model_str = config.get_var('robot.model')
 
     urdf_path_name = os.path.join(
-      get_package_share_path(robot_model_str),
-      'urdf',
-      'robot.urdf.xacro')
-
-    robot_description = ParameterValue(Command(['xacro ', urdf_path_name]), value_type=str)
-
-    sdf_path_name = os.path.join(
-        get_package_share_path(robot_model_str),
-        'sdf',
-        robot_model_str,
-        'model.sdf'
+      get_package_share_path(robot_model_str), 'urdf', 'robot.urdf.xacro'
     )
 
-    pkg_gazebo_ros = get_package_share_path('gazebo_ros')
+    # robot_description = ParameterValue(Command(['xacro ', urdf_path_name]), value_type=str)
+    robot_description = xacro.process_file(urdf_path_name).toxml()
+
+    # sdf_path_name = os.path.join(
+    #     get_package_share_path(robot_model_str),
+    #     'sdf',
+    #     robot_model_str,
+    #     'model.sdf'
+    # )
+
+    gz_bridge_params_path_name = os.path.join(
+      get_package_share_path(robot_model_str),
+      'config',
+      'gz_bridge.yaml'
+    )
+
+    # pkg_gazebo_ros = get_package_share_path('gazebo_ros')
     world_path_name = os.path.join(get_package_share_path('kaiaai_gazebo'), 'worlds', world_str)
 
     print('URDF  file name : {}'.format(urdf_path_name))
-    print('SDF   file name : {}'.format(sdf_path_name))
+    # print('SDF   file name : {}'.format(sdf_path_name))
     print('World file name : {}'.format(world_path_name))
 
     return [
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
+                os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
             ),
-            launch_arguments={'world': world_path_name}.items()
+            launch_arguments={'gz_args': ['-r -s -v1 ', world_path_name], 'on_exit_shutdown': 'true'}.items()
+        ),
+        Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            output='screen',
+            arguments=[
+                '--ros-args',
+                '-p',
+                f'config_file:={gz_bridge_params_path_name}',
+            ]
         ),
         Node(
             package='robot_state_publisher',
@@ -74,23 +93,25 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
             }]
         ),
         Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
+            package='ros_gz_sim',
+            executable='create',
             arguments=[
-                '-entity', robot_model_str,
-                '-file', sdf_path_name,
+                '-name', robot_model_str,
+                '-string', robot_description,
                 '-timeout', '180',
                 '-x', x_pose_str,
                 '-y', y_pose_str,
-                '-z', '0.01'
+                # '-z', z_pose_str,
+                # '-R', roll_pose_str,
+                # '-P', pitch_pose_str,
+                # '-Y', yaw_pose_str,
+                '-allow_renaming', 'false'
             ],
             output='screen'
         )
     ]
 
 def generate_launch_description():
-
-    pkg_gazebo_ros = get_package_share_path('gazebo_ros')
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -116,14 +137,15 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             name='world',
-            default_value='living_room.world',
+            # default_value='living_room.world',
+            default_value='obstacles.world',
             description='World file name'
         ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')
-            ),
-        ),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')
+        #     ),
+        # ),
         OpaqueFunction(function=make_nodes, args=[
             LaunchConfiguration('robot_model'),
             LaunchConfiguration('use_sim_time'),
