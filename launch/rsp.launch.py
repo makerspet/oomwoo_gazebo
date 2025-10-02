@@ -8,7 +8,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Comm
 def generate_launch_description():
 
     # Package name
-    package_name = FindPackageShare("kaiaai_gazebo")
+    package_name = FindPackageShare("makerspet_mini")
 
     # Default robot description if none is specified
     urdf_path = PathJoinSubstitution([package_name, "urdf", "robot.urdf.xacro"])
