@@ -59,7 +59,7 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
     )
 
     # pkg_gazebo_ros = get_package_share_path('gazebo_ros')
-    world_path_name = os.path.join(get_package_share_path('kaiaai_gazebo'), 'obstacles', world_str)
+    world_path_name = os.path.join(get_package_share_path('kaiaai_gazebo'), 'worlds', world_str)
 
     print('URDF  file name : {}'.format(urdf_path_name))
     # print('SDF   file name : {}'.format(sdf_path_name))
@@ -70,7 +70,10 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
             PythonLaunchDescriptionSource(
                 os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
             ),
-            launch_arguments={'gz_args': ['-r -s -v1 ', world_path_name], 'on_exit_shutdown': 'true'}.items()
+            launch_arguments={
+                'gz_args': ['-r -v 4 ', world_path_name],
+                'on_exit_shutdown': 'true'
+            }.items()
         ),
         Node(
             package='ros_gz_bridge',
@@ -97,10 +100,11 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
             executable='create',
             arguments=[
                 '-name', robot_model_str,
-                '-string', robot_description,
+                '-topic', 'robot_description',
                 '-timeout', '180',
                 '-x', x_pose_str,
                 '-y', y_pose_str,
+                '-g', ' ',
                 # '-z', z_pose_str,
                 # '-R', roll_pose_str,
                 # '-P', pitch_pose_str,
