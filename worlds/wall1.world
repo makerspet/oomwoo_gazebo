@@ -57,6 +57,15 @@
       <self_collide>false</self_collide>
     </model>
 
+    <model name='kaiaai_poster'>
+      <static>true</static>
+      <include>
+        <uri>model://kaiaai_poster</uri>
+      </include>
+      <pose>-2.45 0 1.5 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
     <model name='wall_0'>
       <static>true</static>
       <include>
