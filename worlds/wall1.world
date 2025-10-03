@@ -43,36 +43,49 @@
     <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
     <include>
-      <uri>file:///ros_ws/install/kaiaai_gazebo/share/kaiaai_gazebo/models/ground plane</uri>
+      <uri>model://ground plane</uri>
       <name>ground_plane</name>
       <pose>0 0 0 0 0 0</pose>
     </include>
-    <model name='turtlebot3_house'>
+    <model name='wall_0'>
       <static>true</static>
       <include>
         <uri>model://room_wall_2x5m</uri>
       </include>
-      <pose>0 0 0 0 0 0</pose>
+      <pose>-2.5 0 1 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
-    <light name='sun' type='directional'>
-      <pose>0 0 10 0 0 0</pose>
-      <cast_shadows>true</cast_shadows>
-      <intensity>1</intensity>
-      <direction>-0.5 0.10000000000000001 -0.90000000000000002</direction>
-      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
-      <specular>0.200000003 0.200000003 0.200000003 1</specular>
-      <attenuation>
-        <range>1000</range>
-        <linear>0.01</linear>
-        <constant>0.90000000000000002</constant>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <spot>
-        <inner_angle>0</inner_angle>
-        <outer_angle>0</outer_angle>
-        <falloff>0</falloff>
-      </spot>
-    </light>
+
+    <model name='wall_1'>
+      <static>true</static>
+      <include>
+        <uri>model://room_wall_2x5m</uri>
+      </include>
+      <pose>2.5 0 1 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='wall_2'>
+      <static>true</static>
+      <include>
+        <uri>model://room_wall_2x5m</uri>
+      </include>
+      <pose>0 2.45 1 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='wall_3'>
+      <static>true</static>
+      <include>
+        <uri>model://room_wall_2x5m</uri>
+      </include>
+      <pose>0 -2.45 1 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
   </world>
 </sdf>
