@@ -9,12 +9,23 @@
           </box>
         </geometry>
         <material>
-          <script>
+          <!-- script>
             <uri>model://room_wall_2x5m/material/script</uri>
             <uri>model://room_wall_2x5m/material/textures</uri>
             <name>Custom/room_wall_2x5m</name>
-          </script>
+          </script -->
+          <pbr>
+            <metal>
+              <albedo_map>textures/wall_texture_1404x562.jpg</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
         </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
       <collision name ="collision">
         <geometry>
