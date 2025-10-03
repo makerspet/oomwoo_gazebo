@@ -9,11 +9,15 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>model://makerspet_poster/material/script</uri>
-            <uri>model://makerspet_poster/material/textures</uri>
-            <name>Custom/makerspet</name>
-          </script>
+          <pbr>
+            <metal>
+              <albedo_map>textures/makerspet_logo_600x700.png</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
         </material>
       </visual>
     </link>
