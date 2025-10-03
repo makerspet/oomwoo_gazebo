@@ -56,11 +56,13 @@
     </plugin>
 
     <include>
-      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Ground Plane</uri>
+      <!-- uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Ground Plane</uri -->
+      <uri>model://ground plane</uri>
     </include>
 
     <include>
-      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+      <!-- uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri -->
+      <uri>model://sun</uri>
     </include>
 
     <model name="turtlebot3_house">
