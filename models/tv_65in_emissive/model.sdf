@@ -9,11 +9,15 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>model://tv_65in_emissive/material/script</uri>
-            <uri>model://tv_65in_emissive/material/textures</uri>
-            <name>Custom/tv_emissive</name>
-          </script>
+          <pbr>
+            <metal>
+              <emissive_map>textures/tv_65in_maldives_909x541.jpg</emissive_map>
+            </metal>
+          </pbr>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0</diffuse>
+          <specular>1 1 1 1</specular>
+          <emissive>0.8 0.8 0.8 1</emissive>
         </material>
       </visual>
     </link>

@@ -9,12 +9,15 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>model://window_curtains/material/script</uri>
-            <uri>model://window_curtains/material/textures</uri>
-            <name>Custom/window_curtains</name>
-          </script>
-          <emissive>0 1 0 1</emissive>
+          <pbr>
+            <metal>
+              <emissive_map>textures/window_curtains.png</emissive_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <emissive>0.4 0.4 0.4 1</emissive>
         </material>
       </visual>
     </link>
