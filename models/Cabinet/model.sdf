@@ -31,11 +31,17 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
+          <pbr>
+            <metal>
+              <albedo_map>textures/wood.png</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>                                                         <emissive>0 0 0 1</emissive>
         </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
       <collision name="cabinet_bottom_plate_geom_cabinet_back_plate">
         <pose>0.235000 0 0.510000 0 0 0</pose>
@@ -53,11 +59,17 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
+          <pbr>
+            <metal>
+              <albedo_map>textures/wood.png</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>                                                         <emissive>0 0 0 1</emissive>
         </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
       <collision name="cabinet_bottom_plate_geom_cabinet_left_plate">
         <pose>0 0.235000 0.510000 0 0 0</pose>
@@ -75,11 +87,17 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
+          <pbr>
+            <metal>
+              <albedo_map>textures/wood.png</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>                                                         <emissive>0 0 0 1</emissive>
         </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
       <collision name="cabinet_bottom_plate_geom_cabinet_middle_plate">
         <pose>0 0 0.510000 0 0 0</pose>
@@ -97,11 +115,17 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
+          <pbr>
+            <metal>
+              <albedo_map>textures/wood.png</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>                                                         <emissive>0 0 0 1</emissive>
         </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
       <collision name="cabinet_bottom_plate_geom_cabinet_right_plate">
         <pose>0 -0.235000 0.510000 0 0 0</pose>
@@ -119,11 +143,17 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
+          <pbr>
+            <metal>
+              <albedo_map>textures/wood.png</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>                                                         <emissive>0 0 0 1</emissive>
         </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
       <collision name="cabinet_bottom_plate_geom_cabinet_top_plate">
         <pose>0 0 1.010000 0 0 0</pose>
@@ -141,11 +171,17 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
+          <pbr>
+            <metal>
+              <albedo_map>textures/wood.png</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>                                                         <emissive>0 0 0 1</emissive>
         </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
     </link>
   </model>

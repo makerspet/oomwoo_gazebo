@@ -9,12 +9,18 @@
           </box>
         </geometry>
         <material>
-          <script>
-            <uri>model://door_08x2m/material/script</uri>
-            <uri>model://door_08x2m/material/textures</uri>
-            <name>Custom/door_08x2m</name>
-          </script>
+          <pbr>
+            <metal>
+              <albedo_map>textures/door_08x2m.png</albedo_map>
+            </metal>
+          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <emissive>0 0 0 1</emissive>
         </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
     </link>
     <static>1</static>
