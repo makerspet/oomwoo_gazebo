@@ -181,7 +181,23 @@
       <self_collide>false</self_collide>
     </model>
 
+    <model name='LampAndStand'>
+      <static>true</static>
+      <pose>-1 -1 0 0 -0 1.5707</pose>
+      <include>
+        <uri>model://LampAndStand</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
 
+    <model name='MaleVisitorSit'>
+      <static>true</static>
+      <pose>0 -0.91 0 0 -0 3.1415</pose>
+      <include>
+        <uri>model://MaleVisitorSit</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
 
   </world>
 </sdf>
