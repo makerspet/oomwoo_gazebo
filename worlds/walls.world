@@ -256,6 +256,24 @@
       <self_collide>false</self_collide>
     </model>
 
+    <model name='rug_ivory_2m'>
+      <static>true</static>
+      <pose>0 0.15 0 0 -0 1.5707</pose>
+      <include>
+        <uri>model://rug_ivory_2m</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='TableMarble'>
+      <static>true</static>
+      <pose>0 0.1 0.324 0 -0 1.5708</pose>
+      <include>
+        <uri>model://TableMarble</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
 
   </world>
 </sdf>
