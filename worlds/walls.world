@@ -163,5 +163,16 @@
       <self_collide>false</self_collide>
     </model>
 
+    <model name='Cat Figurines'>
+      <static>true</static>
+      <pose>2.21368 2.13863 0.019163 -0.003852 -0.005692 -1e-06</pose>
+      <include>
+        <uri>model://cat_figurines</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
+
+
   </world>
 </sdf>

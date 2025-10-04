@@ -2,7 +2,7 @@ model {
   file: "model.sdf"
 }
 name: "Object"
-description: "Object\nObject"
+description: "Two cat figurines"
 version: 1
 authors {
   name: "Google"
