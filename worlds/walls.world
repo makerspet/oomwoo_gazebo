@@ -172,6 +172,15 @@
       <self_collide>false</self_collide>
     </model>
 
+    <model name='FemaleVisitorSit'>
+      <static>true</static>
+      <pose>-0.91 0.09 0 0 -0 1.5707</pose>
+      <include>
+        <uri>model://FemaleVisitorSit</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
 
 
   </world>
