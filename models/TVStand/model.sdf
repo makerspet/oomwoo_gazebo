@@ -8,7 +8,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://TVStand/meshes/TVStand.obj</uri>
+            <uri>meshes/TVStand.obj</uri>
           </mesh>
         </geometry>
       </visual>
@@ -16,7 +16,7 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://TVStand/meshes/TVStand_Col.obj</uri>
+            <uri>meshes/TVStand_Col.obj</uri>
           </mesh>
         </geometry>
       </collision>

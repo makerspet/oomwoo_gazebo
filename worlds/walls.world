@@ -238,5 +238,24 @@
       <self_collide>false</self_collide>
     </model>
 
+    <model name='TVStand'>
+      <static>true</static>
+      <pose>0 2.2 0 0 -0 0</pose>
+      <include>
+        <uri>model://TVStand</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='red_ball_10in'>
+      <static>false</static>
+      <pose>1 1.25 0.127 0 -0 0</pose>
+      <include>
+        <uri>model://red_ball_10in</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
+
   </world>
 </sdf>
