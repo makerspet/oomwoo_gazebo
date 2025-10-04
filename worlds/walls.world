@@ -219,5 +219,24 @@
       <self_collide>false</self_collide>
     </model>
 
+    <model name='Sofa'>
+      <static>true</static>
+      <pose>0.394 -1.2 0 0 -0 1.5707</pose>
+      <include>
+        <uri>model://Sofa</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='Squirrel'>
+      <static>true</static>
+      <pose>-2.24886 2.15 0.059889 -0.002122 -0.004142 -2.8e-05</pose>
+      <!-- scale>1.5 1.5 1.5</scale -->
+      <include>
+        <uri>model://squirrel</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
   </world>
 </sdf>
