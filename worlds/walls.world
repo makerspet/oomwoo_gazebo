@@ -166,6 +166,7 @@
     <model name='Cat Figurines'>
       <static>true</static>
       <pose>2.21368 2.13863 0.019163 -0.003852 -0.005692 -1e-06</pose>
+      <!-- scale>3 3 3</scale -->
       <include>
         <uri>model://cat_figurines</uri>
       </include>
@@ -195,6 +196,25 @@
       <pose>0 -0.91 0 0 -0 3.1415</pose>
       <include>
         <uri>model://MaleVisitorSit</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='MiniSofa'>
+      <static>true</static>
+      <pose>-1 0.1 0 0 -0 3.1415</pose>
+      <include>
+        <uri>model://MiniSofa</uri>
+      </include>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='Racoon'>
+      <static>true</static>
+      <pose>-1.87443 2.2 0.059172 -0.005807 -0.005148 1.2</pose>
+      <!-- scale>1.5 1.5 1.5</scale -->
+      <include>
+        <uri>model://racoon</uri>
       </include>
       <self_collide>false</self_collide>
     </model>

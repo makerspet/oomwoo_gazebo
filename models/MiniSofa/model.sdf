@@ -8,7 +8,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://MiniSofa/meshes/minisofa.obj</uri>
+            <uri>meshes/minisofa.obj</uri>
             <scale>1.00 1.00 1.00</scale>
           </mesh>
         </geometry>
@@ -17,7 +17,7 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://MiniSofa/meshes/minisofa.obj</uri>
+            <uri>meshes/minisofa.obj</uri>
             <scale>1.00 1.00 1.00</scale>
           </mesh>
         </geometry>
@@ -27,4 +27,3 @@
     <static>1</static>
   </model>
 </sdf>
-
