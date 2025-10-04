@@ -22,14 +22,9 @@
         </geometry>
         <material>
           <diffuse>1.0 1.0 1.0</diffuse>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
-          <!-- PBR for Ignition, material scripts for gazebo classic-->
           <pbr>
             <metal>
-              <albedo_map>model://Bookshelf/bookshelf_diffuse.jpg</albedo_map>
+              <albedo_map>textures/bookshelf_diffuse.jpg</albedo_map>
             </metal>
           </pbr>
         </material>
@@ -51,14 +46,9 @@
         </geometry>
         <material>
           <diffuse>1.0 1.0 1.0</diffuse>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
-          <!-- PBR for Ignition, material scripts for gazebo classic-->
           <pbr>
             <metal>
-              <albedo_map>model://Bookshelf/bookshelf_diffuse.jpg</albedo_map>
+              <albedo_map>textures/bookshelf_diffuse.jpg</albedo_map>
             </metal>
           </pbr>
         </material>
@@ -80,14 +70,9 @@
         </geometry>
         <material>
           <diffuse>1.0 1.0 1.0</diffuse>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
-          <!-- PBR for Ignition, material scripts for gazebo classic-->
           <pbr>
             <metal>
-              <albedo_map>model://Bookshelf/bookshelf_diffuse.jpg</albedo_map>
+              <albedo_map>textures/bookshelf_diffuse.jpg</albedo_map>
             </metal>
           </pbr>
         </material>
@@ -109,14 +94,9 @@
         </geometry>
         <material>
           <diffuse>1.0 1.0 1.0</diffuse>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
-          <!-- PBR for Ignition, material scripts for gazebo classic-->
           <pbr>
             <metal>
-              <albedo_map>model://Bookshelf/bookshelf_diffuse.jpg</albedo_map>
+              <albedo_map>textures/bookshelf_diffuse.jpg</albedo_map>
             </metal>
           </pbr>
         </material>
@@ -138,14 +118,9 @@
         </geometry>
         <material>
           <diffuse>1.0 1.0 1.0</diffuse>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
-          <!-- PBR for Ignition, material scripts for gazebo classic-->
           <pbr>
             <metal>
-              <albedo_map>model://Bookshelf/bookshelf_diffuse.jpg</albedo_map>
+              <albedo_map>textures/bookshelf_diffuse.jpg</albedo_map>
             </metal>
           </pbr>
         </material>
@@ -167,14 +142,9 @@
         </geometry>
         <material>
           <diffuse>1.0 1.0 1.0</diffuse>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
-          <!-- PBR for Ignition, material scripts for gazebo classic-->
           <pbr>
             <metal>
-              <albedo_map>model://Bookshelf/bookshelf_diffuse.jpg</albedo_map>
+              <albedo_map>textures/bookshelf_diffuse.jpg</albedo_map>
             </metal>
           </pbr>
         </material>
@@ -196,14 +166,9 @@
         </geometry>
         <material>
           <diffuse>1.0 1.0 1.0</diffuse>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Wood</name>
-          </script>
-          <!-- PBR for Ignition, material scripts for gazebo classic-->
           <pbr>
             <metal>
-              <albedo_map>model://Bookshelf/bookshelf_diffuse.jpg</albedo_map>
+              <albedo_map>textures/bookshelf_diffuse.jpg</albedo_map>
             </metal>
           </pbr>
         </material>
