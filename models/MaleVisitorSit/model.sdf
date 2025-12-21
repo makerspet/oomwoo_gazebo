@@ -16,7 +16,7 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>meshes/MaleVisitorSit_Col.obj</uri>
+            <uri>meshes/MaleVisitorSit.obj</uri>
           </mesh>
         </geometry>
       </collision>
@@ -24,3 +24,4 @@
     </link>
   </model>
 </sdf>
+
