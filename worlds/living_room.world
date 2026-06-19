@@ -267,7 +267,7 @@
 
     <model name='TableMarble'>
       <static>true</static>
-      <pose>0 0.1 0.324 0 -0 1.5708</pose>
+      <pose>0 0.1 0 0 -0 1.5708</pose>
       <include>
         <uri>model://TableMarble</uri>
       </include>
