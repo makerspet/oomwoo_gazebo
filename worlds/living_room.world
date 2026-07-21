@@ -39,6 +39,10 @@
       <render_engine>ogre2</render_engine>
     </plugin>
     <plugin name='gz::sim::systems::Imu' filename='gz-sim-imu-system'/>
+    <!-- Required for contact/bumper sensors to publish. A robot's model-level
+         Contact plugin is a no-op; without this world-level system the contact
+         topics exist but stay permanently silent. -->
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
     <gravity>0 0 -9.8000000000000007</gravity>
     <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
