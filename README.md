@@ -31,9 +31,9 @@ e.g. `world:=empty_world.world`. `kaiaai_world.world` launches by default
 - Keep in mind that launching the Gazebo simulator for the very first time can take a minute
 or two - please be patient
 ```
-ros2 launch kaiaai_gazebo world.launch.py
+ros2 launch oomwoo_gazebo world.launch.py
 ros2 run kaiaai_teleop teleop_keyboard
-ros2 launch kaiaai_gazebo self_drive_gazebo.launch.py
+ros2 launch oomwoo_gazebo self_drive_gazebo.launch.py
 ros2 launch kaiaai_bringup rviz2.launch.py
 ```
 - `world.launch.py` launches Gazebo simulator populated with a world an instance of your bot
@@ -58,18 +58,18 @@ existing robot model
 variable will be used. If that environment variable is not set, `description` will default
 to `makerspet_snoopy`
 ```
-ros2 launch kaiaai_gazebo world.launch.py description:=awesome_droid
+ros2 launch oomwoo_gazebo world.launch.py description:=awesome_droid
 ros2 run kaiaai_teleop teleop_keyboard
-ros2 launch kaiaai_gazebo self_drive_gazebo.launch.py description:=awesome_droid
+ros2 launch oomwoo_gazebo self_drive_gazebo.launch.py description:=awesome_droid
 ros2 launch kaiaai_bringup rviz2.launch.py description:=awesome_droid
 ```
 
 ## Run SLAM, generate a map
 Run each command below in a separate terminal window.
 ```
-ros2 launch kaiaai_gazebo world.launch.py
+ros2 launch oomwoo_gazebo world.launch.py
 ros2 launch kaiaai_cartographer cartographer.launch.py use_sim_time:=true
-ros2 launch kaiaai_gazebo self_drive_gazebo.launch.py
+ros2 launch oomwoo_gazebo self_drive_gazebo.launch.py
 ros2 run nav2_map_server map_saver_cli -f $HOME/my_map
 ```
 - `cartographer.launch.py` launches the SLAM package and starts generating a map. You can see the map
@@ -80,7 +80,7 @@ Press CTRL-C one or more times in each terminal window to stop the simulation.
 
 ## Navigate to a goal
 ```
-ros2 launch kaiaai_gazebo world.launch.py
+ros2 launch oomwoo_gazebo world.launch.py
 ros2 launch kaiaai_navigation navigation.launch.py use_sim_time:=true map:=$HOME/my_map.yaml
 ```
 - `navigation.launch.py` launches the navigation package and loads the map you created in the previous step
