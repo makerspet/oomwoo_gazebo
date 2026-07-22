@@ -33,7 +33,8 @@ stay permanently silent (see
 
 ## Usage
 ```
-ros2 launch oomwoo_gazebo world.launch.py
+ros2 launch oomwoo_gazebo world.launch.py                 # with the Gazebo GUI
+ros2 launch oomwoo_gazebo world.launch.py headless:=true  # no GUI (Docker / CI)
 ```
 For the OOMWOO headless simulation and the coverage / navigation regressions, this
 package is driven by the `oomwoo_sim_support` harness in

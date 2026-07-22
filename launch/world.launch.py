@@ -18,7 +18,7 @@ import os, re
 import xacro
 from ament_index_python.packages import get_package_share_path
 from launch import LaunchDescription, LaunchContext
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, OpaqueFunction
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, OpaqueFunction, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.parameter_descriptions import ParameterValue
@@ -28,12 +28,13 @@ from kaiaai import config
 
 pkg_ros_gz_sim = get_package_share_path('ros_gz_sim')
 
-def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose, world):
+def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose, world, headless):
     robot_model_str = context.perform_substitution(robot_model)
     use_sim_time_str = context.perform_substitution(use_sim_time)
     x_pose_str = context.perform_substitution(x_pose)
     y_pose_str = context.perform_substitution(y_pose)
     world_str = context.perform_substitution(world)
+    headless_bool = context.perform_substitution(headless).lower() == 'true'
 
     if len(robot_model_str) == 0:
       robot_model_str = config.get_var('robot.model')
@@ -65,13 +66,25 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
     # print('SDF   file name : {}'.format(sdf_path_name))
     print('World file name : {}'.format(world_path_name))
 
-    return [
+    # Headless: server-only (-s) + offscreen rendering, with forced software GL so
+    # the GPU-LiDAR renders under Docker/CI without a display. Otherwise the GUI runs.
+    gz_args = ('-s -r --headless-rendering -v 4 ' if headless_bool
+               else '-r -v 4 ') + world_path_name
+
+    env = []
+    if headless_bool:
+        env = [
+            SetEnvironmentVariable('LIBGL_ALWAYS_SOFTWARE', '1'),
+            SetEnvironmentVariable('GALLIUM_DRIVER', 'llvmpipe'),
+        ]
+
+    return env + [
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
             ),
             launch_arguments={
-                'gz_args': ['-r -v 4 ', world_path_name],
+                'gz_args': gz_args,
                 'on_exit_shutdown': 'true'
             }.items()
         ),
@@ -145,6 +158,12 @@ def generate_launch_description():
             default_value='living_room.world',
             description='World file name'
         ),
+        DeclareLaunchArgument(
+            name='headless',
+            default_value='false',
+            choices=['true', 'false'],
+            description='Run Gazebo headless: server-only, offscreen rendering, software GL (no GUI)'
+        ),
         # IncludeLaunchDescription(
         #     PythonLaunchDescriptionSource(
         #         os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')
@@ -155,6 +174,7 @@ def generate_launch_description():
             LaunchConfiguration('use_sim_time'),
             LaunchConfiguration('x_pose'),
             LaunchConfiguration('y_pose'),
-            LaunchConfiguration('world')
+            LaunchConfiguration('world'),
+            LaunchConfiguration('headless')
         ])
     ])
