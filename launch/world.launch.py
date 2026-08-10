@@ -28,13 +28,14 @@ from kaiaai import config
 
 pkg_ros_gz_sim = get_package_share_path('ros_gz_sim')
 
-def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose, world, headless):
+def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose, world, headless, odom_source):
     robot_model_str = context.perform_substitution(robot_model)
     use_sim_time_str = context.perform_substitution(use_sim_time)
     x_pose_str = context.perform_substitution(x_pose)
     y_pose_str = context.perform_substitution(y_pose)
     world_str = context.perform_substitution(world)
     headless_bool = context.perform_substitution(headless).lower() == 'true'
+    odom_source_str = context.perform_substitution(odom_source)
 
     if len(robot_model_str) == 0:
       robot_model_str = config.get_var('robot.model')
@@ -43,8 +44,11 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
       get_package_share_path(robot_model_str), 'urdf', 'robot.urdf.xacro'
     )
 
+    # odom_source (truth|wheel) selects which odometry owns /odom + /tf; both are
+    # always published (the other on /odom_wheel or /odom_truth) for slip checks.
     # robot_description = ParameterValue(Command(['xacro ', urdf_path_name]), value_type=str)
-    robot_description = xacro.process_file(urdf_path_name).toxml()
+    robot_description = xacro.process_file(
+      urdf_path_name, mappings={'odom_source': odom_source_str}).toxml()
 
     # sdf_path_name = os.path.join(
     #     get_package_share_path(robot_model_str),
@@ -164,6 +168,15 @@ def generate_launch_description():
             choices=['true', 'false'],
             description='Run Gazebo headless: server-only, offscreen rendering, software GL (no GUI)'
         ),
+        DeclareLaunchArgument(
+            name='odom_source',
+            default_value='truth',
+            choices=['truth', 'wheel'],
+            description='Which odometry owns /odom + /tf: truth = ground-truth '
+                        'model pose (slip-free); wheel = wheel-encoder odometry '
+                        '(slip drifts). Both are always published; the other is on '
+                        '/odom_wheel or /odom_truth for slip comparison.'
+        ),
         # IncludeLaunchDescription(
         #     PythonLaunchDescriptionSource(
         #         os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')
@@ -175,6 +188,7 @@ def generate_launch_description():
             LaunchConfiguration('x_pose'),
             LaunchConfiguration('y_pose'),
             LaunchConfiguration('world'),
-            LaunchConfiguration('headless')
+            LaunchConfiguration('headless'),
+            LaunchConfiguration('odom_source')
         ])
     ])
