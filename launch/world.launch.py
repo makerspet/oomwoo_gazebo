@@ -46,9 +46,15 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
 
     # odom_source (truth|wheel) selects which odometry owns /odom + /tf; both are
     # always published (the other on /odom_wheel or /odom_truth) for slip checks.
+    # enable_* turn heavy rendering sensors off to speed up Gazebo (cameras and
+    # the front ToF cost the most). Read straight from the launch context.
+    mappings = {'odom_source': odom_source_str}
+    for name in ('enable_lidar', 'enable_ranges', 'enable_tof',
+                 'enable_cameras', 'enable_imu'):
+        mappings[name] = context.perform_substitution(LaunchConfiguration(name))
     # robot_description = ParameterValue(Command(['xacro ', urdf_path_name]), value_type=str)
     robot_description = xacro.process_file(
-      urdf_path_name, mappings={'odom_source': odom_source_str}).toxml()
+      urdf_path_name, mappings=mappings).toxml()
 
     # sdf_path_name = os.path.join(
     #     get_package_share_path(robot_model_str),
@@ -177,6 +183,25 @@ def generate_launch_description():
                         '(slip drifts). Both are always published; the other is on '
                         '/odom_wheel or /odom_truth for slip comparison.'
         ),
+        # Per-sensor on/off (default all on). Turn heavy rendering sensors off to
+        # speed up Gazebo: cameras and the front ToF cost the most, then the side
+        # ranges and the LiDAR. The sensor links stay in the model; only the gz
+        # sensor (render cost) is dropped.
+        DeclareLaunchArgument(
+            name='enable_lidar', default_value='true',
+            choices=['true', 'false'], description='2D LiDAR /scan'),
+        DeclareLaunchArgument(
+            name='enable_ranges', default_value='true',
+            choices=['true', 'false'], description='side distance /range_left|right'),
+        DeclareLaunchArgument(
+            name='enable_tof', default_value='true',
+            choices=['true', 'false'], description='front ToF /tof_front/points'),
+        DeclareLaunchArgument(
+            name='enable_cameras', default_value='true',
+            choices=['true', 'false'], description='stereo cameras /camera_left|right'),
+        DeclareLaunchArgument(
+            name='enable_imu', default_value='true',
+            choices=['true', 'false'], description='IMU /imu'),
         # IncludeLaunchDescription(
         #     PythonLaunchDescriptionSource(
         #         os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')
