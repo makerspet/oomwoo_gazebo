@@ -197,8 +197,9 @@ def generate_launch_description():
             name='enable_tof', default_value='true',
             choices=['true', 'false'], description='front ToF /tof_front/points'),
         DeclareLaunchArgument(
-            name='enable_cameras', default_value='true',
-            choices=['true', 'false'], description='stereo cameras /camera_left|right'),
+            name='enable_cameras', default_value='false',
+            choices=['true', 'false'],
+            description='stereo cameras /camera_left|right (off by default: heavy, unused for now)'),
         DeclareLaunchArgument(
             name='enable_imu', default_value='true',
             choices=['true', 'false'], description='IMU /imu'),
