@@ -24,7 +24,10 @@ stay permanently silent (see
 
 ## Package contents
 - `worlds/` — `living_room.world` (the cluttered test world, with the contact
-  system), plus `empty.world` and the TurtleBot3 worlds.
+  system), plus `empty.world` and the TurtleBot3 worlds. Also `kitchen.sdf`,
+  `multi_room.sdf` and `narrow_passage.sdf`, contributed by
+  [Alvaro Samudio](https://github.com/alvarosamudio/oomwoo_gazebo) — see
+  [Contributed worlds](#contributed-worlds).
 - `models/` — furniture and prop meshes used by the worlds.
 - `map/` — saved maps aligned to the worlds.
 - `launch/` — `world.launch.py` (spawn a world + robot), `self_drive_gazebo.launch.py`
@@ -35,7 +38,32 @@ stay permanently silent (see
 ```
 ros2 launch oomwoo_gazebo world.launch.py                 # with the Gazebo GUI
 ros2 launch oomwoo_gazebo world.launch.py headless:=true  # no GUI (Docker / CI)
+ros2 launch oomwoo_gazebo world.launch.py world:=kitchen.sdf   # pick a world
 ```
+
+## Contributed worlds
+`kitchen.sdf`, `multi_room.sdf` and `narrow_passage.sdf` were contributed by
+[Alvaro Samudio](https://github.com/alvarosamudio) and vendored here from
+[alvarosamudio/oomwoo_gazebo](https://github.com/alvarosamudio/oomwoo_gazebo)
+(Apache-2.0), which hosts an independent OOMWOO simulation stack. Only the
+worlds are vendored — that repo declares a package also named `oomwoo_gazebo`,
+so the two cannot be built in one colcon workspace.
+
+They are self-contained: the geometry is inline primitives, so unlike the
+`.world` files they pull nothing from `models/`. The geometry is unmodified from
+the contributed originals. The one change is the world-level plugin block, which
+now matches the other worlds in this package: the originals load
+`gz-sim-cpu-lidar-system`, which Gazebo Harmonic (ROS 2 Jazzy) does not ship, so
+`/scan` would stay silent; they also omitted `gz-sim-imu-system`.
+
+```
+ros2 launch oomwoo_gazebo world.launch.py world:=multi_room.sdf
+ros2 launch oomwoo_gazebo world.launch.py world:=narrow_passage.sdf
+```
+
+These have no maps in `map/`, so run them with SLAM rather than localization
+against a saved map. They also use the `dart` physics engine with the `bullet`
+collision detector, where the `.world` files use `ode`.
 For the OOMWOO headless simulation and the coverage / navigation regressions, this
 package is driven by the `oomwoo_sim_support` harness in
 [oomwoo-ros2-tools](https://github.com/makerspet/oomwoo-ros2-tools) — see that repo
@@ -45,6 +73,11 @@ for the full sim workflow.
 Forked from [kaiaai/kaiaai_gazebo](https://github.com/kaiaai/kaiaai_gazebo)
 (Apache-2.0). Initial versions are based on ROBOTIS
 [TurtleBot3 simulations](https://github.com/ROBOTIS-GIT/turtlebot3_simulations).
+
+The `kitchen`, `multi_room` and `narrow_passage` worlds are by
+[Alvaro Samudio](https://github.com/alvarosamudio), from
+[alvarosamudio/oomwoo_gazebo](https://github.com/alvarosamudio/oomwoo_gazebo)
+(Apache-2.0).
 
 ## License
 [Apache License 2.0](LICENSE).
