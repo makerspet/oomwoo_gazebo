@@ -114,14 +114,20 @@ inline colour materials — no `<include>`, `<uri>` or `<mesh>` anywhere, so unl
 the `.world` files (`living_room.world` alone pulls in 26 models) they need
 nothing from `models/` and download nothing at run time. Each is about 6 KB.
 
-The geometry is unmodified from the contributed originals. Two things were
-changed, both to match the other worlds in this package:
+Two things were changed in all three, to match the other worlds in this package:
 
 - **World plugins.** The originals load `gz-sim-cpu-lidar-system`, which Gazebo
   Harmonic (ROS 2 Jazzy) does not ship, so `/scan` would stay silent; they also
   omitted `gz-sim-imu-system`. Both fixed.
 - **Physics.** The originals declared `dart` with the `bullet` collision
   detector; these now carry the same `ode` block as the `.world` files.
+
+`narrow_passage.sdf` needed one geometry fix as well: its corridor ran
+`x [-3.0, 3.0]`, which put the default spawn (`x_pose` `-2.0`, `y_pose` `-0.5`)
+*inside* the right corridor wall. The corridor now runs `x [-1.0, 3.0]`, so the
+robot spawns on open floor and drives into the passage. If you edit that world,
+keep the near end at `x >= -1.0`. `kitchen.sdf` and `multi_room.sdf` are
+geometrically unmodified.
 
 ```
 ros2 launch oomwoo_gazebo world.launch.py world:=multi_room.sdf

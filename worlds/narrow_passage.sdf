@@ -3,10 +3,12 @@
   Contributed by Alvaro Samudio, from
   https://github.com/alvarosamudio/oomwoo_gazebo (Apache-2.0).
 
-  Vendored into oomwoo_gazebo. The world geometry is unmodified. Two things
-  were changed, both to match this package's other worlds on Gazebo Harmonic /
-  ROS 2 Jazzy: the world-level plugin block, and the physics block (the
-  original declared dart + bullet collision detector). See README.md.
+  Vendored into oomwoo_gazebo. Two things were changed to match this package's
+  other worlds on Gazebo Harmonic / ROS 2 Jazzy: the world-level plugin block,
+  and the physics block (the original declared dart + bullet collision
+  detector). The corridor was also shortened so that the default robot spawn
+  lands on open floor rather than inside a wall; see the comment on the
+  corridor models below. See README.md.
 -->
 <sdf version="1.8">
   <world name="narrow_passage">
@@ -141,22 +143,27 @@
       </link>
     </model>
 
+    <!-- The passage spans x [-1.0, 3.0], i.e. it starts 1.0 m ahead of the
+         default robot spawn at x=-2.0 (world.launch.py x_pose/y_pose default to
+         -2.0/-0.5). The contributed original ran x [-3.0, 3.0], which put the
+         spawn point inside corridor_right. Keep the near end at x >= -1.0 so
+         the robot still spawns on open floor. -->
     <model name="corridor_left">
       <static>true</static>
-      <pose>0 0.45 0.75 0 0 0</pose>
+      <pose>1.0 0.45 0.75 0 0 0</pose>
       <link name="link">
-        <collision name="collision"><geometry><box><size>6.0 0.1 1.5</size></box></geometry></collision>
-        <visual name="visual"><geometry><box><size>6.0 0.1 1.5</size></box></geometry>
+        <collision name="collision"><geometry><box><size>4.0 0.1 1.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>4.0 0.1 1.5</size></box></geometry>
           <material><ambient>0.8 0.4 0.4</ambient><diffuse>0.8 0.4 0.4</diffuse></material>
         </visual>
       </link>
     </model>
     <model name="corridor_right">
       <static>true</static>
-      <pose>0 -0.45 0.75 0 0 0</pose>
+      <pose>1.0 -0.45 0.75 0 0 0</pose>
       <link name="link">
-        <collision name="collision"><geometry><box><size>6.0 0.1 1.5</size></box></geometry></collision>
-        <visual name="visual"><geometry><box><size>6.0 0.1 1.5</size></box></geometry>
+        <collision name="collision"><geometry><box><size>4.0 0.1 1.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>4.0 0.1 1.5</size></box></geometry>
           <material><ambient>0.8 0.4 0.4</ambient><diffuse>0.8 0.4 0.4</diffuse></material>
         </visual>
       </link>
