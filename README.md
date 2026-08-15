@@ -40,6 +40,10 @@ ros2 launch oomwoo_gazebo world.launch.py                 # with the Gazebo GUI
 ros2 launch oomwoo_gazebo world.launch.py headless:=true  # no GUI (Docker / CI)
 ros2 launch oomwoo_gazebo world.launch.py world:=kitchen.sdf   # pick a world
 ```
+For the OOMWOO headless simulation and the coverage / navigation regressions, this
+package is driven by the `oomwoo_sim_support` harness in
+[oomwoo-ros2-tools](https://github.com/makerspet/oomwoo-ros2-tools) — see that repo
+for the full sim workflow.
 
 ## Contributed worlds
 `kitchen.sdf`, `multi_room.sdf` and `narrow_passage.sdf` were contributed by
@@ -49,12 +53,19 @@ ros2 launch oomwoo_gazebo world.launch.py world:=kitchen.sdf   # pick a world
 worlds are vendored — that repo declares a package also named `oomwoo_gazebo`,
 so the two cannot be built in one colcon workspace.
 
-They are self-contained: the geometry is inline primitives, so unlike the
-`.world` files they pull nothing from `models/`. The geometry is unmodified from
-the contributed originals. The one change is the world-level plugin block, which
-now matches the other worlds in this package: the originals load
-`gz-sim-cpu-lidar-system`, which Gazebo Harmonic (ROS 2 Jazzy) does not ship, so
-`/scan` would stay silent; they also omitted `gz-sim-imu-system`.
+They are self-contained: every model is inline `box` and `plane` geometry with
+inline colour materials — no `<include>`, `<uri>` or `<mesh>` anywhere, so unlike
+the `.world` files (`living_room.world` alone pulls in 26 models) they need
+nothing from `models/` and download nothing at run time. Each is about 6 KB.
+
+The geometry is unmodified from the contributed originals. Two things were
+changed, both to match the other worlds in this package:
+
+- **World plugins.** The originals load `gz-sim-cpu-lidar-system`, which Gazebo
+  Harmonic (ROS 2 Jazzy) does not ship, so `/scan` would stay silent; they also
+  omitted `gz-sim-imu-system`. Both fixed.
+- **Physics.** The originals declared `dart` with the `bullet` collision
+  detector; these now carry the same `ode` block as the `.world` files.
 
 ```
 ros2 launch oomwoo_gazebo world.launch.py world:=multi_room.sdf
@@ -62,12 +73,7 @@ ros2 launch oomwoo_gazebo world.launch.py world:=narrow_passage.sdf
 ```
 
 These have no maps in `map/`, so run them with SLAM rather than localization
-against a saved map. They also use the `dart` physics engine with the `bullet`
-collision detector, where the `.world` files use `ode`.
-For the OOMWOO headless simulation and the coverage / navigation regressions, this
-package is driven by the `oomwoo_sim_support` harness in
-[oomwoo-ros2-tools](https://github.com/makerspet/oomwoo-ros2-tools) — see that repo
-for the full sim workflow.
+against a saved map.
 
 ## Credits
 Forked from [kaiaai/kaiaai_gazebo](https://github.com/kaiaai/kaiaai_gazebo)

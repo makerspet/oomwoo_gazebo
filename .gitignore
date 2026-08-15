@@ -1,3 +1,7 @@
+# Python bytecode, e.g. launch/__pycache__/ from running the launch files
+__pycache__/
+*.py[cod]
+
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
