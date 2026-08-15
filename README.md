@@ -16,11 +16,17 @@ Gazebo worlds and models for the [OOMWOO](https://github.com/makerspet/oomwoo)
 open-source robot vacuum simulation.
 
 A fork of [kaiaai/kaiaai_gazebo](https://github.com/kaiaai/kaiaai_gazebo) (jazzy),
-renamed to the **`oomwoo_gazebo`** package. The one functional change from upstream:
-`living_room.world` loads the world-level `gz-sim-contact-system`, so the robot's
-bumper/contact sensors actually publish — without it the contact topics exist but
-stay permanently silent (see
-[oomwoo-one/docs/sim-bumpers.md](https://github.com/makerspet/oomwoo-one/blob/main/docs/sim-bumpers.md)).
+renamed to the **`oomwoo_gazebo`** package. Functional changes from upstream:
+
+- `living_room.world` loads the world-level `gz-sim-contact-system`, so the
+  robot's bumper/contact sensors actually publish — without it the contact
+  topics exist but stay permanently silent (see
+  [oomwoo-one/docs/sim-bumpers.md](https://github.com/makerspet/oomwoo-one/blob/main/docs/sim-bumpers.md)).
+- `world.launch.py` gained a `headless` mode for Docker/CI, an `odom_source`
+  switch for ground-truth vs wheel odometry, and per-sensor `enable_*` switches
+  to trade sensor coverage for simulation speed. See
+  [`world.launch.py` arguments](#worldlaunchpy-arguments).
+- Three extra worlds, see [Contributed worlds](#contributed-worlds).
 
 ## Package contents
 - `worlds/` — `living_room.world` (the cluttered test world, with the contact
@@ -30,16 +36,66 @@ stay permanently silent (see
   [Contributed worlds](#contributed-worlds).
 - `models/` — furniture and prop meshes used by the worlds.
 - `map/` — saved maps aligned to the worlds.
-- `launch/` — `world.launch.py` (spawn a world + robot), `self_drive_gazebo.launch.py`
+- `launch/` — `world.launch.py` (spawn a world + robot; see
+  [arguments](#worldlaunchpy-arguments)), `self_drive_gazebo.launch.py`
   (simple wander behaviour).
 - `src/`, `include/oomwoo_gazebo/` — the `self_drive_gazebo` C++ node.
 
 ## Usage
 ```
-ros2 launch oomwoo_gazebo world.launch.py                 # with the Gazebo GUI
-ros2 launch oomwoo_gazebo world.launch.py headless:=true  # no GUI (Docker / CI)
-ros2 launch oomwoo_gazebo world.launch.py world:=kitchen.sdf   # pick a world
+ros2 launch oomwoo_gazebo world.launch.py                       # GUI, living_room.world
+ros2 launch oomwoo_gazebo world.launch.py headless:=true        # no GUI (Docker / CI)
+ros2 launch oomwoo_gazebo world.launch.py world:=kitchen.sdf    # pick a world
 ```
+`world.launch.py` starts Gazebo, bridges it to ROS 2, publishes the robot
+description and spawns the robot.
+
+### `world.launch.py` arguments
+
+| Argument | Default | Values | Purpose |
+|---|---|---|---|
+| `world` | `living_room.world` | any file in `worlds/` | World to load, resolved from this package's `worlds/` |
+| `robot_model` | *(from config)* | package name | Robot description package. Empty means read `robot.model` from the kaiaai config (`~/.kaiaai.yaml`) |
+| `use_sim_time` | `true` | `true` `false` | Use the Gazebo clock |
+| `headless` | `false` | `true` `false` | No GUI — see [Headless](#headless) |
+| `x_pose` | `-2.0` | float | Robot spawn X |
+| `y_pose` | `-0.5` | float | Robot spawn Y |
+| `odom_source` | `truth` | `truth` `wheel` | Which odometry owns `/odom` + `/tf` — see [Odometry source](#odometry-source) |
+| `enable_lidar` | `true` | `true` `false` | 2D LiDAR `/scan` |
+| `enable_ranges` | `true` | `true` `false` | Side distance sensors `/range_left`, `/range_right` |
+| `enable_tof` | `true` | `true` `false` | Front ToF `/tof_front/points` |
+| `enable_cameras` | `false` | `true` `false` | Stereo `/camera_left`, `/camera_right` — **off by default** (heavy, unused for now) |
+| `enable_imu` | `true` | `true` `false` | IMU `/imu` |
+
+#### Headless
+`headless:=true` runs Gazebo server-only with offscreen rendering and forces
+software GL (`LIBGL_ALWAYS_SOFTWARE=1`, `GALLIUM_DRIVER=llvmpipe`), so the
+rendering sensors still produce data with no display attached. This is the mode
+for Docker and CI.
+
+#### Odometry source
+`odom_source` selects which odometry owns `/odom` and `/tf`:
+
+- `truth` — ground-truth model pose, slip-free.
+- `wheel` — wheel-encoder odometry, drifts with wheel slip.
+
+Both are always published: whichever is *not* selected appears on `/odom_truth`
+or `/odom_wheel`, so the two can be compared to measure slip.
+
+#### Sensor switches
+The `enable_*` arguments are passed into the robot's xacro, so the sensor links
+stay in the model and only the Gazebo sensor — the render cost — is dropped.
+Turn them off to speed up the simulation. Cameras and the front ToF cost the
+most, then the side ranges, then the LiDAR; cameras are already off by default.
+
+```
+ros2 launch oomwoo_gazebo world.launch.py headless:=true \
+  enable_tof:=false enable_ranges:=false
+```
+
+These require matching `xacro:arg` declarations in the robot description
+package, as in `oomwoo_one`'s `urdf/plugins.xacro`.
+
 For the OOMWOO headless simulation and the coverage / navigation regressions, this
 package is driven by the `oomwoo_sim_support` harness in
 [oomwoo-ros2-tools](https://github.com/makerspet/oomwoo-ros2-tools) — see that repo
