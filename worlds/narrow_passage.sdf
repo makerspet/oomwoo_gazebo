@@ -169,9 +169,14 @@
       </link>
     </model>
 
+    <!-- Sits flush against corridor_right rather than mid-corridor. Centred, it
+         left 0.30 m to each wall, and the robot is 0.359 m across including the
+         bumper, so the passage was impassable on both sides. Against the wall it
+         leaves a single 0.60 m gap. Keep the clear gap above ~0.40 m if you move
+         this. -->
     <model name="box_obstacle">
       <static>true</static>
-      <pose>0.5 0 0.15 0 0 0</pose>
+      <pose>0.5 -0.30 0.15 0 0 0</pose>
       <link name="link">
         <collision name="collision"><geometry><box><size>0.2 0.2 0.3</size></box></geometry></collision>
         <visual name="visual"><geometry><box><size>0.2 0.2 0.3</size></box></geometry>

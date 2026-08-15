@@ -122,12 +122,19 @@ Two things were changed in all three, to match the other worlds in this package:
 - **Physics.** The originals declared `dart` with the `bullet` collision
   detector; these now carry the same `ode` block as the `.world` files.
 
-`narrow_passage.sdf` needed one geometry fix as well: its corridor ran
-`x [-3.0, 3.0]`, which put the default spawn (`x_pose` `-2.0`, `y_pose` `-0.5`)
-*inside* the right corridor wall. The corridor now runs `x [-1.0, 3.0]`, so the
-robot spawns on open floor and drives into the passage. If you edit that world,
-keep the near end at `x >= -1.0`. `kitchen.sdf` and `multi_room.sdf` are
-geometrically unmodified.
+`narrow_passage.sdf` needed two geometry fixes as well, both sized against the
+robot's 0.349 m body (0.359 m including the bumper):
+
+- Its corridor ran `x [-3.0, 3.0]`, which put the default spawn (`x_pose`
+  `-2.0`, `y_pose` `-0.5`) *inside* the right corridor wall. The corridor now
+  runs `x [-1.0, 3.0]`, so the robot spawns on open floor and drives into the
+  passage. Keep the near end at `x >= -1.0` if you edit it.
+- `box_obstacle` sat mid-corridor leaving 0.30 m to each wall, so the passage
+  was impassable on both sides and the corridor was a dead end. It now sits
+  flush against the right wall, leaving a single 0.60 m gap (0.12 m either side
+  of the robot). Keep the clear gap above ~0.40 m.
+
+`kitchen.sdf` and `multi_room.sdf` are geometrically unmodified.
 
 ```
 ros2 launch oomwoo_gazebo world.launch.py world:=multi_room.sdf
