@@ -43,7 +43,7 @@ install(TARGETS ${EXEC_NAME}
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY launch models worlds map
+install(DIRECTORY launch models worlds maps
   DESTINATION share/${PROJECT_NAME}/
 )
 
