@@ -144,6 +144,16 @@ ros2 launch oomwoo_gazebo world.launch.py world:=narrow_passage.sdf
 These have no maps in `map/`, so run them with SLAM rather than localization
 against a saved map.
 
+## Release Notes
+
+### 8/16/2026
+
+- recreated `maps/living_room.*` map, including slam_toolbox graph pose data export
+
+### 8/15/2026
+
+- vendored `worlds/*.sdf`
+
 ## Credits
 Forked from [kaiaai/kaiaai_gazebo](https://github.com/kaiaai/kaiaai_gazebo)
 (Apache-2.0). Initial versions are based on ROBOTIS
