@@ -44,8 +44,8 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
       get_package_share_path(robot_model_str), 'urdf', 'robot.urdf.xacro'
     )
 
-    # odom_source (truth|wheel) selects which odometry owns /odom + /tf; both are
-    # always published (the other on /odom_wheel or /odom_truth) for slip checks.
+    # odom_source (ground_truth|robot_wheels) selects which odometry owns /odom
+    # + /tf; both are always published (the other on /odom_wheel or /odom_truth).
     # enable_* turn heavy rendering sensors off to speed up Gazebo (cameras and
     # the front ToF cost the most). Read straight from the launch context.
     mappings = {'odom_source': odom_source_str}
@@ -176,12 +176,12 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             name='odom_source',
-            default_value='truth',
-            choices=['truth', 'wheel'],
-            description='Which odometry owns /odom + /tf: truth = ground-truth '
-                        'model pose (slip-free); wheel = wheel-encoder odometry '
-                        '(slip drifts). Both are always published; the other is on '
-                        '/odom_wheel or /odom_truth for slip comparison.'
+            default_value='ground_truth',
+            choices=['ground_truth', 'robot_wheels'],
+            description='Which odometry owns /odom + /tf: ground_truth = true '
+                        'model pose (slip-free); robot_wheels = wheel-encoder '
+                        'odometry (slip drifts). Both are always published; the '
+                        'other is on /odom_wheel or /odom_truth for comparison.'
         ),
         # Per-sensor on/off (default all on). Turn heavy rendering sensors off to
         # speed up Gazebo: cameras and the front ToF cost the most, then the side
