@@ -1,0 +1,32 @@
+header {
+  stamp {
+    sec: 52
+    nsec: 240000000
+  }
+  data {
+    key: "frame_id"
+    value: "odom"
+  }
+  data {
+    key: "child_frame_id"
+    value: "base_footprint"
+  }
+}
+pose {
+  position {
+    x: -0.10920169030889991
+    y: -0.1901630230448437
+  }
+  orientation {
+    x: -8.63555049615236e-09
+    y: 6.9020521186969723e-09
+    z: 0.75184007888085291
+    w: 0.65934550562541416
+  }
+}
+twist {
+  linear {
+  }
+  angular {
+  }
+}

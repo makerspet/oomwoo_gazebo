@@ -1,0 +1,1246 @@
+header {
+  stamp {
+    sec: 96
+    nsec: 199000000
+  }
+}
+pose {
+  name: "floor"
+  id: 4
+  position {
+    z: -0.025
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "north_wall"
+  id: 8
+  position {
+    y: 2.75
+    z: 1.25
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "west_wall"
+  id: 12
+  position {
+    x: -3.5
+    z: 1.25
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "east_wall"
+  id: 16
+  position {
+    x: 3.5
+    z: 1.25
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "south_wall_left"
+  id: 20
+  position {
+    x: -2
+    y: -2.75
+    z: 1.25
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "south_wall_right"
+  id: 24
+  position {
+    x: 2
+    y: -2.75
+    z: 1.25
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "north_counter_base"
+  id: 28
+  position {
+    x: -0.75
+    y: 2.39
+    z: 0.515
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "north_counter_toekick"
+  id: 32
+  position {
+    x: -0.75
+    y: 2.43
+    z: 0.065
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "north_countertop"
+  id: 36
+  position {
+    x: -0.75
+    y: 2.34
+    z: 0.9225
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "east_counter_base"
+  id: 40
+  position {
+    x: 3.14
+    y: 1.25
+    z: 0.515
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "east_counter_toekick"
+  id: 44
+  position {
+    x: 3.18
+    y: 1.25
+    z: 0.065
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "east_countertop"
+  id: 48
+  position {
+    x: 3.09
+    y: 1.25
+    z: 0.9225
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "refrigerator"
+  id: 52
+  position {
+    x: -2.9
+    y: 2.31
+    z: 0.95
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "range_oven"
+  id: 60
+  position {
+    x: 1.55
+    y: 2.34
+    z: 0.45
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "sink_basin"
+  id: 70
+  position {
+    x: -0.95
+    y: 2.3
+    z: 0.95
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "island_base"
+  id: 75
+  position {
+    x: 0.3
+    y: 0.35
+    z: 0.41
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "island_top"
+  id: 79
+  position {
+    x: 0.3
+    y: 0.35
+    z: 0.8425
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "dining_table"
+  id: 83
+  position {
+    x: -1.9
+    y: -1.2
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "chair_north"
+  id: 95
+  position {
+    x: -1.9
+    y: -0.52
+  }
+  orientation {
+    z: 0.99999999999911982
+    w: 1.3267948966775328e-06
+  }
+}
+pose {
+  name: "chair_south"
+  id: 101
+  position {
+    x: -1.9
+    y: -1.88
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "sink_mat"
+  id: 107
+  position {
+    x: -0.95
+    y: 1.72
+    z: 0.004
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "pet_bowl"
+  id: 111
+  position {
+    x: 2.55
+    y: -1.95
+    z: 0.03
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "toy_ball"
+  id: 115
+  position {
+    x: 1.65
+    y: -1.45
+    z: 0.09999999990200098
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "oomwoo_one"
+  id: 121
+  position {
+    x: 1.6500005975833543
+    y: -2.1999858853273149
+    z: 0.066659636411524142
+  }
+  orientation {
+    x: 3.0112026223982498e-05
+    y: -3.0398566395034633e-05
+    z: 0.7071047414174968
+    w: 0.70710881965514194
+  }
+}
+pose {
+  name: "link"
+  id: 5
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 9
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 13
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 17
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 21
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 25
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 29
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 33
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 37
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 41
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 45
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 49
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 53
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 61
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 71
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 76
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 80
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 84
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 96
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 102
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 108
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 112
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "link"
+  id: 116
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "base_footprint"
+  id: 122
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "wheel_left_link"
+  id: 166
+  position {
+    y: 0.11749999999999927
+    z: 0.034000000000000016
+  }
+  orientation {
+    x: -0.063385222502573391
+    y: -0.70426011783168518
+    z: -0.70426011783168563
+    w: 0.063385222502573446
+  }
+}
+pose {
+  name: "wheel_right_link"
+  id: 169
+  position {
+    y: -0.1175000000000006
+    z: 0.033999999999999989
+  }
+  orientation {
+    x: -0.063238248480029458
+    y: -0.704273330411693
+    z: -0.70427333041169349
+    w: 0.063238248480029569
+  }
+}
+pose {
+  name: "visual"
+  id: 6
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 10
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 14
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 18
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 22
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 26
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 30
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 34
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 38
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 42
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 46
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 50
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "cabinet"
+  id: 54
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "upper_door"
+  id: 55
+  position {
+    y: -0.397
+    z: 0.49
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "lower_door"
+  id: 56
+  position {
+    y: -0.397
+    z: -0.5
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "handle_left"
+  id: 57
+  position {
+    x: -0.22
+    y: -0.425
+    z: 0.03
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "handle_right"
+  id: 58
+  position {
+    x: 0.22
+    y: -0.425
+    z: 0.03
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "body"
+  id: 62
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "glass_door"
+  id: 63
+  position {
+    y: -0.346
+    z: -0.08
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "cooktop"
+  id: 64
+  position {
+    z: 0.456
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "burner_front_left"
+  id: 65
+  position {
+    x: -0.16
+    y: -0.16
+    z: 0.472
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "burner_front_right"
+  id: 66
+  position {
+    x: 0.16
+    y: -0.16
+    z: 0.472
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "burner_back_left"
+  id: 67
+  position {
+    x: -0.16
+    y: 0.16
+    z: 0.472
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "burner_back_right"
+  id: 68
+  position {
+    x: 0.16
+    y: 0.16
+    z: 0.472
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "basin"
+  id: 72
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "drain"
+  id: 73
+  position {
+    z: 0.045
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "faucet"
+  id: 74
+  position {
+    x: 0.26
+    y: 0.08
+    z: 0.24
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 77
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 81
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "top_visual"
+  id: 85
+  position {
+    z: 0.72
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "leg1_visual"
+  id: 86
+  position {
+    x: 0.58
+    y: 0.28
+    z: 0.35
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "leg2_visual"
+  id: 87
+  position {
+    x: -0.58
+    y: 0.28
+    z: 0.35
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "leg3_visual"
+  id: 88
+  position {
+    x: 0.58
+    y: -0.28
+    z: 0.35
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "leg4_visual"
+  id: 89
+  position {
+    x: -0.58
+    y: -0.28
+    z: 0.35
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "seat_v"
+  id: 97
+  position {
+    z: 0.46
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "back_v"
+  id: 98
+  position {
+    y: 0.19
+    z: 0.76
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "seat_v"
+  id: 103
+  position {
+    z: 0.46
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "back_v"
+  id: 104
+  position {
+    y: 0.19
+    z: 0.76
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 109
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 113
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "visual"
+  id: 117
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "sunVisual"
+  id: 120
+  position {
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual"
+  id: 123
+  position {
+    z: 0.04575
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_1"
+  id: 124
+  position {
+    x: 0.17300712703194029
+    y: 0.022776830248172439
+    z: 0.04575
+  }
+  orientation {
+    z: 0.75184004791120151
+    w: 0.65934554093956088
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_2"
+  id: 125
+  position {
+    x: 0.16121696718435111
+    y: 0.066778286080730387
+    z: 0.04575
+  }
+  orientation {
+    z: 0.83146984606041929
+    w: 0.55556988317606171
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_3"
+  id: 126
+  position {
+    x: 0.13844012808339129
+    y: 0.10622890819477621
+    z: 0.04575
+  }
+  orientation {
+    z: 0.89687295243954712
+    w: 0.44228826254194215
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_4"
+  id: 127
+  position {
+    x: 0.1062288149961514
+    y: 0.13844019959720311
+    z: 0.04575
+  }
+  orientation {
+    z: 0.9469303008074329
+    w: 0.32143896063287769
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_5"
+  id: 128
+  position {
+    x: 0.066778177548630163
+    y: 0.1612170121397975
+    z: 0.04575
+  }
+  orientation {
+    z: 0.98078539532188569
+    w: 0.19508974428014544
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_6"
+  id: 129
+  position {
+    x: 0.022776713778886438
+    y: 0.17300714236537951
+    z: 0.04575
+  }
+  orientation {
+    z: 0.99785896543354458
+    w: 0.065402485456564963
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_7"
+  id: 130
+  position {
+    x: 0.022776713778886438
+    y: -0.17300714236537951
+    z: 0.04575
+  }
+  orientation {
+    z: 0.065403157220298033
+    w: 0.99785892140403143
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_8"
+  id: 131
+  position {
+    x: 0.066778177548630163
+    y: -0.1612170121397975
+    z: 0.04575
+  }
+  orientation {
+    z: 0.19509040454983465
+    w: 0.98078526398625188
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_9"
+  id: 132
+  position {
+    x: 0.1062288149961514
+    y: -0.13844019959720311
+    z: 0.04575
+  }
+  orientation {
+    z: 0.32143959811111589
+    w: 0.94693008441286963
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_10"
+  id: 133
+  position {
+    x: 0.13844012808339129
+    y: -0.10622890819477621
+    z: 0.04575
+  }
+  orientation {
+    z: 0.44228886632129055
+    w: 0.89687265468862831
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_11"
+  id: 134
+  position {
+    x: 0.16121696718435111
+    y: -0.066778286080730387
+    z: 0.04575
+  }
+  orientation {
+    z: 0.55557044292567948
+    w: 0.83146947204775024
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_link_visual_12"
+  id: 135
+  position {
+    x: 0.17300712703194029
+    y: -0.022776830248172439
+    z: 0.04575
+  }
+  orientation {
+    z: 0.65934604708196876
+    w: 0.75183960403624817
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__camera_left_link_visual_13"
+  id: 136
+  position {
+    x: 0.1745
+    y: 0.025
+    z: 0.04575
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__camera_right_link_visual_14"
+  id: 137
+  position {
+    x: 0.1745
+    y: -0.025
+    z: 0.04575
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__caster_link_visual_15"
+  id: 138
+  position {
+    x: -0.1445
+    z: 0.0125
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__imu_link_visual_16"
+  id: 139
+  position {
+    z: 0.04575
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__range_left_link_visual_17"
+  id: 140
+  position {
+    y: 0.1745
+    z: 0.04575
+  }
+  orientation {
+    z: 0.70710701920045438
+    w: 0.70710654317256061
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__range_right_link_visual_18"
+  id: 141
+  position {
+    y: -0.1745
+    z: 0.04575
+  }
+  orientation {
+    z: -0.70710701920045438
+    w: 0.70710654317256061
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__base_scan_visual_19"
+  id: 142
+  position {
+    z: 0.088
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "base_footprint_fixed_joint_lump__tof_front_link_visual_20"
+  id: 143
+  position {
+    x: 0.1745
+    z: 0.04575
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "wheel_left_link_visual"
+  id: 167
+  position {
+    z: 2.7755575615628914e-17
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "wheel_right_link_visual"
+  id: 170
+  position {
+    z: -1.3877787807814457e-17
+  }
+  orientation {
+    w: 1
+  }
+}
+pose {
+  name: "sun"
+  id: 119
+  position {
+    z: 10
+  }
+  orientation {
+    w: 1
+  }
+}

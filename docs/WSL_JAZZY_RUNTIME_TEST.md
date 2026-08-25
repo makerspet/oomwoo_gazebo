@@ -51,3 +51,24 @@ Observed success signals before the intentionally bounded shutdown:
 The `SIGINT` exit caused by the 45-second `timeout --signal=INT` is expected:
 it is an intentionally bounded test shutdown, not a simulation startup
 failure.
+
+## Final polished kitchen.world validation
+
+The earlier test above exercised the upstream `kitchen.sdf`; it is not evidence
+for the polished world. The final world was rebuilt from this branch and run as:
+
+```bash
+source /opt/ros/jazzy/setup.bash
+cd /root/makerspet_ws
+colcon build --symlink-install --packages-select oomwoo_gazebo
+source install/setup.bash
+timeout --signal=INT 120s ros2 launch oomwoo_gazebo world.launch.py \
+  world:=kitchen.world headless:=true robot_model:=oomwoo_one
+```
+
+The actual log records successful `kitchen.world` loading, OOMWOO-One spawning,
+bridge creation, IMU and lidar initialization, and diff-drive/odometry setup.
+See `docs/kitchen_validation/` for captured launch, odometry, and lidar
+evidence. `world.launch.py` sets `GZ_SIM_RESOURCE_PATH` to the installed local
+`models/` directory, so the vendored maps resolve without a manual environment
+export or a Fuel download. The run is headless; no GUI screenshot was fabricated.

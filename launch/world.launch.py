@@ -71,6 +71,7 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
 
     # pkg_gazebo_ros = get_package_share_path('gazebo_ros')
     world_path_name = os.path.join(get_package_share_path('oomwoo_gazebo'), 'worlds', world_str)
+    model_path_name = os.path.join(get_package_share_path('oomwoo_gazebo'), 'models')
 
     print('URDF  file name : {}'.format(urdf_path_name))
     # print('SDF   file name : {}'.format(sdf_path_name))
@@ -81,7 +82,14 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
     gz_args = ('-s -r --headless-rendering -v 4 ' if headless_bool
                else '-r -v 4 ') + world_path_name
 
-    env = []
+    # Keep locally vendored world assets self-contained for Gazebo Sim.  This
+    # also preserves an existing user resource path for other worlds.
+    env = [
+        SetEnvironmentVariable(
+            'GZ_SIM_RESOURCE_PATH',
+            model_path_name + os.pathsep + os.environ.get('GZ_SIM_RESOURCE_PATH', '')
+        )
+    ]
     if headless_bool:
         env = [
             SetEnvironmentVariable('LIBGL_ALWAYS_SOFTWARE', '1'),
