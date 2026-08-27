@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!--
+  Coffee Maker by chapulina (Gazebo Fuel, CC-BY 4.0), vendored for oomwoo_gazebo.
+
+  Two changes from upstream:
+   1. The <uri> pointed at a REMOTE mesh on api.ignitionfuel.org (a retired
+      host). That defeated local pre-fetching and would stall or fail world
+      load. Rewritten to the local vendored mesh.
+   2. Upstream ships no <collision>, so the robot's bumper and LiDAR passed
+      straight through it. Added a box collision fitted to the scaled mesh
+      bounds: x +/-0.103, y -0.174..0.102, z 0..0.355 (metres, after the
+      0.01 scale), hence the -0.036 y offset on the box centre.
+-->
+<sdf version="1.5">
+    <model name="coffee_maker">
+        <static>true</static>
+        <link name="link">
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://coffee_maker/meshes/coffee_maker.obj</uri>
+                        <scale>0.01 0.01 0.01</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+            <collision name="collision">
+                <pose>0 -0.036 0.1775 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.206 0.276 0.355</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+    </model>
+</sdf>

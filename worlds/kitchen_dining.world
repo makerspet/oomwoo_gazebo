@@ -1,38 +1,52 @@
 <sdf version='1.10'>
   <world name='default'>
     <!--
-      Kitchen + dining room, built around the "Kitchen and Dining" model by
-      Nate Koenig (Gazebo Fuel, OpenRobotics, CC0 / public domain), vendored
-      locally as models/kitchen_dining so nothing is fetched at run time.
+      Kitchen + dining room for the OOMWOO robot vacuum.
 
-      STATUS: VISUAL PREVIEW ONLY - THE ROOM HAS NO COLLISION GEOMETRY.
-      The upstream model ships a <visual> and no <collision>, so the robot
-      drives straight through every wall, cabinet and chair. It rests on the
-      invisible ground plane below and nothing else stops it. This world is
-      here to be looked at and critiqued; collision proxies come next.
+      Composed from individually vendored models (models/), not one monolithic
+      mesh, so every piece can be moved, swapped or reused by the bedroom /
+      office / bathroom worlds later. Nothing is fetched at run time.
 
-      Measured extents of the vendored mesh (transforms applied, unit = inch,
-      Z_UP, so it is placed at pose 0 0 0):
-        x  -3.889 ..  3.825   ( 7.714 m)
-        y  -7.415 ..  7.415   (14.830 m)
-        z  -0.298 ..  3.342   ( 3.640 m)
-      Floor slab sits at z = -0.002, i.e. effectively z = 0. No ceiling slab,
-      so the top-down GUI camera below sees the whole layout.
+      ROOM
+        Interior  x [-2.45, 2.45]  = 4.90 m
+                  y [-1.90, 1.90]  = 3.80 m   -> 18.6 m^2
+        Ceiling   2.50 m (room_wall_25x*m). NOT the 2.0 m of living_room's
+                  room_wall_2x5m: a 2 m wall cannot fit a 1.08 m wall cabinet
+                  hung above a counter, let alone a range hood above that.
+
+      ROBOT CLEARANCES (oomwoo_one: 0.349 m body / 0.359 m over bumper,
+      0.097 m tall including the LiDAR turret)
+        - Under the dining table: legs 0.722 m apart minus 0.1 m leg = 0.622 m
+          clear, and the lowest stretchers are at z 0.187 m. The robot drives
+          under and between the legs. This is the "go under" test case.
+        - Oven to east wall: 0.359 m. Exactly the bumper width, on purpose -
+          a dead gap the robot must decide about rather than wedge into.
+        - Default spawn (x_pose -2.0, y_pose -0.5) is open floor: 0.45 m to the
+          west wall, 0.825 m to the table. No need to override it.
+
+      KNOWN ISSUES, both in the upstream Fuel assets, both one-line fixes:
+        1. KitchenCountertop's work surface is at 0.74 m, not the standard
+           0.90 m - it is modelled on a CHART lab bench. It will read as short
+           next to the 1.065 m Oven. To correct it, change its pose z from 0
+           to 0.16. Left as authored so it can be judged as-is first.
+        2. The Fridge's door face is its -y side (73 of its 89 vertices are on
+           that face), so at yaw 0 the doors face south into the room. If they
+           turn out to face the wall, add 3.1416 to both fridge yaw values.
     -->
     <scene>
       <shadows>false</shadows>
       <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
       <background>0.699999988 0.699999988 0.699999988 1</background>
     </scene>
-    <gui fullscreen='false'>
-      <!-- Near top-down over the room centre, yaw 0 so the long (14.8 m) y
-           axis runs across the wider screen axis. Orbit to inspect in 3D. -->
-      <camera name='user_camera'>
-        <pose>0 -0.13 14 0 1.5138 0</pose>
-        <view_controller>orbit</view_controller>
-        <projection_type>perspective</projection_type>
-      </camera>
-    </gui>
+    <!--
+      No <gui><camera> block here on purpose. gz-sim 8 does not read it - it
+      logs "gui camera can't be converted yet" and falls back to
+      ~/.gz/sim/8/gui.config. (living_room.world, empty.world and
+      turtlebot3_house.world all still carry that dead block.) Setting the
+      view needs a gui plugin block with MinimalScene + camera_pose, but
+      declaring any GUI plugin means the world must declare ALL of them or
+      the toolbars disappear. Left out until we decide we want that.
+    -->
     <physics type='ode'>
       <real_time_update_rate>1000</real_time_update_rate>
       <max_step_size>0.001</max_step_size>
@@ -68,31 +82,11 @@
     <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
 
-    <!-- Collision-only ground plane. NOT model://ground plane: that model's
-         grey visual sits at z=0 and would paint over the room's own floor,
-         which is the nicest-looking part of the mesh. Collision alone keeps
-         the robot standing at exactly floor level with the floor visible. -->
-    <model name='ground_plane'>
-      <static>true</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>100</mu>
-                <mu2>50</mu2>
-              </ode>
-            </friction>
-          </surface>
-        </collision>
-      </link>
-    </model>
+    <include>
+      <uri>model://ground plane</uri>
+      <name>ground_plane</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
 
     <light name='sun' type='directional'>
       <cast_shadows>false</cast_shadows>
@@ -114,12 +108,215 @@
       </spot>
     </light>
 
-    <model name='kitchen_dining'>
+    <!-- ==================== SHELL ==================== -->
+    <!-- Wall centres are 0.05 outside the interior faces (walls are 0.1
+         thick). Corners overlap, so the box is closed. -->
+
+    <model name='wall_west'>
       <static>true</static>
       <include>
-        <uri>model://kitchen_dining</uri>
+        <uri>model://room_wall_25x4m</uri>
       </include>
-      <pose>0 0 0 0 -0 0</pose>
+      <pose>-2.5 0 1.25 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='wall_east'>
+      <static>true</static>
+      <include>
+        <uri>model://room_wall_25x4m</uri>
+      </include>
+      <pose>2.5 0 1.25 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='wall_south'>
+      <static>true</static>
+      <include>
+        <uri>model://room_wall_25x5m</uri>
+      </include>
+      <pose>0 -1.95 1.25 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='wall_north'>
+      <static>true</static>
+      <include>
+        <uri>model://room_wall_25x5m</uri>
+      </include>
+      <pose>0 1.95 1.25 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Entry door, south wall. Visual only (no collision), like in
+         living_room - it reads as a doorway, it is not an opening. -->
+    <model name='door_08x2m'>
+      <static>true</static>
+      <include>
+        <uri>model://door_08x2m</uri>
+      </include>
+      <pose>-1.4 -1.945 1 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Windows are curtain decals on the wall face, not openings. -->
+    <model name='window_curtains_east'>
+      <static>true</static>
+      <include>
+        <uri>model://window_curtains</uri>
+      </include>
+      <pose>2.44 0.3 1.25 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='window_curtains_south'>
+      <static>true</static>
+      <include>
+        <uri>model://window_curtains</uri>
+      </include>
+      <pose>1.2 -1.89 1.25 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- ============ NORTH WALL WORKING RUN ============ -->
+    <!-- West to east: fridge pair, countertop, range. All backs on y = 1.90.
+         Run is 4.43 m of the 4.90 m wall. -->
+
+    <!-- Two single-door fridges shoulder to shoulder, reading as one
+         french-door unit. Each is 0.588 wide, so the pair is 1.176. -->
+    <model name='fridge_left'>
+      <static>true</static>
+      <include>
+        <uri>model://Fridge</uri>
+      </include>
+      <pose>-2.15 1.627 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='fridge_right'>
+      <static>true</static>
+      <include>
+        <uri>model://Fridge</uri>
+      </include>
+      <pose>-1.562 1.627 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Countertop with the sink and cooktop. Yawed +90 deg so its 2.29 m
+         length runs along the wall and its back panel faces north. That puts
+         the SINK at the west end (x -1.16..-0.46) and the COOKTOP at the east
+         end (x 0.34..1.07), next to the range. -->
+    <model name='KitchenCountertop'>
+      <static>true</static>
+      <include>
+        <uri>model://KitchenCountertop</uri>
+      </include>
+      <pose>-0.06 1.524 0 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Slide-in range, east end of the run. -->
+    <model name='Oven'>
+      <static>true</static>
+      <include>
+        <uri>model://Oven</uri>
+      </include>
+      <pose>1.61 1.522 0 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Authored, since Fuel has no range hood. Origin is on the floor;
+         canopy underside lands at 1.70 m, 0.635 m above the range top. -->
+    <model name='range_hood'>
+      <static>true</static>
+      <include>
+        <uri>model://range_hood</uri>
+      </include>
+      <pose>1.61 1.65 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Two wall cabinets over the countertop. Bottom at 1.42 m, so they top
+         out at 2.50 m exactly flush with the ceiling, and leave 0.68 m of
+         clearance above the work surface. -->
+    <model name='wall_cabinet_left'>
+      <static>true</static>
+      <include>
+        <uri>model://WhiteCabinet</uri>
+      </include>
+      <pose>-0.51 1.675 1.42 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='wall_cabinet_right'>
+      <static>true</static>
+      <include>
+        <uri>model://WhiteCabinet</uri>
+      </include>
+      <pose>0.39 1.675 1.42 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- On the work surface (0.742 m), on the clear stretch between the sink
+         and the cooktop. Raise this z with the countertop if that gets fixed. -->
+    <model name='coffee_maker'>
+      <static>true</static>
+      <include>
+        <uri>model://coffee_maker</uri>
+      </include>
+      <pose>0 1.6 0.742 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- ================== DINING ================== -->
+    <!-- Table centred in the free floor south of the run. Yawed +90 deg so
+         its 2.35 m length runs east-west. Top at 0.74 m. -->
+
+    <model name='DiningTable'>
+      <static>true</static>
+      <include>
+        <uri>model://DiningTable</uri>
+      </include>
+      <pose>0 -0.55 0 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Two chairs each side, tucked in, seats facing the table. The chair
+         model's backrest is on its +y side, so yaw 0 faces south and yaw pi
+         faces north. -->
+    <model name='dining_chair_n_west'>
+      <static>true</static>
+      <include>
+        <uri>model://DiningChair</uri>
+      </include>
+      <pose>-0.6 0.15 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='dining_chair_n_east'>
+      <static>true</static>
+      <include>
+        <uri>model://DiningChair</uri>
+      </include>
+      <pose>0.6 0.15 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='dining_chair_s_west'>
+      <static>true</static>
+      <include>
+        <uri>model://DiningChair</uri>
+      </include>
+      <pose>-0.6 -1.25 0 0 -0 3.1416</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='dining_chair_s_east'>
+      <static>true</static>
+      <include>
+        <uri>model://DiningChair</uri>
+      </include>
+      <pose>0.6 -1.25 0 0 -0 3.1416</pose>
       <self_collide>false</self_collide>
     </model>
 
