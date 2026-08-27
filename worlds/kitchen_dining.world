@@ -148,18 +148,11 @@
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Entry door, south wall. Visual only (no collision), like in
-         living_room - it reads as a doorway, it is not an opening. -->
-    <model name='door_08x2m'>
-      <static>true</static>
-      <include>
-        <uri>model://door_08x2m</uri>
-      </include>
-      <pose>-1.4 -1.945 1 0 -0 1.5707</pose>
-      <self_collide>false</self_collide>
-    </model>
-
-    <!-- Windows are curtain decals on the wall face, not openings. -->
+    <!-- Windows are curtain decals on the wall face, not openings.
+         The south wall carries two of them, 1.5676 m wide each, spanning
+         x -2.184..-0.616 and x 0.416..1.984 - no overlap, both inside the
+         wall. There is deliberately NO door in this room now; add one back
+         on the west wall if the robot ever needs to leave. -->
     <model name='window_curtains_east'>
       <static>true</static>
       <include>
@@ -169,7 +162,16 @@
       <self_collide>false</self_collide>
     </model>
 
-    <model name='window_curtains_south'>
+    <model name='window_curtains_south_west'>
+      <static>true</static>
+      <include>
+        <uri>model://window_curtains</uri>
+      </include>
+      <pose>-1.4 -1.89 1.25 0 -0 1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='window_curtains_south_east'>
       <static>true</static>
       <include>
         <uri>model://window_curtains</uri>
@@ -202,26 +204,32 @@
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Countertop with the sink and cooktop. Yawed +90 deg so its 2.29 m
-         length runs along the wall and its back panel faces north. That puts
-         the SINK at the west end (x -1.16..-0.46) and the COOKTOP at the east
-         end (x 0.34..1.07), next to the range. -->
+    <!-- Countertop with the sink and cooktop. Yawed -90 deg so its 2.29 m
+         length runs along the wall and it FACES THE ROOM. (At +90 it faced
+         the wall - the model's front is its local +x, not its back.) The y
+         centre moved 1.524 -> 1.5358 to keep the back on y = 1.90, because
+         the local x bounds are asymmetric: -0.3641 at the back, +0.3757 at
+         the front. Flipping it also swapped the ends: the COOKTOP is now at
+         the west end (x -1.19..-0.46) and the SINK at the east end
+         (x 0.34..1.04), by the window. -->
     <model name='KitchenCountertop'>
       <static>true</static>
       <include>
         <uri>model://KitchenCountertop</uri>
       </include>
-      <pose>-0.06 1.524 0 0 -0 1.5707</pose>
+      <pose>-0.06 1.5358 0 0 -0 -1.5707</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Slide-in range, east end of the run. -->
+    <!-- Slide-in range, east end of the run, also turned to face the room.
+         Its local x bounds are symmetric (+/-0.3773), so unlike the
+         countertop the flip needs no y correction. -->
     <model name='Oven'>
       <static>true</static>
       <include>
         <uri>model://Oven</uri>
       </include>
-      <pose>1.61 1.522 0 0 -0 1.5707</pose>
+      <pose>1.61 1.522 0 0 -0 -1.5707</pose>
       <self_collide>false</self_collide>
     </model>
 

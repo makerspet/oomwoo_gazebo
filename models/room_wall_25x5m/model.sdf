@@ -11,7 +11,7 @@
         <material>
           <pbr>
             <metal>
-              <albedo_map>textures/wall_texture_1404x562.jpg</albedo_map>
+              <albedo_map>textures/wall_texture_25x5m.jpg</albedo_map>
             </metal>
           </pbr>
           <ambient>1 1 1 1</ambient>
