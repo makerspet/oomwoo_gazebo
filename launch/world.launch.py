@@ -36,6 +36,8 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
     world_str = context.perform_substitution(world)
     headless_bool = context.perform_substitution(headless).lower() == 'true'
     odom_source_str = context.perform_substitution(odom_source)
+    software_gl_bool = context.perform_substitution(
+        LaunchConfiguration('software_gl')).lower() == 'true'
 
     if len(robot_model_str) == 0:
       robot_model_str = config.get_var('robot.model')
@@ -81,8 +83,23 @@ def make_nodes(context: LaunchContext, robot_model, use_sim_time, x_pose, y_pose
     gz_args = ('-s -r --headless-rendering -v 4 ' if headless_bool
                else '-r -v 4 ') + world_path_name
 
+    # Force Mesa's software rasteriser. Always on when headless; also available to
+    # the GUI via software_gl:=true.
+    #
+    # Why the GUI needs it under Docker-on-Windows with an external X server
+    # (DISPLAY=host.docker.internal:0.0 and no --gpus / no /dev/dri): the ogre2
+    # render engine needs OpenGL 3.3+, but a Windows X server's GLX cannot supply
+    # it. gz-rendering then falls back to its EGL PBuffer path, which has no
+    # "Full Screen" config option, and the GUI dies with
+    #     OGRE EXCEPTION(2:InvalidParametersException): Option named Full Screen
+    #     does not exist. in EglPBufferSupport::setConfigOption
+    #     [BaseRenderEngine.cc] Render-engine has not been initialized
+    # It is intermittent because it depends on what the X server negotiates on
+    # the run. llvmpipe supplies OpenGL 4.5 inside the container and renders
+    # through plain X11, so ogre2 keeps its normal windowed path. Slower, but it
+    # does not depend on the X server's GL at all.
     env = []
-    if headless_bool:
+    if headless_bool or software_gl_bool:
         env = [
             SetEnvironmentVariable('LIBGL_ALWAYS_SOFTWARE', '1'),
             SetEnvironmentVariable('GALLIUM_DRIVER', 'llvmpipe'),
@@ -173,6 +190,17 @@ def generate_launch_description():
             default_value='false',
             choices=['true', 'false'],
             description='Run Gazebo headless: server-only, offscreen rendering, software GL (no GUI)'
+        ),
+        DeclareLaunchArgument(
+            name='software_gl',
+            default_value='false',
+            choices=['true', 'false'],
+            description='Force Mesa software GL (llvmpipe) for the GUI. Use when the '
+                        'GUI dies with "Option named Full Screen does not exist" / '
+                        '"Render-engine has not been initialized" - that means ogre2 '
+                        'could not get OpenGL 3.3+ from the X server and fell back to '
+                        'EGL PBuffer. Typical for Docker on Windows/macOS with an '
+                        'external X server and no GPU passthrough. Implied by headless.'
         ),
         DeclareLaunchArgument(
             name='odom_source',

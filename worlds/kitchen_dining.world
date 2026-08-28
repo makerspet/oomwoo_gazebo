@@ -20,7 +20,7 @@
         running down the east wall, an east-end range would have been boxed in
         by the corner.
         East wall, north to south:
-          base run with the DOUBLE SINK (3.15) | pantry (0.60)
+          base run with the DOUBLE SINK + dishwasher (3.15) | pantry (0.60)
         The two runs meet in the NE corner: the north run ends at x = 1.787,
         which is exactly the east run's outermost face (its door handles).
 
@@ -28,7 +28,9 @@
         Counter height  0.900     Counter depth   0.635
         Carcass depth   0.600     Slab thickness  0.040
         TOE KICK        0.089 high x 0.076 deep  (3.5" x 3", US standard)
-        Wall cabinets   bottom 1.500, top 2.450
+        Wall cabinets   bottom 1.500, top 2.450 (north wall, and east
+                        wall either side of the window)
+        Dishwasher      0.596 wide, in a gap in the east run beside the sink
         Range           scaled 0.8452 -> top 0.9001, level with the counter
       The toe kick is 0.089 and the robot is 0.097 tall, so it cannot drive
       in. Deliberate, and matches reality - it is the case the extendable side
@@ -44,7 +46,7 @@
       an upstream gz-sim bug with no toggle in SDF or the GUI - see
       https://github.com/gazebosim/gz-sim/issues/1086 ("Light visuals are
       enabled by default"), still open. The only lever is FEWER LIGHTS, so
-      this world uses two ceiling fixtures rather than four.
+      this world uses a single ceiling fixture (plus the sun) - 2 markers.
     -->
     <scene>
       <shadows>false</shadows>
@@ -105,11 +107,13 @@
          direction lights the whole scene including everything beyond the
          walls - which is exactly what was missing.
 
-         The two ceiling fixtures stay, because a single directional light
-         leaves every surface facing away from it on flat ambient, which is
-         what made the walls read dark. They sit at 2.40 m, just under the
-         ceiling, where kitchen downlights actually are. Two, not four, to
-         keep the number of green light wireframes down (see header). -->
+         ONE ceiling fixture, at 2.40 m where a kitchen downlight actually
+         sits. It was two, and before that four; the room read too bright, and
+         each light also costs a green wireframe marker (see header). One
+         still does the job the sun cannot - a directional light leaves every
+         surface facing away from it on flat ambient, which is what made the
+         walls read dark - while dropping the interior back down. Centred
+         between the counters and the table so neither is hot-spotted. -->
 
     <light name='sun' type='directional'>
       <cast_shadows>false</cast_shadows>
@@ -131,23 +135,9 @@
       </spot>
     </light>
 
-    <light name='ceiling_light_west' type='point'>
+    <light name='ceiling_light' type='point'>
       <cast_shadows>false</cast_shadows>
-      <pose>-0.9 0 2.4 0 -0 0</pose>
-      <diffuse>1 0.97 0.92 1</diffuse>
-      <specular>0.3 0.3 0.3 1</specular>
-      <intensity>1.6</intensity>
-      <attenuation>
-        <range>8</range>
-        <constant>0.35</constant>
-        <linear>0.12</linear>
-        <quadratic>0.03</quadratic>
-      </attenuation>
-    </light>
-
-    <light name='ceiling_light_east' type='point'>
-      <cast_shadows>false</cast_shadows>
-      <pose>0.9 -0.8 2.4 0 -0 0</pose>
+      <pose>-0.2 0.1 2.4 0 -0 0</pose>
       <diffuse>1 0.97 0.92 1</diffuse>
       <specular>0.3 0.3 0.3 1</specular>
       <intensity>1.6</intensity>
@@ -354,6 +344,41 @@
       <self_collide>false</self_collide>
     </model>
 
+    <!-- Dishwasher, dropped into the 0.600 m appliance gap the east run
+         leaves beside the sink. Spans y -0.320..0.280, i.e. immediately to
+         the right of the sink opening (y 0.370..1.130) with 0.090 m of
+         cabinet between them. The counter runs over it, the toe kick under. -->
+    <model name='dishwasher'>
+      <static>true</static>
+      <include>
+        <uri>model://dishwasher</uri>
+      </include>
+      <pose>2.45 -0.02 0 0 -0 -1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Wall cabinets on the east wall, flanking the window (y 0.200..1.300)
+         without covering it. The 0.600 unit fills the NE corner to the left
+         of the sink; the 1.450 unit runs south of the window down to the
+         pantry. -->
+    <model name='kitchen_wall_cab_ec'>
+      <static>true</static>
+      <include>
+        <uri>model://kitchen_wall_cab_ec</uri>
+      </include>
+      <pose>2.45 1.6 0 0 -0 -1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='kitchen_wall_cab_es'>
+      <static>true</static>
+      <include>
+        <uri>model://kitchen_wall_cab_es</uri>
+      </include>
+      <pose>2.45 -0.525 0 0 -0 -1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
     <!-- Pantry at the far (south) end of the east wall, flush to the south
          wall. Same toe kick as the runs, so the kick line stays continuous. -->
     <model name='kitchen_pantry'>
@@ -374,7 +399,7 @@
       <include>
         <uri>model://DiningTable</uri>
       </include>
-      <pose>0 -0.55 0 0 -0 1.5707</pose>
+      <pose>-0.33 -0.55 0 0 -0 1.5707</pose>
       <self_collide>false</self_collide>
     </model>
 
@@ -386,7 +411,7 @@
       <include>
         <uri>model://DiningChair</uri>
       </include>
-      <pose>-0.6 0.15 0 0 -0 0</pose>
+      <pose>-0.93 0.15 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
@@ -395,7 +420,7 @@
       <include>
         <uri>model://DiningChair</uri>
       </include>
-      <pose>0.6 0.15 0 0 -0 0</pose>
+      <pose>0.27 0.15 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
@@ -404,7 +429,7 @@
       <include>
         <uri>model://DiningChair</uri>
       </include>
-      <pose>-0.6 -1.25 0 0 -0 3.1416</pose>
+      <pose>-0.93 -1.25 0 0 -0 3.1416</pose>
       <self_collide>false</self_collide>
     </model>
 
@@ -413,7 +438,7 @@
       <include>
         <uri>model://DiningChair</uri>
       </include>
-      <pose>0.6 -1.25 0 0 -0 3.1416</pose>
+      <pose>0.27 -1.25 0 0 -0 3.1416</pose>
       <self_collide>false</self_collide>
     </model>
 
