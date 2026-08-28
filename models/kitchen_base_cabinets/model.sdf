@@ -1,0 +1,317 @@
+<?xml version="1.0"?>
+<!--
+  kitchen_base_cabinets - a 2.35 m run of kitchen base units with an
+  integrated sink, authored for oomwoo_gazebo.
+
+  WHY THIS EXISTS instead of Fuel's KitchenCountertop: that model is a CHART
+  lab bench, not a residential counter. Its work surface is at 0.74 m (should
+  be 0.90), its front runs flush to the floor (no toe kick at all), and it has
+  an electric cooktop welded into a single 3257-face object AND painted into
+  its diffuse map - so the cooktop cannot be removed without repainting the
+  texture. Fuel's standalone KitchenSink is a floor-standing unit with its
+  counter at 0.75 m and also no toe kick, so it would break the kick line.
+
+  REAL-WORLD DIMENSIONS (all metres)
+    Counter height        0.900   (top of slab)
+    Counter depth         0.635   (0.035 overhang past the door fronts)
+    Carcass depth         0.600
+    Slab thickness        0.040
+    TOE KICK              0.089 high x 0.076 deep   <- 3.5" x 3", US standard
+    Sink basin            0.560 x 0.420, 0.190 deep
+    Faucet                reaches 0.280 above the counter
+
+  The toe kick is 0.089 high and the robot is 0.097 tall, so it CANNOT drive
+  in - by design. That is what a real vacuum meets, and what the extendable
+  side brush / mop is for.
+
+  LOCAL FRAME: origin is at the BACK face (the wall side), centred along the
+  length, on the floor. The room is towards -y. So place this at the wall
+  plane with yaw 0 and it grows into the room: pose "<x> 1.90 0 0 0 0" for a
+  wall whose inner face is y = 1.90.
+
+  Textures are reused from models already vendored here: wood.png from
+  Cabinet, marble.png from TableMarble.
+-->
+<sdf version='1.6'>
+  <model name='kitchen_base_cabinets'>
+    <static>true</static>
+    <link name="link">
+
+      <!-- ============ TOE KICK: 0.089 high, recessed 0.076 ============ -->
+      <visual name="toe_kick_visual">
+        <pose>0 -0.262 0.0445 0 0 0</pose>
+        <geometry>
+          <box><size>2.35 0.524 0.089</size></box>
+        </geometry>
+        <material>
+          <ambient>0.12 0.12 0.13 1</ambient>
+          <diffuse>0.12 0.12 0.13 1</diffuse>
+          <specular>0.05 0.05 0.05 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+
+      <!-- ============ CARCASS, split around the sink void ============ -->
+      <!-- West section -->
+      <visual name="carcass_west_visual">
+        <pose>-0.3625 -0.3 0.4745 0 0 0</pose>
+        <geometry>
+          <box><size>1.625 0.6 0.771</size></box>
+        </geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/wood.png</albedo_map></metal></pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <!-- East section -->
+      <visual name="carcass_east_visual">
+        <pose>1.1125 -0.3 0.4745 0 0 0</pose>
+        <geometry>
+          <box><size>0.125 0.6 0.771</size></box>
+        </geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/wood.png</albedo_map></metal></pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <!-- Behind the sink -->
+      <visual name="carcass_sink_back_visual">
+        <pose>0.75 -0.045 0.4745 0 0 0</pose>
+        <geometry>
+          <box><size>0.6 0.09 0.771</size></box>
+        </geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/wood.png</albedo_map></metal></pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <!-- In front of the sink (the false drawer front carries the panel) -->
+      <visual name="carcass_sink_front_visual">
+        <pose>0.75 -0.565 0.4745 0 0 0</pose>
+        <geometry>
+          <box><size>0.6 0.07 0.771</size></box>
+        </geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/wood.png</albedo_map></metal></pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+
+      <!-- ============ DOOR PANELS, 16 mm proud ============ -->
+      <visual name="door_1_visual">
+        <pose>-0.89915 -0.608 0.475 0 0 0</pose>
+        <geometry><box><size>0.5257 0.016 0.75</size></box></geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/wood.png</albedo_map></metal></pbr>
+          <ambient>0.92 0.92 0.92 1</ambient>
+          <diffuse>0.92 0.92 0.92 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <visual name="door_2_visual">
+        <pose>-0.36145 -0.608 0.475 0 0 0</pose>
+        <geometry><box><size>0.5257 0.016 0.75</size></box></geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/wood.png</albedo_map></metal></pbr>
+          <ambient>0.92 0.92 0.92 1</ambient>
+          <diffuse>0.92 0.92 0.92 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <visual name="door_3_visual">
+        <pose>0.17625 -0.608 0.475 0 0 0</pose>
+        <geometry><box><size>0.5257 0.016 0.75</size></box></geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/wood.png</albedo_map></metal></pbr>
+          <ambient>0.92 0.92 0.92 1</ambient>
+          <diffuse>0.92 0.92 0.92 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <!-- Sink base front -->
+      <visual name="door_sink_visual">
+        <pose>0.75 -0.608 0.475 0 0 0</pose>
+        <geometry><box><size>0.588 0.016 0.75</size></box></geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/wood.png</albedo_map></metal></pbr>
+          <ambient>0.92 0.92 0.92 1</ambient>
+          <diffuse>0.92 0.92 0.92 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+
+      <!-- ============ COUNTER SLAB, 0.860 - 0.900 ============ -->
+      <!-- Four pieces leaving a 0.56 x 0.42 opening for the sink, at
+           local x 0.47..1.03, y -0.51..-0.09. -->
+      <visual name="counter_west_visual">
+        <pose>-0.3525 -0.3175 0.88 0 0 0</pose>
+        <geometry><box><size>1.645 0.635 0.04</size></box></geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/marble.png</albedo_map></metal></pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.6 0.6 0.6 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <visual name="counter_east_visual">
+        <pose>1.1025 -0.3175 0.88 0 0 0</pose>
+        <geometry><box><size>0.145 0.635 0.04</size></box></geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/marble.png</albedo_map></metal></pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.6 0.6 0.6 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <visual name="counter_sink_back_visual">
+        <pose>0.75 -0.045 0.88 0 0 0</pose>
+        <geometry><box><size>0.56 0.09 0.04</size></box></geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/marble.png</albedo_map></metal></pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.6 0.6 0.6 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <visual name="counter_sink_front_visual">
+        <pose>0.75 -0.5725 0.88 0 0 0</pose>
+        <geometry><box><size>0.56 0.125 0.04</size></box></geometry>
+        <material>
+          <pbr><metal><albedo_map>textures/marble.png</albedo_map></metal></pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.6 0.6 0.6 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+
+      <!-- ============ SINK BASIN: 5 thin stainless panels ============ -->
+      <visual name="basin_floor_visual">
+        <pose>0.75 -0.3 0.704 0 0 0</pose>
+        <geometry><box><size>0.56 0.42 0.012</size></box></geometry>
+        <material>
+          <pbr><metal><metalness>0.85</metalness><roughness>0.3</roughness></metal></pbr>
+          <ambient>0.72 0.73 0.75 1</ambient>
+          <diffuse>0.72 0.73 0.75 1</diffuse>
+          <specular>0.9 0.9 0.9 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <visual name="basin_wall_back_visual">
+        <pose>0.75 -0.096 0.805 0 0 0</pose>
+        <geometry><box><size>0.56 0.012 0.19</size></box></geometry>
+        <material>
+          <pbr><metal><metalness>0.85</metalness><roughness>0.3</roughness></metal></pbr>
+          <ambient>0.72 0.73 0.75 1</ambient>
+          <diffuse>0.72 0.73 0.75 1</diffuse>
+          <specular>0.9 0.9 0.9 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <visual name="basin_wall_front_visual">
+        <pose>0.75 -0.504 0.805 0 0 0</pose>
+        <geometry><box><size>0.56 0.012 0.19</size></box></geometry>
+        <material>
+          <pbr><metal><metalness>0.85</metalness><roughness>0.3</roughness></metal></pbr>
+          <ambient>0.72 0.73 0.75 1</ambient>
+          <diffuse>0.72 0.73 0.75 1</diffuse>
+          <specular>0.9 0.9 0.9 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <visual name="basin_wall_west_visual">
+        <pose>0.476 -0.3 0.805 0 0 0</pose>
+        <geometry><box><size>0.012 0.42 0.19</size></box></geometry>
+        <material>
+          <pbr><metal><metalness>0.85</metalness><roughness>0.3</roughness></metal></pbr>
+          <ambient>0.72 0.73 0.75 1</ambient>
+          <diffuse>0.72 0.73 0.75 1</diffuse>
+          <specular>0.9 0.9 0.9 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <visual name="basin_wall_east_visual">
+        <pose>1.024 -0.3 0.805 0 0 0</pose>
+        <geometry><box><size>0.012 0.42 0.19</size></box></geometry>
+        <material>
+          <pbr><metal><metalness>0.85</metalness><roughness>0.3</roughness></metal></pbr>
+          <ambient>0.72 0.73 0.75 1</ambient>
+          <diffuse>0.72 0.73 0.75 1</diffuse>
+          <specular>0.9 0.9 0.9 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+
+      <!-- ============ FAUCET ============ -->
+      <visual name="faucet_body_visual">
+        <pose>0.75 -0.06 1.04 0 0 0</pose>
+        <geometry><cylinder><radius>0.018</radius><length>0.28</length></cylinder></geometry>
+        <material>
+          <pbr><metal><metalness>0.9</metalness><roughness>0.15</roughness></metal></pbr>
+          <ambient>0.8 0.81 0.83 1</ambient>
+          <diffuse>0.8 0.81 0.83 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <!-- Spout: cylinder laid along -y by a +90 deg roll. -->
+      <visual name="faucet_spout_visual">
+        <pose>0.75 -0.16 1.17 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.014</radius><length>0.2</length></cylinder></geometry>
+        <material>
+          <pbr><metal><metalness>0.9</metalness><roughness>0.15</roughness></metal></pbr>
+          <ambient>0.8 0.81 0.83 1</ambient>
+          <diffuse>0.8 0.81 0.83 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+
+      <!-- ============ COLLISION ============ -->
+      <!-- Two boxes are enough: the robot can only ever touch the toe kick
+           and the cabinet front. The sink void and basin are far above it. -->
+      <collision name="toe_kick_collision">
+        <pose>0 -0.262 0.0445 0 0 0</pose>
+        <geometry><box><size>2.35 0.524 0.089</size></box></geometry>
+      </collision>
+      <collision name="body_collision">
+        <pose>0 -0.308 0.4945 0 0 0</pose>
+        <geometry><box><size>2.35 0.616 0.811</size></box></geometry>
+      </collision>
+
+    </link>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>
