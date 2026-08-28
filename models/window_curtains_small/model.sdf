@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <model name="window_curtains_small">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry><box><size>0.02 1.10 1.40</size></box></geometry>
+        <material><pbr><metal><emissive_map>textures/window_curtains.png</emissive_map></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0.4 0.4 0.4 1</emissive></material>
+      </visual>
+    </link>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>

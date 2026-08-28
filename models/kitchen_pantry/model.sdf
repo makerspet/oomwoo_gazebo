@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="kitchen_pantry">
+    <static>true</static>
+    <link name="link">
+      <visual name="toe_kick">
+        <pose>0 -0.272 0.0445 0 0 0</pose>
+        <geometry><box><size>0.6 0.544 0.089</size></box></geometry>
+        <material><ambient>0.11 0.11 0.12 1</ambient><diffuse>0.11 0.11 0.12 1</diffuse><specular>0.05 0.05 0.05 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="carcass">
+        <pose>0 -0.31 1.0945 0 0 0</pose>
+        <geometry><box><size>0.6 0.62 2.011</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/wood.png</albedo_map><metalness>0.0</metalness><roughness>0.75</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door0">
+        <pose>0 -0.628 0.5605 0 0 0</pose>
+        <geometry><box><size>0.576 0.016 0.919</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/wood.png</albedo_map><metalness>0.0</metalness><roughness>0.55</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door1">
+        <pose>0 -0.628 1.566 0 0 0</pose>
+        <geometry><box><size>0.576 0.016 1.044</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/wood.png</albedo_map><metalness>0.0</metalness><roughness>0.55</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="handle_lower_bar">
+        <pose>0.225 -0.674 0.9 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>0.22</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.95</metalness><roughness>0.12</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="handle_lower_post0">
+        <pose>0.225 -0.655 0.79 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.95</metalness><roughness>0.12</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="handle_lower_post1">
+        <pose>0.225 -0.655 1.01 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.95</metalness><roughness>0.12</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="handle_upper_bar">
+        <pose>0.225 -0.674 1.17 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>0.22</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.95</metalness><roughness>0.12</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="handle_upper_post0">
+        <pose>0.225 -0.655 1.06 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.95</metalness><roughness>0.12</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="handle_upper_post1">
+        <pose>0.225 -0.655 1.28 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.95</metalness><roughness>0.12</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <collision name="body">
+        <pose>0 -0.318 1.05 0 0 0</pose>
+        <geometry><box><size>0.6 0.636 2.1</size></box></geometry>
+      </collision>
+    </link>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>

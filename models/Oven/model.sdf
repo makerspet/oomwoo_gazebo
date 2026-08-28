@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Oven by Open Robotics (Gazebo Fuel, CC-BY 4.0), vendored for oomwoo_gazebo.
+
+  Two changes from upstream:
+   1. Uniformly scaled by %.4f. At 1:1 the range stood 1.0649 m tall and
+      0.7545 m deep, so it sat proud of the 0.900 m counter and stuck out
+      past its 0.635 m depth. One uniform factor fixes both at once:
+      height -> 0.9001 (level with the counter), depth -> 0.6377 (2.7 mm
+      proud, invisible), width -> 0.8126 (a 32" range). The collision box
+      is scaled by the same factor.
+   2. materials/textures/Oven_Albedo.png was edited: the control knobs were
+      painted pure red (155,7,7). Those 18518 pixels were recoloured to a
+      dark grey, keeping their original luminance so the knobs keep their
+      shading. No other pixels were touched.
+-->
 <sdf version="1.6">
   <model name="Oven">
     <static>true</static>
@@ -6,7 +21,7 @@
       <visual name="visual_oven">
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
+            <scale>0.8452 0.8452 0.8452</scale>
             <uri>meshes/oven.dae</uri>
             <submesh>
               <name>Oven</name>
@@ -30,7 +45,7 @@
       <visual name="visual_glass">
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
+            <scale>0.8452 0.8452 0.8452</scale>
             <uri>meshes/oven.dae</uri>
             <submesh>
               <name>Glass</name>
@@ -50,10 +65,10 @@
         </material>
       </visual>
       <collision name="Box001">
-        <pose>-0.000304252 -1.66893e-06 0.517103 0.0 0.0 0.0</pose>
+        <pose>-0.000257 -1.41058e-06 0.437055 0.0 0.0 0.0</pose>
         <geometry>
           <box>
-            <size>0.691523 0.96649 1.03421</size>
+            <size>0.58448 0.81688 0.87411</size>
           </box>
         </geometry>
       </collision>

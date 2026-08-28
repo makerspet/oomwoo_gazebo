@@ -1,73 +1,31 @@
 <?xml version="1.0"?>
-<sdf version='1.6'>
-  <model name='range_hood'>
+<sdf version="1.6">
+  <model name="range_hood">
     <static>true</static>
     <link name="link">
-
-      <!-- Canopy: 900 wide x 500 deep x 150 tall, underside at 1.70 m. -->
-      <visual name="canopy_visual">
-        <pose>0 0 1.775 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.9 0.5 0.15</size>
-          </box>
-        </geometry>
-        <material>
-          <pbr>
-            <metal>
-              <metalness>0.9</metalness>
-              <roughness>0.25</roughness>
-            </metal>
-          </pbr>
-          <ambient>0.75 0.76 0.78 1</ambient>
-          <diffuse>0.75 0.76 0.78 1</diffuse>
-          <specular>0.9 0.9 0.9 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-        <cast_shadows>1</cast_shadows>
+      <visual name="canopy">
+        <pose>0 -0.25 1.675 0 0 0</pose>
+        <geometry><box><size>0.8 0.5 0.15</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.9</metalness><roughness>0.28</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <collision name="canopy_collision">
-        <pose>0 0 1.775 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.9 0.5 0.15</size>
-          </box>
-        </geometry>
-      </collision>
-
-      <!-- Chimney: 300 x 250, from the canopy top (1.85 m) to a 2.5 m
-           ceiling. Offset +0.125 in y so its back sits flush with the wall,
-           since it is shallower than the canopy. -->
-      <visual name="chimney_visual">
-        <pose>0 0.125 2.175 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.3 0.25 0.65</size>
-          </box>
-        </geometry>
-        <material>
-          <pbr>
-            <metal>
-              <metalness>0.9</metalness>
-              <roughness>0.25</roughness>
-            </metal>
-          </pbr>
-          <ambient>0.75 0.76 0.78 1</ambient>
-          <diffuse>0.75 0.76 0.78 1</diffuse>
-          <specular>0.9 0.9 0.9 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-        <cast_shadows>1</cast_shadows>
+      <visual name="canopy_lip">
+        <pose>0 -0.495 1.59 0 0 0</pose>
+        <geometry><box><size>0.8 0.02 0.03</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.9</metalness><roughness>0.28</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <collision name="chimney_collision">
-        <pose>0 0.125 2.175 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.3 0.25 0.65</size>
-          </box>
-        </geometry>
+      <visual name="chimney">
+        <pose>0 -0.125 2.125 0 0 0</pose>
+        <geometry><box><size>0.3 0.25 0.75</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.9</metalness><roughness>0.28</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.25 0.25 0.25 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <collision name="canopy">
+        <pose>0 -0.25 1.675 0 0 0</pose>
+        <geometry><box><size>0.8 0.5 0.15</size></box></geometry>
       </collision>
-
+      <collision name="chimney">
+        <pose>0 -0.125 2.125 0 0 0</pose>
+        <geometry><box><size>0.3 0.25 0.75</size></box></geometry>
+      </collision>
     </link>
     <allow_auto_disable>1</allow_auto_disable>
   </model>

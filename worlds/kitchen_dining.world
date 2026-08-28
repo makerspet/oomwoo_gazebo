@@ -10,49 +10,53 @@
       ROOM
         Interior  x [-2.45, 2.45]  = 4.90 m
                   y [-1.90, 1.90]  = 3.80 m   -> 18.6 m^2
-        Ceiling   2.50 m (room_wall_25x*m). NOT the 2.0 m of living_room's
-                  room_wall_2x5m: a 2 m wall cannot fit a 1.08 m wall cabinet
-                  hung above a counter, let alone a range hood above that.
+        Ceiling   2.50 m (room_wall_25x*m).
+
+      LAYOUT - an L, along the north and east walls
+        North wall, west to east:
+          fridge (0.90) | base run W (1.144) | RANGE (0.813) | base run E (1.381)
+        The range is CENTRED on the north wall at x = 0, so the counter splits
+        either side of it. That keeps it reachable: with the counter now also
+        running down the east wall, an east-end range would have been boxed in
+        by the corner.
+        East wall, north to south:
+          base run with the DOUBLE SINK (3.15) | pantry (0.60)
+        The two runs meet in the NE corner: the north run ends at x = 1.787,
+        which is exactly the east run's outermost face (its door handles).
+
+      KITCHEN DIMENSIONS (authored family, all units share them)
+        Counter height  0.900     Counter depth   0.635
+        Carcass depth   0.600     Slab thickness  0.040
+        TOE KICK        0.089 high x 0.076 deep  (3.5" x 3", US standard)
+        Wall cabinets   bottom 1.500, top 2.450
+        Range           scaled 0.8452 -> top 0.9001, level with the counter
+      The toe kick is 0.089 and the robot is 0.097 tall, so it cannot drive
+      in. Deliberate, and matches reality - it is the case the extendable side
+      brush and mop exist for.
 
       ROBOT CLEARANCES (oomwoo_one: 0.349 m body / 0.359 m over bumper,
       0.097 m tall including the LiDAR turret)
         - Under the dining table: legs 0.722 m apart minus 0.1 m leg = 0.622 m
-          clear, and the lowest stretchers are at z 0.187 m. The robot drives
-          under and between the legs. This is the "go under" test case.
-        - Oven to east wall: 0.359 m. Exactly the bumper width, on purpose -
-          a dead gap the robot must decide about rather than wedge into.
-        - Default spawn (x_pose -2.0, y_pose -0.5) is open floor: 0.45 m to the
-          west wall, 0.825 m to the table. No need to override it.
+          clear, lowest stretchers at z 0.187. It drives under and between.
+        - Default spawn (x_pose -2.0, y_pose -0.5) is open floor.
 
-      KITCHEN DIMENSIONS (models/kitchen_base_cabinets, authored)
-        Counter height  0.900     Counter depth   0.635
-        Carcass depth   0.600     Slab thickness  0.040
-        TOE KICK        0.089 high x 0.076 deep  (3.5" x 3", US standard)
-        Wall cabinets   bottom 1.420, top 2.500 (flush with the ceiling)
-      The toe kick is 0.089 and the robot is 0.097 tall, so it cannot drive
-      in. That is deliberate and matches reality - it is the case the
-      extendable side brush and mop exist for.
-
-      KNOWN ISSUE, in an upstream Fuel asset:
-        The Fridge's door face is its -y side (73 of its 89 vertices are on
-        that face), so at yaw 0 the doors face south into the room. If they
-        turn out to face the wall, add 3.1416 to both fridge yaw values.
+      LIGHT WIREFRAMES: the green wireframe markers drawn on every light are
+      an upstream gz-sim bug with no toggle in SDF or the GUI - see
+      https://github.com/gazebosim/gz-sim/issues/1086 ("Light visuals are
+      enabled by default"), still open. The only lever is FEWER LIGHTS, so
+      this world uses two ceiling fixtures rather than four.
     -->
     <scene>
       <shadows>false</shadows>
-      <!-- Lifted from living_room's 0.4. With shadows off, ambient is what
-           fills every surface the ceiling fixtures do not reach directly. -->
       <ambient>0.55 0.55 0.56 1</ambient>
       <background>0.699999988 0.699999988 0.699999988 1</background>
     </scene>
     <!--
-      No <gui><camera> block here on purpose. gz-sim 8 does not read it - it
-      logs "gui camera can't be converted yet" and falls back to
-      ~/.gz/sim/8/gui.config. (living_room.world, empty.world and
-      turtlebot3_house.world all still carry that dead block.) Setting the
-      view needs a gui plugin block with MinimalScene + camera_pose, but
-      declaring any GUI plugin means the world must declare ALL of them or
-      the toolbars disappear. Left out until we decide we want that.
+      No <gui><camera> block on purpose. gz-sim 8 does not read it - it logs
+      "gui camera can't be converted yet" and falls back to
+      ~/.gz/sim/8/gui.config. Setting the view needs a gui plugin block with
+      MinimalScene + camera_pose, but declaring any GUI plugin means the world
+      must declare ALL of them or the toolbars disappear.
     -->
     <physics type='ode'>
       <real_time_update_rate>1000</real_time_update_rate>
@@ -96,96 +100,63 @@
     </include>
 
     <!-- ==================== LIGHTING ====================
-         Indoor lighting, not living_room's single directional "sun" 10 m
-         overhead. That one light was the reason the walls read dark: a
-         directional light has ONE direction for the whole scene, here
-         (-0.5, 0.1, -0.9), so every surface facing away from it - which is
-         most of a room's wall area - got only the flat 0.4 ambient term.
+         The sun is back, at full strength and 10 m up, so the ground plane
+         outside the room is lit again. It is a directional light, so its one
+         direction lights the whole scene including everything beyond the
+         walls - which is exactly what was missing.
 
-         Instead: four warm ceiling fixtures just under the 2.5 m ceiling, at
-         the height real kitchen downlights actually sit, plus a weakened
-         directional for fill so nothing goes pure black, plus a lifted
-         ambient. Point lights fall off with distance, so walls now brighten
-         as they approach a fixture and the room gets depth.
+         The two ceiling fixtures stay, because a single directional light
+         leaves every surface facing away from it on flat ambient, which is
+         what made the walls read dark. They sit at 2.40 m, just under the
+         ceiling, where kitchen downlights actually are. Two, not four, to
+         keep the number of green light wireframes down (see header). -->
 
-         Shadows stay off (scene/shadows false), so four lights cost little. -->
-
-    <light name='ceiling_light_nw' type='point'>
-      <cast_shadows>false</cast_shadows>
-      <pose>-1.2 0.8 2.4 0 -0 0</pose>
-      <diffuse>1 0.97 0.92 1</diffuse>
-      <specular>0.3 0.3 0.3 1</specular>
-      <intensity>1.8</intensity>
-      <attenuation>
-        <range>8</range>
-        <constant>0.35</constant>
-        <linear>0.12</linear>
-        <quadratic>0.03</quadratic>
-      </attenuation>
-    </light>
-
-    <light name='ceiling_light_ne' type='point'>
-      <cast_shadows>false</cast_shadows>
-      <pose>1.2 0.8 2.4 0 -0 0</pose>
-      <diffuse>1 0.97 0.92 1</diffuse>
-      <specular>0.3 0.3 0.3 1</specular>
-      <intensity>1.8</intensity>
-      <attenuation>
-        <range>8</range>
-        <constant>0.35</constant>
-        <linear>0.12</linear>
-        <quadratic>0.03</quadratic>
-      </attenuation>
-    </light>
-
-    <light name='ceiling_light_sw' type='point'>
-      <cast_shadows>false</cast_shadows>
-      <pose>-1.2 -0.9 2.4 0 -0 0</pose>
-      <diffuse>1 0.97 0.92 1</diffuse>
-      <specular>0.3 0.3 0.3 1</specular>
-      <intensity>1.8</intensity>
-      <attenuation>
-        <range>8</range>
-        <constant>0.35</constant>
-        <linear>0.12</linear>
-        <quadratic>0.03</quadratic>
-      </attenuation>
-    </light>
-
-    <light name='ceiling_light_se' type='point'>
-      <cast_shadows>false</cast_shadows>
-      <pose>1.2 -0.9 2.4 0 -0 0</pose>
-      <diffuse>1 0.97 0.92 1</diffuse>
-      <specular>0.3 0.3 0.3 1</specular>
-      <intensity>1.8</intensity>
-      <attenuation>
-        <range>8</range>
-        <constant>0.35</constant>
-        <linear>0.12</linear>
-        <quadratic>0.03</quadratic>
-      </attenuation>
-    </light>
-
-    <!-- Soft fill only. Kept the name 'sun' so anything that looks up a light
-         by name across these worlds still finds one. Intensity was 4. -->
     <light name='sun' type='directional'>
       <cast_shadows>false</cast_shadows>
-      <pose>0 0 2.45 0 -0 0</pose>
-      <diffuse>0.45 0.45 0.47 1</diffuse>
-      <specular>0.1 0.1 0.1 1</specular>
-      <intensity>1</intensity>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <intensity>4</intensity>
       <attenuation>
         <range>1000</range>
         <constant>0.9</constant>
         <linear>0.01</linear>
         <quadratic>0.001</quadratic>
       </attenuation>
-      <direction>-0.3 0.2 -0.9</direction>
+      <direction>-0.5 0.1 -0.9</direction>
       <spot>
         <inner_angle>0</inner_angle>
         <outer_angle>0</outer_angle>
         <falloff>0</falloff>
       </spot>
+    </light>
+
+    <light name='ceiling_light_west' type='point'>
+      <cast_shadows>false</cast_shadows>
+      <pose>-0.9 0 2.4 0 -0 0</pose>
+      <diffuse>1 0.97 0.92 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <intensity>1.6</intensity>
+      <attenuation>
+        <range>8</range>
+        <constant>0.35</constant>
+        <linear>0.12</linear>
+        <quadratic>0.03</quadratic>
+      </attenuation>
+    </light>
+
+    <light name='ceiling_light_east' type='point'>
+      <cast_shadows>false</cast_shadows>
+      <pose>0.9 -0.8 2.4 0 -0 0</pose>
+      <diffuse>1 0.97 0.92 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <intensity>1.6</intensity>
+      <attenuation>
+        <range>8</range>
+        <constant>0.35</constant>
+        <linear>0.12</linear>
+        <quadratic>0.03</quadratic>
+      </attenuation>
     </light>
 
     <!-- ==================== SHELL ==================== -->
@@ -228,33 +199,33 @@
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Entry door on the WEST wall - the only wall carrying nothing else
-         (north has the working run, east and south have curtains). Visual
-         only, no collision, like in living_room: it reads as a doorway, it
-         is not an opening. Inset like living_room's, 5 mm proud of the wall
-         face, so it does not z-fight with the wall. -->
+    <!-- Entry door on the WEST wall, north end: spans y 0.100..0.900, with the
+         fridge flank starting at y 1.140. Visual only, no collision, like in
+         living_room: it reads as a doorway, it is not an opening. Inset 5 mm
+         proud of the wall face so it does not z-fight. -->
     <model name='door_08x2m'>
       <static>true</static>
       <include>
         <uri>model://door_08x2m</uri>
       </include>
-      <pose>-2.495 -0.6 1 0 -0 0</pose>
+      <pose>-2.495 0.5 1 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Windows are curtain decals on the wall face, not openings.
-         The south wall carries two of them, 1.5676 m wide each, spanning
-         x -2.184..-0.616 and x 0.416..1.984 - no overlap, both inside the
-         wall. -->
-    <model name='window_curtains_east'>
+    <!-- Makerspet decoration, west wall, south of the door: spans y
+         -1.029..-0.171 at eye level (z 1.000..2.000). -->
+    <model name='makerspet_poster'>
       <static>true</static>
       <include>
-        <uri>model://window_curtains</uri>
+        <uri>model://makerspet_poster</uri>
       </include>
-      <pose>2.44 0.3 1.25 0 -0 0</pose>
+      <pose>-2.435 -0.6 1.5 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
+    <!-- Windows are curtain decals on the wall face, not openings. The two
+         south ones are full height; the east one is the short variant, sitting
+         ON the counter (bottom 0.900, top 2.300). -->
     <model name='window_curtains_south_west'>
       <static>true</static>
       <include>
@@ -269,113 +240,134 @@
       <include>
         <uri>model://window_curtains</uri>
       </include>
-      <pose>1.2 -1.89 1.25 0 -0 1.5707</pose>
+      <pose>0.85 -1.89 1.25 0 -0 1.5707</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <!-- ============ NORTH WALL WORKING RUN ============ -->
-    <!-- West to east: fridge pair, countertop, range. All backs on y = 1.90.
-         Run is 4.43 m of the 4.90 m wall. -->
-
-    <!-- Two single-door fridges shoulder to shoulder, reading as one
-         french-door unit. Each is 0.588 wide, so the pair is 1.176. -->
-    <model name='fridge_left'>
+    <!-- Above the sink, on the east wall. -->
+    <model name='window_curtains_east'>
       <static>true</static>
       <include>
-        <uri>model://Fridge</uri>
+        <uri>model://window_curtains_small</uri>
       </include>
-      <pose>-2.15 1.627 0 0 -0 0</pose>
+      <pose>2.44 0.75 1.6 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <model name='fridge_right'>
+    <!-- ============ NORTH WALL: fridge, counter, RANGE, counter ============ -->
+
+    <!-- French-door fridge, authored. Replaces Fuel's Fridge, a 0.588 m
+         single-door unit; this is 0.900 wide at typical US proportions, with
+         handles and a brushed stainless finish. -->
+    <model name='fridge_double_door'>
       <static>true</static>
       <include>
-        <uri>model://Fridge</uri>
+        <uri>model://fridge_double_door</uri>
       </include>
-      <pose>-1.562 1.627 0 0 -0 0</pose>
+      <pose>-2 1.9 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Base cabinet run, authored (see models/kitchen_base_cabinets). This
-         replaces Fuel's KitchenCountertop, which could not meet any of the
-         three requirements: its surface sits at 0.74 m not 0.90, it has no
-         toe kick at all, and its electric cooktop is welded into a single
-         3257-face object AND painted into the diffuse map, so it cannot be
-         removed without repainting the texture.
-
-         Now: counter at 0.900, no cooktop (that is the range's job, and it
-         means only one hood is needed), and a real 0.089 x 0.076 m toe kick.
-         Its origin is the back face, so it is placed straight on the wall
-         plane y = 1.90 at yaw 0. Spans x -1.240..1.110; the sink opening
-         lands at x 0.405..0.965 and the faucet at x 0.685. -->
-    <model name='kitchen_base_cabinets'>
+    <!-- Counter west of the range. Spans x -1.550..-0.406. -->
+    <model name='kitchen_base_run_w'>
       <static>true</static>
       <include>
-        <uri>model://kitchen_base_cabinets</uri>
+        <uri>model://kitchen_base_run_w</uri>
       </include>
-      <pose>-0.065 1.9 0 0 -0 0</pose>
+      <pose>-0.978 1.9 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Slide-in range, east end of the run, also turned to face the room.
-         Its local x bounds are symmetric (+/-0.3773), so unlike the
-         countertop the flip needs no y correction. -->
+    <!-- The range, centred on the north wall. Scaled 0.8452 so its top lands
+         at 0.9001 - level with the counter - and its depth at 0.6377, within
+         3 mm of the counter's 0.635. Yawed -90 deg to face the room. -->
     <model name='Oven'>
       <static>true</static>
       <include>
         <uri>model://Oven</uri>
       </include>
-      <pose>1.61 1.522 0 0 -0 -1.5707</pose>
+      <pose>0 1.5811 0 0 -0 -1.5707</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Authored, since Fuel has no range hood. Origin is on the floor;
-         canopy underside lands at 1.70 m, 0.635 m above the range top. -->
+    <!-- Counter east of the range. Spans x 0.406..1.787, meeting the east
+         run's front face exactly. -->
+    <model name='kitchen_base_run_e'>
+      <static>true</static>
+      <include>
+        <uri>model://kitchen_base_run_e</uri>
+      </include>
+      <pose>1.0965 1.9 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Hood over the range. Canopy underside at 1.600, so 0.700 above the
+         cooktop - within the usual 0.600-0.750. -->
     <model name='range_hood'>
       <static>true</static>
       <include>
         <uri>model://range_hood</uri>
       </include>
-      <pose>1.61 1.65 0 0 -0 0</pose>
+      <pose>0 1.9 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Two wall cabinets over the countertop. Bottom at 1.42 m, so they top
-         out at 2.50 m exactly flush with the ceiling, and leave 0.68 m of
-         clearance above the work surface. -->
-    <model name='wall_cabinet_left'>
+    <!-- Wall cabinets flanking the hood, aligned over the base runs. -->
+    <model name='kitchen_wall_cab_w'>
       <static>true</static>
       <include>
-        <uri>model://WhiteCabinet</uri>
+        <uri>model://kitchen_wall_cab_w</uri>
       </include>
-      <pose>-0.51 1.675 1.42 0 -0 0</pose>
+      <pose>-0.978 1.9 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <model name='wall_cabinet_right'>
+    <model name='kitchen_wall_cab_e'>
       <static>true</static>
       <include>
-        <uri>model://WhiteCabinet</uri>
+        <uri>model://kitchen_wall_cab_e</uri>
       </include>
-      <pose>0.39 1.675 1.42 0 -0 0</pose>
+      <pose>1.0965 1.9 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <!-- On the work surface, which is now at 0.900 m. Sits west of the sink
-         opening (x 0.405..0.965) on clear counter. -->
+    <!-- On the counter west of the range. -->
     <model name='coffee_maker'>
       <static>true</static>
       <include>
         <uri>model://coffee_maker</uri>
       </include>
-      <pose>-0.5 1.6 0.9 0 -0 0</pose>
+      <pose>-1 1.6 0.9 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- ============ EAST WALL: sink run, then pantry ============ -->
+
+    <!-- Yawed -90 deg so the run grows west off the east wall. Spans
+         y -1.25..1.90; the double sink lands at y 0.75, under the window. -->
+    <model name='kitchen_base_run_east'>
+      <static>true</static>
+      <include>
+        <uri>model://kitchen_base_run_east</uri>
+      </include>
+      <pose>2.45 0.325 0 0 -0 -1.5707</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Pantry at the far (south) end of the east wall, flush to the south
+         wall. Same toe kick as the runs, so the kick line stays continuous. -->
+    <model name='kitchen_pantry'>
+      <static>true</static>
+      <include>
+        <uri>model://kitchen_pantry</uri>
+      </include>
+      <pose>2.45 -1.6 0 0 -0 -1.5707</pose>
       <self_collide>false</self_collide>
     </model>
 
     <!-- ================== DINING ================== -->
-    <!-- Table centred in the free floor south of the run. Yawed +90 deg so
-         its 2.35 m length runs east-west. Top at 0.74 m. -->
+    <!-- Table centred in the free floor. Yawed +90 deg so its 2.35 m length
+         runs east-west. Top at 0.74 m. -->
 
     <model name='DiningTable'>
       <static>true</static>
