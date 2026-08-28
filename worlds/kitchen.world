@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <world name="default">
+    <scene>
+      <shadows>true</shadows>
+      <ambient>0.45 0.45 0.45 1</ambient>
+      <background>0.72 0.75 0.78 1</background>
+    </scene>
+
+    <gui fullscreen="false">
+      <camera name="user_camera">
+        <pose>7.5 -7.0 6.5 0 0.55 2.35</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+
+    <physics type="ode">
+      <real_time_update_rate>1000</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>150</iters>
+          <precon_iters>0</precon_iters>
+          <sor>1.4</sor>
+          <use_dynamic_moi_rescaling>true</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0.00001</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>2000</contact_max_correcting_vel>
+          <contact_surface_layer>0.01</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+
+    <plugin name="gz::sim::systems::Physics" filename="gz-sim-physics-system"/>
+    <plugin name="gz::sim::systems::UserCommands" filename="gz-sim-user-commands-system"/>
+    <plugin name="gz::sim::systems::SceneBroadcaster" filename="gz-sim-scene-broadcaster-system"/>
+    <plugin name="gz::sim::systems::Sensors" filename="gz-sim-sensors-system">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin name="gz::sim::systems::Imu" filename="gz-sim-imu-system"/>
+    <plugin name="gz::sim::systems::Contact" filename="gz-sim-contact-system"/>
+
+    <gravity>0 0 -9.8</gravity>
+    <atmosphere type="adiabatic"/>
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.85 0.85 0.85 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.4 0.2 -0.9</direction>
+    </light>
+
+    <!-- Self-contained floor: 7.0 m x 5.5 m -->
+    <model name="floor">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>7.0 5.5 0.05</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>7.0 5.5 0.05</size></box></geometry>
+          <material>
+            <ambient>0.48 0.25 0.12 1</ambient>
+            <diffuse>0.58 0.34 0.17 1</diffuse>
+            <pbr><metal>
+              <metalness>0</metalness>
+              <albedo_map>model://KitchenMaterials/textures/brown_floor_tiles_Diffuse_1k.jpg</albedo_map>
+              <normal_map>model://KitchenMaterials/textures/brown_floor_tiles_nor_gl_1k.jpg</normal_map>
+              <roughness_map>model://KitchenMaterials/textures/brown_floor_tiles_Rough_1k.jpg</roughness_map>
+            </metal></pbr>
+          </material>
+        </visual>
+      </link>
+      <pose>0 0 -0.025 0 0 0</pose>
+    </model>
+
+    <!-- Supports the south doorway so a robot can cross the threshold without
+         driving off the room slab. The 1.0 m width matches the wall opening. -->
+    <model name="doorway_landing">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>1.00 0.90 0.05</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>1.00 0.90 0.05</size></box></geometry><material><ambient>0.48 0.25 0.12 1</ambient><diffuse>0.58 0.34 0.17 1</diffuse><pbr><metal><metalness>0</metalness><albedo_map>model://KitchenMaterials/textures/brown_floor_tiles_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/brown_floor_tiles_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/brown_floor_tiles_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+      </link>
+      <pose>0 -3.15 -0.025 0 0 0</pose>
+    </model>
+
+    <!-- Room shell; south side has a 1.0 m doorway centered at y=-2.75. -->
+    <model name="north_wall">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>7.0 0.10 2.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>7.0 0.10 2.5</size></box></geometry><material><ambient>0.92 0.92 0.90 1</ambient><diffuse>0.92 0.92 0.90 1</diffuse></material></visual>
+      </link>
+      <pose>0 2.75 1.25 0 0 0</pose>
+    </model>
+    <model name="west_wall">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.10 5.5 2.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.10 5.5 2.5</size></box></geometry><material><ambient>0.92 0.92 0.90 1</ambient><diffuse>0.92 0.92 0.90 1</diffuse></material></visual>
+      </link>
+      <pose>-3.5 0 1.25 0 0 0</pose>
+    </model>
+    <model name="east_wall">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.10 5.5 2.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.10 5.5 2.5</size></box></geometry><material><ambient>0.92 0.92 0.90 1</ambient><diffuse>0.92 0.92 0.90 1</diffuse></material></visual>
+      </link>
+      <pose>3.5 0 1.25 0 0 0</pose>
+    </model>
+    <model name="south_wall_left">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>3.0 0.10 2.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>3.0 0.10 2.5</size></box></geometry><material><ambient>0.92 0.92 0.90 1</ambient><diffuse>0.92 0.92 0.90 1</diffuse></material></visual>
+      </link>
+      <pose>-2.0 -2.75 1.25 0 0 0</pose>
+    </model>
+    <model name="south_wall_right">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>3.0 0.10 2.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>3.0 0.10 2.5</size></box></geometry><material><ambient>0.92 0.92 0.90 1</ambient><diffuse>0.92 0.92 0.90 1</diffuse></material></visual>
+      </link>
+      <pose>2.0 -2.75 1.25 0 0 0</pose>
+    </model>
+
+    <!-- NORTH COUNTER RUN. Toe-kick is modeled as a recessed lower plinth:
+         cabinet body starts at z=0.13 and is 0.08 m shallower toward the room. -->
+    <model name="north_counter_base">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>3.4 0.56 0.77</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>3.4 0.56 0.77</size></box></geometry><material><ambient>0.42 0.24 0.10 1</ambient><diffuse>0.55 0.33 0.15 1</diffuse><pbr><metal><metalness>0</metalness><albedo_map>model://KitchenMaterials/textures/oak_wood_planks_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/oak_wood_planks_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/oak_wood_planks_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+      </link>
+      <pose>-0.75 2.39 0.515 0 0 0</pose>
+    </model>
+    <model name="north_counter_toekick">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>3.4 0.48 0.13</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>3.4 0.48 0.13</size></box></geometry><material><ambient>0.20 0.20 0.20 1</ambient><diffuse>0.20 0.20 0.20 1</diffuse></material></visual>
+      </link>
+      <pose>-0.75 2.43 0.065 0 0 0</pose>
+    </model>
+    <model name="north_countertop">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>3.5 0.66 0.045</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>3.5 0.66 0.045</size></box></geometry><material><ambient>0.22 0.23 0.24 1</ambient><diffuse>0.34 0.35 0.36 1</diffuse><pbr><metal><metalness>0</metalness><albedo_map>model://KitchenMaterials/textures/granite_tile_03_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/granite_tile_03_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/granite_tile_03_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+      </link>
+      <pose>-0.75 2.34 0.9225 0 0 0</pose>
+    </model>
+
+    <!-- EAST COUNTER RUN, forming an L. -->
+    <model name="east_counter_base">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.56 2.10 0.77</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.56 2.10 0.77</size></box></geometry><material><ambient>0.42 0.24 0.10 1</ambient><diffuse>0.55 0.33 0.15 1</diffuse><pbr><metal><metalness>0</metalness><albedo_map>model://KitchenMaterials/textures/oak_wood_planks_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/oak_wood_planks_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/oak_wood_planks_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+      </link>
+      <pose>3.14 1.25 0.515 0 0 0</pose>
+    </model>
+    <model name="east_counter_toekick">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.48 2.10 0.13</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.48 2.10 0.13</size></box></geometry><material><ambient>0.20 0.20 0.20 1</ambient><diffuse>0.20 0.20 0.20 1</diffuse></material></visual>
+      </link>
+      <pose>3.18 1.25 0.065 0 0 0</pose>
+    </model>
+    <model name="east_countertop">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.66 2.20 0.045</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.66 2.20 0.045</size></box></geometry><material><ambient>0.22 0.23 0.24 1</ambient><diffuse>0.34 0.35 0.36 1</diffuse><pbr><metal><metalness>0</metalness><albedo_map>model://KitchenMaterials/textures/granite_tile_03_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/granite_tile_03_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/granite_tile_03_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+      </link>
+      <pose>3.09 1.25 0.9225 0 0 0</pose>
+    </model>
+
+    <!-- Refrigerator -->
+    <model name="refrigerator">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.92 0.78 1.90</size></box></geometry></collision>
+        <visual name="cabinet"><geometry><box><size>0.92 0.78 1.90</size></box></geometry><material><pbr><metal><metalness>0.86</metalness><roughness>0.28</roughness><albedo>0.55 0.58 0.60 1</albedo></metal></pbr></material></visual>
+        <visual name="upper_door"><pose>0 -0.397 0.49 0 0 0</pose><geometry><box><size>0.87 0.018 0.92</size></box></geometry><material><pbr><metal><metalness>0.9</metalness><roughness>0.22</roughness><albedo>0.63 0.66 0.68 1</albedo></metal></pbr></material></visual>
+        <visual name="lower_door"><pose>0 -0.397 -0.50 0 0 0</pose><geometry><box><size>0.87 0.018 0.88</size></box></geometry><material><pbr><metal><metalness>0.9</metalness><roughness>0.22</roughness><albedo>0.63 0.66 0.68 1</albedo></metal></pbr></material></visual>
+        <visual name="handle_left"><pose>-0.22 -0.425 0.03 0 0 0</pose><geometry><cylinder><radius>0.018</radius><length>1.50</length></cylinder></geometry><material><pbr><metal><metalness>1</metalness><roughness>0.18</roughness><albedo>0.12 0.13 0.14 1</albedo></metal></pbr></material></visual>
+        <visual name="handle_right"><pose>0.22 -0.425 0.03 0 0 0</pose><geometry><cylinder><radius>0.018</radius><length>1.50</length></cylinder></geometry><material><pbr><metal><metalness>1</metalness><roughness>0.18</roughness><albedo>0.12 0.13 0.14 1</albedo></metal></pbr></material></visual>
+      </link>
+      <pose>-2.90 2.31 0.95 0 0 0</pose>
+    </model>
+
+    <!-- Range/oven -->
+    <model name="range_oven">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.62 0.68 0.90</size></box></geometry></collision>
+        <visual name="body"><geometry><box><size>0.62 0.68 0.90</size></box></geometry><material><pbr><metal><metalness>0.8</metalness><roughness>0.30</roughness><albedo>0.20 0.21 0.22 1</albedo></metal></pbr></material></visual>
+        <visual name="glass_door"><pose>0 -0.346 -0.08 0 0 0</pose><geometry><box><size>0.48 0.012 0.48</size></box></geometry><material><pbr><metal><metalness>0.35</metalness><roughness>0.08</roughness><albedo>0.03 0.04 0.05 1</albedo></metal></pbr></material></visual>
+        <visual name="cooktop"><pose>0 0 0.456 0 0 0</pose><geometry><box><size>0.58 0.64 0.02</size></box></geometry><material><pbr><metal><metalness>0.55</metalness><roughness>0.12</roughness><albedo>0.04 0.05 0.06 1</albedo></metal></pbr></material></visual>
+        <visual name="burner_front_left"><pose>-0.16 -0.16 0.472 0 0 0</pose><geometry><cylinder><radius>0.09</radius><length>0.008</length></cylinder></geometry><material><ambient>0.04 0.04 0.04 1</ambient></material></visual>
+        <visual name="burner_front_right"><pose>0.16 -0.16 0.472 0 0 0</pose><geometry><cylinder><radius>0.09</radius><length>0.008</length></cylinder></geometry><material><ambient>0.04 0.04 0.04 1</ambient></material></visual>
+        <visual name="burner_back_left"><pose>-0.16 0.16 0.472 0 0 0</pose><geometry><cylinder><radius>0.07</radius><length>0.008</length></cylinder></geometry><material><ambient>0.04 0.04 0.04 1</ambient></material></visual>
+        <visual name="burner_back_right"><pose>0.16 0.16 0.472 0 0 0</pose><geometry><cylinder><radius>0.07</radius><length>0.008</length></cylinder></geometry><material><ambient>0.04 0.04 0.04 1</ambient></material></visual>
+      </link>
+      <pose>1.55 2.34 0.45 0 0 0</pose>
+    </model>
+
+    <!-- Sink basin recessed visually into the north counter. -->
+    <model name="sink_basin">
+      <static>true</static>
+      <link name="link">
+        <visual name="basin"><geometry><box><size>0.72 0.42 0.08</size></box></geometry><material><pbr><metal><metalness>0.95</metalness><roughness>0.22</roughness><albedo>0.37 0.40 0.42 1</albedo></metal></pbr></material></visual>
+        <visual name="drain"><pose>0 0 0.045 0 0 0</pose><geometry><cylinder><radius>0.035</radius><length>0.006</length></cylinder></geometry><material><pbr><metal><metalness>1</metalness><roughness>0.16</roughness><albedo>0.10 0.12 0.13 1</albedo></metal></pbr></material></visual>
+        <visual name="faucet"><pose>0.26 0.08 0.24 0 0 0</pose><geometry><cylinder><radius>0.018</radius><length>0.40</length></cylinder></geometry><material><pbr><metal><metalness>1</metalness><roughness>0.14</roughness><albedo>0.50 0.52 0.54 1</albedo></metal></pbr></material></visual>
+      </link>
+      <pose>-0.95 2.30 0.95 0 0 0</pose>
+    </model>
+
+    <!-- Kitchen island leaves >1.0 m circulation on all sides for vacuum navigation. -->
+    <model name="island_base">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>1.65 0.72 0.82</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>1.65 0.72 0.82</size></box></geometry><material><ambient>0.42 0.24 0.10 1</ambient><diffuse>0.55 0.33 0.15 1</diffuse><pbr><metal><metalness>0</metalness><albedo_map>model://KitchenMaterials/textures/oak_wood_planks_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/oak_wood_planks_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/oak_wood_planks_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+      </link>
+      <pose>0.30 0.35 0.41 0 0 0</pose>
+    </model>
+    <model name="island_top">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>1.80 0.88 0.045</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>1.80 0.88 0.045</size></box></geometry><material><ambient>0.22 0.23 0.24 1</ambient><diffuse>0.34 0.35 0.36 1</diffuse><pbr><metal><metalness>0</metalness><albedo_map>model://KitchenMaterials/textures/granite_tile_03_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/granite_tile_03_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/granite_tile_03_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+      </link>
+      <pose>0.30 0.35 0.8425 0 0 0</pose>
+    </model>
+
+    <!-- Dining table -->
+    <model name="dining_table">
+      <static>true</static>
+      <link name="link">
+        <collision name="top_collision"><pose>0 0 0.72 0 0 0</pose><geometry><box><size>1.45 0.82 0.06</size></box></geometry></collision>
+        <visual name="top_visual"><pose>0 0 0.72 0 0 0</pose><geometry><box><size>1.45 0.82 0.06</size></box></geometry><material><pbr><metal><albedo_map>model://KitchenMaterials/textures/oak_wood_planks_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/oak_wood_planks_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/oak_wood_planks_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+        <collision name="leg1_collision"><pose>0.58 0.28 0.35 0 0 0</pose><geometry><box><size>0.08 0.08 0.70</size></box></geometry></collision>
+        <collision name="leg2_collision"><pose>-0.58 0.28 0.35 0 0 0</pose><geometry><box><size>0.08 0.08 0.70</size></box></geometry></collision>
+        <collision name="leg3_collision"><pose>0.58 -0.28 0.35 0 0 0</pose><geometry><box><size>0.08 0.08 0.70</size></box></geometry></collision>
+        <collision name="leg4_collision"><pose>-0.58 -0.28 0.35 0 0 0</pose><geometry><box><size>0.08 0.08 0.70</size></box></geometry></collision>
+        <visual name="leg1_visual"><pose>0.58 0.28 0.35 0 0 0</pose><geometry><box><size>0.08 0.08 0.70</size></box></geometry><material><pbr><metal><albedo_map>model://KitchenMaterials/textures/oak_wood_planks_Diffuse_1k.jpg</albedo_map></metal></pbr></material></visual>
+        <visual name="leg2_visual"><pose>-0.58 0.28 0.35 0 0 0</pose><geometry><box><size>0.08 0.08 0.70</size></box></geometry><material><pbr><metal><albedo_map>model://KitchenMaterials/textures/oak_wood_planks_Diffuse_1k.jpg</albedo_map></metal></pbr></material></visual>
+        <visual name="leg3_visual"><pose>0.58 -0.28 0.35 0 0 0</pose><geometry><box><size>0.08 0.08 0.70</size></box></geometry><material><pbr><metal><albedo_map>model://KitchenMaterials/textures/oak_wood_planks_Diffuse_1k.jpg</albedo_map></metal></pbr></material></visual>
+        <visual name="leg4_visual"><pose>-0.58 -0.28 0.35 0 0 0</pose><geometry><box><size>0.08 0.08 0.70</size></box></geometry><material><pbr><metal><albedo_map>model://KitchenMaterials/textures/oak_wood_planks_Diffuse_1k.jpg</albedo_map></metal></pbr></material></visual>
+      </link>
+      <pose>-1.90 -1.20 0 0 0 0</pose>
+    </model>
+
+    <!-- Four simple dining chairs with a 0.46 m seat height. -->
+    <model name="chair_north">
+      <static>true</static>
+      <link name="link">
+        <collision name="seat"><pose>0 0 0.46 0 0 0</pose><geometry><box><size>0.45 0.45 0.08</size></box></geometry></collision>
+        <collision name="back"><pose>0 0.19 0.76 0 0 0</pose><geometry><box><size>0.45 0.07 0.60</size></box></geometry></collision>
+        <visual name="seat_v"><pose>0 0 0.46 0 0 0</pose><geometry><box><size>0.45 0.45 0.08</size></box></geometry><material><ambient>0.24 0.24 0.22 1</ambient><diffuse>0.32 0.32 0.30 1</diffuse></material></visual>
+        <visual name="back_v"><pose>0 0.19 0.76 0 0 0</pose><geometry><box><size>0.45 0.07 0.60</size></box></geometry><material><ambient>0.24 0.24 0.22 1</ambient><diffuse>0.32 0.32 0.30 1</diffuse></material></visual>
+      </link>
+      <pose>-1.90 -0.52 0 0 0 3.14159</pose>
+    </model>
+    <model name="chair_south">
+      <static>true</static>
+      <link name="link">
+        <collision name="seat"><pose>0 0 0.46 0 0 0</pose><geometry><box><size>0.45 0.45 0.08</size></box></geometry></collision>
+        <collision name="back"><pose>0 0.19 0.76 0 0 0</pose><geometry><box><size>0.45 0.07 0.60</size></box></geometry></collision>
+        <visual name="seat_v"><pose>0 0 0.46 0 0 0</pose><geometry><box><size>0.45 0.45 0.08</size></box></geometry><material><ambient>0.24 0.24 0.22 1</ambient><diffuse>0.32 0.32 0.30 1</diffuse></material></visual>
+        <visual name="back_v"><pose>0 0.19 0.76 0 0 0</pose><geometry><box><size>0.45 0.07 0.60</size></box></geometry><material><ambient>0.24 0.24 0.22 1</ambient><diffuse>0.32 0.32 0.30 1</diffuse></material></visual>
+      </link>
+      <pose>-1.90 -1.88 0 0 0 0</pose>
+    </model>
+
+    <!-- Small mat at the sink: 0.8 m x 0.45 m x 8 mm -->
+    <model name="sink_mat">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.80 0.45 0.008</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.80 0.45 0.008</size></box></geometry><material><pbr><metal><albedo_map>model://KitchenMaterials/textures/denim_fabric_Diffuse_1k.jpg</albedo_map><normal_map>model://KitchenMaterials/textures/denim_fabric_nor_gl_1k.jpg</normal_map><roughness_map>model://KitchenMaterials/textures/denim_fabric_Rough_1k.jpg</roughness_map></metal></pbr></material></visual>
+      </link>
+      <pose>-0.95 1.72 0.004 0 0 0</pose>
+    </model>
+
+    <!-- Pet bowl: static low obstacle useful for LiDAR/navigation testing. -->
+    <model name="pet_bowl">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><cylinder><radius>0.16</radius><length>0.06</length></cylinder></geometry></collision>
+        <visual name="visual"><geometry><cylinder><radius>0.16</radius><length>0.06</length></cylinder></geometry><material><ambient>0.60 0.18 0.16 1</ambient><diffuse>0.72 0.22 0.20 1</diffuse></material></visual>
+      </link>
+      <pose>2.55 -1.95 0.03 0 0 0</pose>
+    </model>
+
+    <!-- Movable toy ball gives a light dynamic obstacle for bumper/contact testing. -->
+    <model name="toy_ball">
+      <static>false</static>
+      <pose>1.65 -1.45 0.10 0 0 0</pose>
+      <link name="link">
+        <inertial><mass>0.08</mass><inertia><ixx>0.00032</ixx><iyy>0.00032</iyy><izz>0.00032</izz></inertia></inertial>
+        <collision name="collision"><geometry><sphere><radius>0.10</radius></sphere></geometry></collision>
+        <visual name="visual"><geometry><sphere><radius>0.10</radius></sphere></geometry><material><ambient>0.15 0.42 0.68 1</ambient><diffuse>0.18 0.50 0.80 1</diffuse></material></visual>
+      </link>
+    </model>
+  </world>
+</sdf>

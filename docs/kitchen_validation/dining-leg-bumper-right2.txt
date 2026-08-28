@@ -1,0 +1,49 @@
+header {
+  stamp {
+    sec: 48
+    nsec: 651000000
+  }
+}
+contact {
+  header {
+    stamp {
+      sec: 48
+      nsec: 651000000
+    }
+  }
+  collision1 {
+    id: 156
+    name: "oomwoo_one::base_footprint::base_footprint_fixed_joint_lump__bumper_right_5_collision_12"
+  }
+  collision2 {
+    id: 93
+    name: "dining_table::link::leg3_collision"
+  }
+  position {
+    x: -1.3225337217626321
+    y: -1.519999999991668
+    z: 0.078999985743499423
+  }
+  normal {
+    x: -0
+    y: -1
+    z: -0
+  }
+  depth: 8.3319948163129709e-12
+  wrench {
+    body_1_wrench {
+      force {
+        x: 2.64317936231479e-07
+        y: -0.01330242256336389
+        z: 2.6431793623147897e-07
+      }
+    }
+    body_2_wrench {
+      force {
+        x: -2.64317936231479e-07
+        y: 0.01330242256336389
+        z: -2.6431793623147897e-07
+      }
+    }
+  }
+}
