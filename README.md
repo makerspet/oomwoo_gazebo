@@ -99,8 +99,36 @@ depends on the X server's GL at all. `headless:=true` already implies this.
 ros2 launch oomwoo_gazebo world.launch.py world:=kitchen_dining.world software_gl:=true
 ```
 
-The alternative is to give the container a real GPU (`--gpus all` plus
-`/dev/dri`), which keeps hardware rendering.
+#### Hardware GL on Windows
+
+Software GL is the fallback, not the only option. On Windows 11 with WSL2 the
+container *can* reach the real GPU, and it does **not** work the way it does on
+a Linux host — there is no `/dev/dri` in WSL and `--gpus all` only covers CUDA
+compute, not OpenGL. The path is Mesa's **d3d12** Gallium driver, which maps
+OpenGL onto DirectX 12 through WSL's `/dev/dxg`:
+
+```
+--device=/dev/dxg -v /usr/lib/wsl:/usr/lib/wsl
+-e LD_LIBRARY_PATH=/usr/lib/wsl/lib
+-e GALLIUM_DRIVER=d3d12 -e MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
+```
+
+and **no** `LIBGL_ALWAYS_SOFTWARE`. Three pieces have to line up: the `/dev/dxg`
+device, WSL's `libd3d12.so`/`libdxcore.so` from `/usr/lib/wsl/lib`, and Mesa's
+`d3d12_dri.so` (already in the `jazzy-dev` image). Measured on an RTX 5070
+Laptop GPU over the same X server that fails without it:
+
+| setting | renderer | GL |
+|---|---|---|
+| default | llvmpipe | 4.5 |
+| `LIBGL_ALWAYS_SOFTWARE=1` | llvmpipe | 4.5 |
+| `GALLIUM_DRIVER=d3d12` | D3D12 (NVIDIA GeForce RTX 5070 Laptop GPU) | 4.6 |
+
+`GALLIUM_DRIVER=d3d12` is required, not optional — with no `/dev/dri` to probe,
+Mesa's auto-detection falls back to llvmpipe. `MESA_D3D12_DEFAULT_ADAPTER_NAME`
+pins the discrete GPU; without it a hybrid-graphics laptop may pick the iGPU.
+
+`oomwoo-install` ships this as `docker/utils/start_jazzy_dev_gpu.cmd`.
 
 #### Odometry source
 `odom_source` selects which odometry owns `/odom` and `/tf`:
