@@ -267,6 +267,36 @@ below.
 | `TableMarble` | Ian Chen | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Table%20Marble) | CC0 1.0 | 2018-01-27 |
 | `TVStand` | Roselle | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/TVStand) | CC BY 4.0 | 2020-08-06 |
 
+**Upstream originals.** Three of these are themselves adaptations, credited in
+their own `model.config` — the chain runs Sketchfab → Fuel → here:
+
+- `DiningChair` — *Acorn Low Poly Armchair* by [L_Krajewski](https://sketchfab.com/3d-models/acorn-low-poly-armchair-078c4e8f591d4b8c95214bd282fd279a)
+- `DiningTable` — *IKEA Skogsta Dining Table (Black/Acacia)* by [MechanicalOnion](https://sketchfab.com/3d-models/ikea-skogsta-dining-table-blackacacia-302fcff4cbb144ba8ac35ebd6410b3ad)
+- `Oven` — *Gas Oven* by [Francesco Coldesina](https://sketchfab.com/3d-models/gas-oven-8cc35c739c834b27b72d4761578dca3e)
+
+**Changes made.** CC BY 4.0 asks that modifications be indicated. Each affected
+model records this in its own `model.config` too, so the notice travels with the
+asset:
+
+- `racoon`, `squirrel`, `cat_figurines`, `DiningTable`, `DiningChair`, `Oven` —
+  **textures downsampled** to cut repository size: albedo and normal maps to
+  1024 px, roughness maps to 512 px. Normal maps were renormalised after
+  resampling, since any resampling filter averages neighbouring unit vectors and
+  shortens them, which would otherwise flatten the surface where detail is
+  dense. `DiningTable`'s albedo also went RGBA → RGB, its alpha channel being
+  fully opaque. Geometry and UVs are untouched. This took `models/` from 102 MB
+  to 51 MB — the three 4096×4096 textures alone were 30 MB, and
+  `Wood_Roughness.png` was a 4096×4096 greyscale mask costing 7.2 MB.
+- `Oven` — additionally, its control knobs were painted pure red `(155,7,7)`
+  upstream; those 18518 pixels were recoloured to dark grey, keeping each
+  pixel's original luminance so the knobs retain their shading. The model is
+  also uniformly scaled 0.8452 where it is included, so the range top lands
+  level with the 0.900 m counter.
+- `coffee_maker` — its mesh `<uri>` pointed at a retired remote host
+  (`api.ignitionfuel.org`), rewritten to the local vendored mesh; a box
+  collision was added, since upstream ships none; and a redundant `Tr` line was
+  removed from the `.mtl` to silence a load-time warning.
+
 Not on Fuel under that name:
 
 | Model | Author(s) | Source | Licence |

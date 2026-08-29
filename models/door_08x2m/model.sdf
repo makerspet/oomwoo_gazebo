@@ -12,6 +12,7 @@
           <pbr>
             <metal>
               <albedo_map>textures/door_08x2m.png</albedo_map>
+            <metalness>0.0</metalness><roughness>0.70</roughness>
             </metal>
           </pbr>
           <ambient>1 1 1 1</ambient>

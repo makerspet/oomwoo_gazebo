@@ -12,6 +12,7 @@
           <pbr>
             <metal>
               <emissive_map>textures/tv_65in_maldives_909x541.jpg</emissive_map>
+            <metalness>0.0</metalness><roughness>0.25</roughness>
             </metal>
           </pbr>
           <ambient>0 0 0 1</ambient>

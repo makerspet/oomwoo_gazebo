@@ -321,13 +321,15 @@
       <self_collide>false</self_collide>
     </model>
 
-    <!-- On the counter west of the range. -->
+    <!-- On the counter west of the range, pushed back against the wall: its
+         local bounds run y -0.1737..0.1017, so y = 1.798 puts its back face on
+         1.8997, a hair off the wall at 1.900. -->
     <model name='coffee_maker'>
       <static>true</static>
       <include>
         <uri>model://coffee_maker</uri>
       </include>
-      <pose>-1 1.6 0.9 0 -0 0</pose>
+      <pose>-1 1.798 0.9 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
@@ -357,16 +359,18 @@
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Wall cabinets on the east wall, flanking the window (y 0.200..1.300)
-         without covering it. The 0.600 unit fills the NE corner to the left
-         of the sink; the 1.450 unit runs south of the window down to the
-         pantry. -->
+    <!-- Corner wall cabinet, filling the NE corner left of the sink. It hangs
+         on the NORTH wall facing SOUTH, not on the east wall facing west.
+         Facing west it stared straight at the east end of kitchen_wall_cab_e
+         across a 0.25 m gap, so its door could never have opened; turned this
+         way it opens into the room, over the sink. Spans x 1.850..2.450,
+         leaving 0.063 m to kitchen_wall_cab_e. -->
     <model name='kitchen_wall_cab_ec'>
       <static>true</static>
       <include>
         <uri>model://kitchen_wall_cab_ec</uri>
       </include>
-      <pose>2.45 1.6 0 0 -0 -1.5707</pose>
+      <pose>2.15 1.9 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 

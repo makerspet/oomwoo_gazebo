@@ -12,6 +12,7 @@
           <pbr>
             <metal>
               <albedo_map>textures/rug_ivory_469x588.png</albedo_map>
+            <metalness>0.0</metalness><roughness>0.95</roughness>
             </metal>
           </pbr>
           <ambient>1 1 1 1</ambient>
