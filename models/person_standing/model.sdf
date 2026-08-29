@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<!--
+  Standing person by Open Robotics (Gazebo Fuel), vendored for oomwoo_gazebo
+  as person_standing - the directory name is forced, because the model's own
+  mesh URI is model://person_standing/meshes/standing.dae.
+
+  Change from upstream: added <static>true</static>. Upstream ships it as a
+  DYNAMIC body with 80 kg of mass and inertia, so in a furnished room it
+  topples or gets shoved around by the robot. Kitchen scenery should stand
+  still. Textures were also downsampled - see model.config.
+-->
+<sdf version="1.5">
+  <model name="person_standing">
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <pose>0 -0.1 0.95 0 0 0</pose>
+        <mass>80.0</mass>
+        <inertia>
+          <ixx>24.88</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>25.73</iyy>
+          <iyz>0</iyz>
+          <izz>2.48</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="bottom">
+        <pose>0 -0.1 0.01 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.35 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <collision name="person">
+        <pose>0 0 0.02 0.04 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://person_standing/meshes/standing.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <pose>0 0 0.02 0.04 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://person_standing/meshes/standing.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

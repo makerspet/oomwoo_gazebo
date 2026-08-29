@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "ProSport_Harness_to_Booster_Seat"
+description: "ProSport Harness to Booster Seat"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Recaro"
+}
+annotations {
+  key: "gtin"
+  value: "882854991327"
+}
+annotations {
+  key: "sku"
+  value: "882854991327"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Car Seat"
+}

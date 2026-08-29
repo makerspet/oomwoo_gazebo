@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  PatientFSit by Open Robotics (Gazebo Fuel), vendored for oomwoo_gazebo.
+
+  Change from upstream: uniformly scaled 1.1037. At 1:1 her buttocks sit at
+  0.405 m while the DiningChair seat is at 0.447 m, so she would have sunk
+  42 mm into a hard wooden seat. Scaling uniformly about the origin keeps her
+  feet on the floor (her mesh starts at z=0) and lifts her buttocks to 0.447,
+  giving a seated height of 1.296 m - a normal adult. Uniform, not Z-only, so
+  she is not stretched.
+-->
+<sdf version="1.6">
+  <model name="PatientFSit">
+   <static>true</static>
+    <link name="body">
+      <pose>0 0 0 0 0 0</pose>
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://PatientFSit/meshes/PatientFSit.obj</uri>
+            <scale>1.1037 1.1037 1.1037</scale>
+          </mesh>
+        </geometry>
+      </visual>
+
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://PatientFSit/meshes/PatientFSit_Col.obj</uri>
+            <scale>1.1037 1.1037 1.1037</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+    </link>
+  </model>
+</sdf>

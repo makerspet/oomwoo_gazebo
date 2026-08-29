@@ -127,7 +127,7 @@
         <linear>0.01</linear>
         <quadratic>0.001</quadratic>
       </attenuation>
-      <direction>-0.5 0.1 -0.9</direction>
+      <direction>-0.1 0.1 -0.9</direction>
       <spot>
         <inner_angle>0</inner_angle>
         <outer_angle>0</outer_angle>
@@ -140,7 +140,7 @@
       <pose>-0.2 0.1 2.4 0 -0 0</pose>
       <diffuse>1 0.97 0.92 1</diffuse>
       <specular>0.3 0.3 0.3 1</specular>
-      <intensity>1.6</intensity>
+      <intensity>0.6</intensity>
       <attenuation>
         <range>8</range>
         <constant>0.35</constant>
@@ -443,6 +443,80 @@
         <uri>model://DiningChair</uri>
       </include>
       <pose>0.27 -1.25 0 0 -0 3.1416</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- ============== OCCUPANTS AND PROPS ============== -->
+
+    <!-- Standing at the sink, facing east into it. The mesh faces -y, so yaw
+         +90 deg turns it to +x. Body occupies x 1.389..1.752 (counter front is
+         1.815) and y 0.473..1.017, squarely in front of the sink opening
+         (y 0.370..1.130) and under the window. Forced static: upstream ships
+         this model DYNAMIC with 80 kg of inertia, so it would topple. -->
+    <model name='person_standing'>
+      <static>true</static>
+      <include>
+        <uri>model://person_standing</uri>
+      </include>
+      <pose>1.5 0.75 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Seated on dining_chair_s_east, the chair nearest the pantry, facing
+         north to the table. Scaled 1.1037 inside the model so her feet stay on
+         the floor AND her buttocks meet the 0.447 m chair seat; her contact
+         patch is offset (0.039, 0.005) in her own frame, hence the pose being
+         (0.275, -1.288) rather than the chair centre (0.270, -1.250). -->
+    <model name='PatientFSit'>
+      <static>true</static>
+      <include>
+        <uri>model://PatientFSit</uri>
+      </include>
+      <pose>0.275 -1.288 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Plate of salad on the table, directly in front of her. Fuel lists this
+         mesh as "ProSport_Harness_to_Booster_Seat", which is plainly wrong -
+         the geometry and texture are a plate of salad. Vendored as salad_plate. -->
+    <model name='salad_plate'>
+      <static>true</static>
+      <include>
+        <uri>model://salad_plate</uri>
+      </include>
+      <pose>0.27 -0.85 0.74 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Small appliances along the west counter, all backed up to the wall and
+         all well under the wall cabinets at 1.500. West to east:
+         pressure cooker (top 1.230), coffee maker (1.255), toaster (1.089). -->
+    <model name='pressure_cooker'>
+      <static>true</static>
+      <include>
+        <uri>model://pressure_cooker</uri>
+      </include>
+      <pose>-1.35 1.73 0.9 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='toaster_4_slice'>
+      <static>true</static>
+      <include>
+        <uri>model://toaster_4_slice</uri>
+      </include>
+      <pose>-0.65 1.74 0.9 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Dish drainer on the east counter, right of the sink and directly over
+         the dishwasher (y -0.318..0.278) - where a drainer actually goes. -->
+    <model name='dish_drainer'>
+      <static>true</static>
+      <include>
+        <uri>model://dish_drainer</uri>
+      </include>
+      <pose>2.14 -0.02 0.9 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 

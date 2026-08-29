@@ -266,6 +266,17 @@ below.
 | `sun` | Nate Koenig | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Sun) | CC0 1.0 | 2018-01-27 |
 | `TableMarble` | Ian Chen | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Table%20Marble) | CC0 1.0 | 2018-01-27 |
 | `TVStand` | Roselle | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/TVStand) | CC BY 4.0 | 2020-08-06 |
+| `person_standing` | Open Robotics | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Standing%20person) | CC0 1.0 | 2018-01-27 |
+| `PatientFSit` | Open Robotics | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/PatientFSit) | CC BY 4.0 | 2020-06-25 |
+| `toaster_4_slice` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/Black_Decker_Stainless_Steel_Toaster_4_Slice) | CC BY 4.0 | 2020-09-03 |
+| `salad_plate` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/ProSport_Harness_to_Booster_Seat) | CC BY 4.0 | 2020-09-18 |
+| `dish_drainer` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/Rubbermaid_Large_Drainer) | CC BY 4.0 | 2020-09-18 |
+| `pressure_cooker` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/TriStar_Products_PPC_Power_Pressure_Cooker_XL_in_Black) | CC BY 4.0 | 2020-09-18 |
+
+`salad_plate` is vendored from a Fuel entry named
+`ProSport_Harness_to_Booster_Seat`, which does not describe it — the geometry
+and texture are a plate of salad. Renamed locally for sanity; the upstream name
+is preserved in the link above so the attribution still resolves.
 
 **Upstream originals.** Three of these are themselves adaptations, credited in
 their own `model.config` — the chain runs Sketchfab → Fuel → here:
@@ -292,6 +303,20 @@ asset:
   pixel's original luminance so the knobs retain their shading. The model is
   also uniformly scaled 0.8452 where it is included, so the range top lands
   level with the 0.900 m counter.
+- `person_standing`, `toaster_4_slice`, `salad_plate`, `dish_drainer`,
+  `pressure_cooker` — **forced static**. `person_standing` ships as a dynamic
+  80 kg body, and the four Google Scanned Objects ship with inertia and no
+  static flag, so on a counter they behave as loose rigid bodies that settle,
+  drift, or get knocked off. Their textures were downsampled on the same policy
+  as above; the four GSO textures were 4096×4096 each, 43 MB between them.
+- `PatientFSit` — uniformly scaled 1.1037. At 1:1 her buttocks sit at 0.405 m
+  against a 0.447 m dining chair seat, so she sank 42 mm into hard wood. Scaling
+  uniformly about the origin keeps her feet on the floor and lifts her onto the
+  seat, for a 1.296 m seated height.
+- `MiniSofa` — scaled 1.5729 in **Z only**, lifting its cushion from 0.270 m to
+  0.425 m. At 1:1 it is about two thirds of residential scale, so the correctly
+  sized `FemaleVisitorSit` floated 155 mm above it in `living_room.world`.
+  Z-only keeps the footprint, so that room's layout is unchanged.
 - `coffee_maker` — its mesh `<uri>` pointed at a retired remote host
   (`api.ignitionfuel.org`), rewritten to the local vendored mesh; a box
   collision was added, since upstream ships none; and a redundant `Tr` line was
@@ -315,6 +340,7 @@ belongs to the author in the left column, not to whoever uploaded a copy:
 | `Sofa` | OpenRobotics, 2020-08-06 | sebbyjp, 2024-02-27 | identical file size (1280 KB) |
 | `CoffeeTable` | OpenRobotics, 2020-08-06 | will0993, 2024-08-15 | same name, different size |
 | `cardboard_box` | Open Robotics (Nate Koenig, Cole Biesemeyer) | `german` 2018-01-02, NGD1004 2023-03-02, jliu6718 2023-10-27 | `german`'s mesh is byte-identical to OpenRobotics' and carries the same authors in `model.config` |
+| `person_standing` | OpenRobotics, 2018-01-27 | abmohit, 2023-06-16 | identical file size |
 
 Beyond the models this package uses, the same pattern shows up across Fuel —
 `OfficeChairGrey` and `foldable_chair`, for instance, each exist twice at
