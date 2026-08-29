@@ -1,4 +1,17 @@
 <?xml version="1.0"?>
+<!--
+  MiniSofa by Open Robotics (Gazebo Fuel, CC-BY 4.0), vendored for oomwoo_gazebo.
+
+  Change from upstream: scaled 1.5729 in Z ONLY.
+
+  At 1:1 this model is about two thirds of residential scale - its seat
+  cushion sits at 0.270 m and the whole chair is only 0.613 m tall, where a
+  real armchair cushion is 0.40-0.45 m. FemaleVisitorSit is correctly sized
+  (1.233 m seated, buttocks at 0.425 m), so in living_room.world she floated
+  155 mm above the cushion. The Z scale lifts the cushion to 0.425 m so she
+  makes contact; footprint is untouched, so the room layout is unchanged.
+  Total height becomes 0.964 m, which reads as a high-backed chair.
+-->
 
 <sdf version="1.6">
   <model name='MiniSofa'>
@@ -9,7 +22,7 @@
         <geometry>
           <mesh>
             <uri>meshes/minisofa.obj</uri>
-            <scale>1.00 1.00 1.00</scale>
+            <scale>1.00 1.00 1.5729</scale>
           </mesh>
         </geometry>
       </visual>
@@ -18,7 +31,7 @@
         <geometry>
           <mesh>
             <uri>meshes/minisofa.obj</uri>
-            <scale>1.00 1.00 1.00</scale>
+            <scale>1.00 1.00 1.5729</scale>
           </mesh>
         </geometry>
       </collision>
