@@ -24,13 +24,13 @@
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="handle_post0">
-        <pose>-0.068 0 0.303 0 0 0</pose>
-        <geometry><capsule><radius>0.009</radius><length>0.016</length></capsule></geometry>
+        <pose>-0.068 0 0.308 0 0 0</pose>
+        <geometry><capsule><radius>0.009</radius><length>0.038</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="handle_post1">
-        <pose>0.068 0 0.303 0 0 0</pose>
-        <geometry><capsule><radius>0.009</radius><length>0.016</length></capsule></geometry>
+        <pose>0.068 0 0.308 0 0 0</pose>
+        <geometry><capsule><radius>0.009</radius><length>0.038</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="handle_bar">

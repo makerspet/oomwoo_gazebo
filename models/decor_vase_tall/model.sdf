@@ -1,36 +1,31 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
-  <model name="decor_vase">
+  <model name="decor_vase_tall">
     <static>true</static>
     <link name="link">
       <visual name="foot">
-        <pose>0 0 0.009 0 0 0</pose>
-        <geometry><cylinder><radius>0.062</radius><length>0.018</length></cylinder></geometry>
+        <pose>0 0 0.006 0 0 0</pose>
+        <geometry><cylinder><radius>0.032</radius><length>0.012</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.15</roughness></metal></pbr><ambient>0.900 0.900 0.890 1</ambient><diffuse>0.900 0.900 0.890 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="body">
-        <pose>0 0 0.115 0 0 0</pose>
-        <geometry><ellipsoid><radii>0.105 0.105 0.1</radii></ellipsoid></geometry>
+        <pose>0 0 0.088 0 0 0</pose>
+        <geometry><ellipsoid><radii>0.055 0.055 0.078</radii></ellipsoid></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.15</roughness></metal></pbr><ambient>0.900 0.900 0.890 1</ambient><diffuse>0.900 0.900 0.890 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="band">
-        <pose>0 0 0.115 0 0 0</pose>
-        <geometry><cylinder><radius>0.108</radius><length>0.012</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.12</roughness></metal></pbr><ambient>0.800 0.810 0.810 1</ambient><diffuse>0.800 0.810 0.810 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
       <visual name="neck">
-        <pose>0 0 0.245 0 0 0</pose>
-        <geometry><cylinder><radius>0.04</radius><length>0.07</length></cylinder></geometry>
+        <pose>0 0 0.194 0 0 0</pose>
+        <geometry><cylinder><radius>0.022</radius><length>0.06</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.15</roughness></metal></pbr><ambient>0.900 0.900 0.890 1</ambient><diffuse>0.900 0.900 0.890 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="rim">
-        <pose>0 0 0.287 0 0 0</pose>
-        <geometry><cylinder><radius>0.052</radius><length>0.018</length></cylinder></geometry>
+        <pose>0 0 0.229 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.014</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.12</roughness></metal></pbr><ambient>0.800 0.810 0.810 1</ambient><diffuse>0.800 0.810 0.810 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <collision name="body">
-        <pose>0 0 0.148 0 0 0</pose>
-        <geometry><cylinder><radius>0.108</radius><length>0.296</length></cylinder></geometry>
+        <pose>0 0 0.118 0 0 0</pose>
+        <geometry><cylinder><radius>0.055</radius><length>0.236</length></cylinder></geometry>
       </collision>
     </link>
     <allow_auto_disable>1</allow_auto_disable>

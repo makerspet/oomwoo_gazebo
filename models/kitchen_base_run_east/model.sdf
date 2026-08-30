@@ -109,12 +109,12 @@
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door1_handle_post0">
-        <pose>-0.548 -0.635 0.62 1.5708 0 0</pose>
+        <pose>-0.548 -0.635 0.64 1.5708 0 0</pose>
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door1_handle_post1">
-        <pose>-0.548 -0.635 0.82 1.5708 0 0</pose>
+        <pose>-0.548 -0.635 0.8 1.5708 0 0</pose>
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
@@ -129,12 +129,12 @@
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door2_handle_post0">
-        <pose>-0.446 -0.635 0.62 1.5708 0 0</pose>
+        <pose>-0.446 -0.635 0.64 1.5708 0 0</pose>
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door2_handle_post1">
-        <pose>-0.446 -0.635 0.82 1.5708 0 0</pose>
+        <pose>-0.446 -0.635 0.8 1.5708 0 0</pose>
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
@@ -149,12 +149,12 @@
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door3_handle_post0">
-        <pose>1.059 -0.635 0.62 1.5708 0 0</pose>
+        <pose>1.059 -0.635 0.64 1.5708 0 0</pose>
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door3_handle_post1">
-        <pose>1.059 -0.635 0.82 1.5708 0 0</pose>
+        <pose>1.059 -0.635 0.8 1.5708 0 0</pose>
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
@@ -169,12 +169,12 @@
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door4_handle_post0">
-        <pose>1.161 -0.635 0.62 1.5708 0 0</pose>
+        <pose>1.161 -0.635 0.64 1.5708 0 0</pose>
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door4_handle_post1">
-        <pose>1.161 -0.635 0.82 1.5708 0 0</pose>
+        <pose>1.161 -0.635 0.8 1.5708 0 0</pose>
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>

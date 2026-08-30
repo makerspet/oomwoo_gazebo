@@ -33,34 +33,54 @@
         <geometry><cylinder><radius>0.03</radius><length>0.022</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="rail_n">
-        <pose>0 0.203 0.04 0 1.570796 0</pose>
-        <geometry><capsule><radius>0.006</radius><length>0.267</length></capsule></geometry>
+      <visual name="wall_n">
+        <pose>0 0.216 0.0445 0 0 0</pose>
+        <geometry><box><size>0.279 0.01 0.045</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="rail_s">
-        <pose>0 -0.203 0.04 0 1.570796 0</pose>
-        <geometry><capsule><radius>0.006</radius><length>0.267</length></capsule></geometry>
+      <visual name="wall_s">
+        <pose>0 -0.216 0.0445 0 0 0</pose>
+        <geometry><box><size>0.279 0.01 0.045</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="rail_w">
-        <pose>-0.153 0 0.04 1.570796 0 0</pose>
-        <geometry><capsule><radius>0.006</radius><length>0.37</length></capsule></geometry>
+      <visual name="wall_e">
+        <pose>0.1645 0 0.0445 0 0 0</pose>
+        <geometry><box><size>0.01 0.382 0.045</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="rail_e">
-        <pose>0.153 0 0.04 1.570796 0 0</pose>
-        <geometry><capsule><radius>0.006</radius><length>0.37</length></capsule></geometry>
+      <visual name="wall_w">
+        <pose>-0.1645 0 0.0445 0 0 0</pose>
+        <geometry><box><size>0.01 0.382 0.045</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="wall_corner0">
+        <pose>-0.1395 -0.191 0.0445 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.045</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="wall_corner1">
+        <pose>-0.1395 0.191 0.0445 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.045</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="wall_corner2">
+        <pose>0.1395 -0.191 0.0445 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.045</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="wall_corner3">
+        <pose>0.1395 0.191 0.0445 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.045</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div0_post0">
-        <pose>-0.126 -0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>-0.126 -0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div0_post1">
-        <pose>-0.126 0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>-0.126 0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div0_top">
@@ -69,13 +89,13 @@
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div1_post0">
-        <pose>-0.084 -0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>-0.084 -0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div1_post1">
-        <pose>-0.084 0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>-0.084 0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div1_top">
@@ -84,13 +104,13 @@
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div2_post0">
-        <pose>-0.042 -0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>-0.042 -0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div2_post1">
-        <pose>-0.042 0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>-0.042 0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div2_top">
@@ -99,13 +119,13 @@
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div3_post0">
-        <pose>0 -0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>0 -0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div3_post1">
-        <pose>0 0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>0 0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div3_top">
@@ -114,13 +134,13 @@
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div4_post0">
-        <pose>0.042 -0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>0.042 -0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div4_post1">
-        <pose>0.042 0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>0.042 0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div4_top">
@@ -129,13 +149,13 @@
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div5_post0">
-        <pose>0.084 -0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>0.084 -0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div5_post1">
-        <pose>0.084 0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>0.084 0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div5_top">
@@ -144,13 +164,13 @@
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div6_post0">
-        <pose>0.126 -0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>0.126 -0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div6_post1">
-        <pose>0.126 0.088 0.06 0 0 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.062</length></capsule></geometry>
+        <pose>0.126 0.088 0.0615 0 0 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.069</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div6_top">

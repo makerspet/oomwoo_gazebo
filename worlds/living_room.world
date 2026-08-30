@@ -116,7 +116,7 @@
       <pose>0 0 10 0 -0 0</pose>
       <diffuse>0.8 0.8 0.8 1</diffuse>
       <specular>0.2 0.2 0.2 1</specular>
-      <intensity>4</intensity>
+      <intensity>3</intensity>
       <attenuation>
         <range>1000</range>
         <constant>0.9</constant>
@@ -235,12 +235,15 @@
       <self_collide>false</self_collide>
     </model>
 
-    <model name='Squirrel'>
+    <!-- Slim white vase, standing in for the squirrel figurine. Same role and
+         the same shelf; sized to the squirrel at the 1.5x scale this world
+         intends but never applied (its scale tag was commented out, and SDF
+         ignores <scale> on a model anyway). -->
+    <model name='decor_vase_tall'>
       <static>true</static>
-      <pose>-2.24886 2.15 0.059889 -0.002122 -0.004142 -2.8e-05</pose>
-      <!-- scale>1.5 1.5 1.5</scale -->
+      <pose>-2.24886 2.15 0.059889 0 -0 0</pose>
       <include>
-        <uri>model://squirrel</uri>
+        <uri>model://decor_vase_tall</uri>
       </include>
       <self_collide>false</self_collide>
     </model>

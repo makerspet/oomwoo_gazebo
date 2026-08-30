@@ -407,7 +407,11 @@
       <self_collide>false</self_collide>
     </model>
 
-    <!-- Two chairs each side, tucked in, seats facing the table. The chair
+    <!-- Two chairs each side, seats facing the table. The west pair - the two
+         unoccupied chairs facing each other - are pushed right in, seats under
+         the top, as unused chairs are. They stop where their backrests reach
+         the table edge, since a backrest stands 0.956 high and cannot go under
+         a 0.740 top. The chair
          model's backrest is on its +y side, so yaw 0 faces south and yaw pi
          faces north. -->
     <model name='dining_chair_n_west'>
@@ -415,7 +419,7 @@
       <include>
         <uri>model://DiningChair</uri>
       </include>
-      <pose>-0.93 0.15 0 0 -0 0</pose>
+      <pose>-0.93 -0.2 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
@@ -433,7 +437,7 @@
       <include>
         <uri>model://DiningChair</uri>
       </include>
-      <pose>-0.93 -1.25 0 0 -0 3.1416</pose>
+      <pose>-0.93 -0.9 0 0 -0 3.1416</pose>
       <self_collide>false</self_collide>
     </model>
 

@@ -7,6 +7,14 @@ International License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by/4.0/ or send a letter
 to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
+<!--
+  oomwoo_gazebo: added <scale>3 3 3</scale>. living_room.world carries a
+  commented-out "scale 3 3 3" on this model, which SDF ignores - <scale> is
+  not valid there, it belongs on the mesh. Left unscaled the figurines are
+  0.117 x 0.051 x 0.115 m, far too small for the shelf they sit on; at 3x
+  they are 0.352 x 0.153 x 0.346, filling most of the Cabinet's 0.480 m
+  bottom compartment as intended.
+-->
 <sdf version="1.6">
   <model name="Cat Figurines">
     <link name="link_0">
@@ -14,6 +22,7 @@ to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
         <geometry>
           <mesh>
             <uri>meshes/model.obj</uri>
+            <scale>3 3 3</scale>
           </mesh>
         </geometry>
       </visual>
@@ -21,6 +30,7 @@ to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
         <geometry>
           <mesh>
             <uri>meshes/model.obj</uri>
+            <scale>3 3 3</scale>
           </mesh>
         </geometry>
       </collision>

@@ -261,7 +261,6 @@ below.
 | `MiniSofa` | Wan Yi | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/MiniSofa) | CC BY 4.0 | 2020-05-20 |
 | `Oven` | Cole Biesemeyer, Francesco Coldesina | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Oven) | CC BY 4.0 | 2023-09-29 |
 | `Sofa` | Wan Yi Seow | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Sofa) | CC BY 4.0 | 2020-08-06 |
-| `squirrel` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/Squirrel) | CC BY 4.0 | 2020-09-18 |
 | `sun` | Nate Koenig | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Sun) | CC0 1.0 | 2018-01-27 |
 | `TableMarble` | Ian Chen | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Table%20Marble) | CC0 1.0 | 2018-01-27 |
 | `TVStand` | Roselle | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/TVStand) | CC BY 4.0 | 2020-08-06 |
@@ -270,8 +269,9 @@ below.
 | `salad_plate` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/ProSport_Harness_to_Booster_Seat) | CC BY 4.0 | 2020-09-18 |
 
 `toaster_4_slice`, `dish_drainer`, `pressure_cooker` and the bookshelf figurine
-`racoon` were originally vendored from Google Scanned Objects but have since been
-**replaced by authored primitive models** (`racoon` by `decor_vase`) — see [Authored for this package](#authored-for-this-package)
+`racoon` and `squirrel` were originally vendored from Google Scanned Objects but
+have since been **replaced by authored primitive models** (`racoon` by
+`decor_vase`, `squirrel` by `decor_vase_tall`) — see [Authored for this package](#authored-for-this-package)
 — so they carry no third-party attribution any more.
 
 `salad_plate` is vendored from a Fuel entry named
@@ -290,7 +290,7 @@ their own `model.config` — the chain runs Sketchfab → Fuel → here:
 model records this in its own `model.config` too, so the notice travels with the
 asset:
 
-- `squirrel`, `cat_figurines`, `DiningTable`, `DiningChair`, `Oven` —
+- `cat_figurines`, `DiningTable`, `DiningChair`, `Oven` —
   **textures downsampled** to cut repository size: albedo and normal maps to
   1024 px, roughness maps to 512 px. Normal maps were renormalised after
   resampling, since any resampling filter averages neighbouring unit vectors and
@@ -299,6 +299,12 @@ asset:
   fully opaque. Geometry and UVs are untouched. This took `models/` from 102 MB
   to 51 MB — the three 4096×4096 textures alone were 30 MB, and
   `Wood_Roughness.png` was a 4096×4096 greyscale mask costing 7.2 MB.
+- `cat_figurines` — given an explicit `<scale>3 3 3</scale>` on its mesh.
+  `living_room.world` carries a commented-out `scale 3 3 3` for it, which SDF
+  ignores twice over: the tag is commented, and `<scale>` is not valid on a
+  model anyway — it belongs on the mesh. Unscaled the figurines are 0.117 m
+  wide, far too small for the shelf; at 3x they are 0.352 x 0.153 x 0.346 and
+  fill most of the Cabinet's 0.480 m bottom compartment, as intended.
 - `Oven` — additionally, its control knobs were painted pure red `(155,7,7)`
   upstream; those 18518 pixels were recoloured to dark grey, keeping each
   pixel's original luminance so the knobs retain their shading. The model is
@@ -357,7 +363,8 @@ Original models, Apache-2.0 with the rest of this repo. By Ilia O.:
 The kitchen family — `kitchen_base_run_w`/`_e`/`_east`, `kitchen_wall_cab_w`/
 `_e`/`_ec`/`_es`, `kitchen_pantry`, `fridge_double_door`, `dishwasher`,
 `range_hood`, `room_wall_25x4m`, `room_wall_25x5m`, `window_curtains_small`,
-`toaster_4_slice`, `pressure_cooker`, `dish_drainer`, `decor_vase` —
+`toaster_4_slice`, `pressure_cooker`, `dish_drainer`, `decor_vase`,
+`decor_vase_tall` —
 was authored for `kitchen_dining.world`, because Fuel has no residential-height
 counter, no toe kick on anything, and no range hood at all. Their door and
 counter textures are reused from `Cabinet` (`wood.png`) and `TableMarble`
