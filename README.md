@@ -268,10 +268,12 @@ below.
 | `TVStand` | Roselle | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/TVStand) | CC BY 4.0 | 2020-08-06 |
 | `person_standing` | Open Robotics | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/Standing%20person) | CC0 1.0 | 2018-01-27 |
 | `PatientFSit` | Open Robotics | [OpenRobotics](https://app.gazebosim.org/OpenRobotics/fuel/models/PatientFSit) | CC BY 4.0 | 2020-06-25 |
-| `toaster_4_slice` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/Black_Decker_Stainless_Steel_Toaster_4_Slice) | CC BY 4.0 | 2020-09-03 |
 | `salad_plate` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/ProSport_Harness_to_Booster_Seat) | CC BY 4.0 | 2020-09-18 |
-| `dish_drainer` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/Rubbermaid_Large_Drainer) | CC BY 4.0 | 2020-09-18 |
-| `pressure_cooker` | Google | [GoogleResearch](https://app.gazebosim.org/GoogleResearch/fuel/models/TriStar_Products_PPC_Power_Pressure_Cooker_XL_in_Black) | CC BY 4.0 | 2020-09-18 |
+
+`toaster_4_slice`, `dish_drainer` and `pressure_cooker` were originally
+vendored from Google Scanned Objects but have since been **replaced by authored
+primitive models** — see [Authored for this package](#authored-for-this-package)
+— so they carry no third-party attribution any more.
 
 `salad_plate` is vendored from a Fuel entry named
 `ProSport_Harness_to_Booster_Seat`, which does not describe it — the geometry
@@ -355,7 +357,8 @@ Original models, Apache-2.0 with the rest of this repo. By Ilia O.:
 
 The kitchen family — `kitchen_base_run_w`/`_e`/`_east`, `kitchen_wall_cab_w`/
 `_e`/`_ec`/`_es`, `kitchen_pantry`, `fridge_double_door`, `dishwasher`,
-`range_hood`, `room_wall_25x4m`, `room_wall_25x5m`, `window_curtains_small` —
+`range_hood`, `room_wall_25x4m`, `room_wall_25x5m`, `window_curtains_small`,
+`toaster_4_slice`, `pressure_cooker`, `dish_drainer` —
 was authored for `kitchen_dining.world`, because Fuel has no residential-height
 counter, no toe kick on anything, and no range hood at all. Their door and
 counter textures are reused from `Cabinet` (`wood.png`) and `TableMarble`

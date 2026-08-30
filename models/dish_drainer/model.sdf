@@ -1,39 +1,88 @@
-<?xml version="1.0" ?>
-<!--
-  Rubbermaid Large Drainer by Google (Google Scanned Objects),
-  vendored for oomwoo_gazebo as dish_drainer.
-
-  Change from upstream: added <static>true</static>. Google Scanned Objects
-  ship with inertia and no static flag, so on a counter this would be a loose
-  rigid body - it settles, drifts, or gets knocked off by the robot. Kitchen
-  dressing should stay put. Textures were also downsampled (see model.config).
--->
-<!--
-Copyright 2020 Google LLC.
-
-This work is licensed under the Creative Commons Attribution 4.0
-International License. To view a copy of this license, visit
-http://creativecommons.org/licenses/by/4.0/ or send a letter
-to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
--->
+<?xml version="1.0"?>
 <sdf version="1.6">
-  <model name="Rubbermaid_Large_Drainer">
+  <model name="dish_drainer">
     <static>true</static>
-    <link name="link_0">
-      <visual name="visual">
-        <geometry>
-          <mesh>
-            <uri>meshes/model.obj</uri>
-          </mesh>
-        </geometry>
+    <link name="link">
+      <visual name="tray">
+        <pose>0 0 0.011 0 0 0</pose>
+        <geometry><box><size>0.339 0.442 0.022</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <collision name="collision_0">
-        <geometry>
-          <mesh>
-            <uri>meshes/model.obj</uri>
-          </mesh>
-        </geometry>
+      <visual name="rim0">
+        <pose>0 0.215 0.04 0 0 0</pose>
+        <geometry><box><size>0.339 0.012 0.036</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="rim1">
+        <pose>0 -0.215 0.04 0 0 0</pose>
+        <geometry><box><size>0.339 0.012 0.036</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="rim2">
+        <pose>0.1635 0 0.04 0 0 0</pose>
+        <geometry><box><size>0.012 0.442 0.036</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="rim3">
+        <pose>-0.1635 0 0.04 0 0 0</pose>
+        <geometry><box><size>0.012 0.442 0.036</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider0">
+        <pose>-0.132 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider1">
+        <pose>-0.099 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider2">
+        <pose>-0.066 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider3">
+        <pose>-0.033 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider4">
+        <pose>0 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider5">
+        <pose>0.033 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider6">
+        <pose>0.066 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider7">
+        <pose>0.099 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="divider8">
+        <pose>0.132 0.02 0.072 0 0 0</pose>
+        <geometry><box><size>0.007 0.3 0.1</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="spout">
+        <pose>0 -0.232 0.014 0 0 0</pose>
+        <geometry><box><size>0.07 0.028 0.016</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.820 0.830 0.840 1</ambient><diffuse>0.820 0.830 0.840 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <collision name="body">
+        <pose>0 0 0.0605 0 0 0</pose>
+        <geometry><box><size>0.339 0.442 0.121</size></box></geometry>
       </collision>
     </link>
+    <allow_auto_disable>1</allow_auto_disable>
   </model>
 </sdf>

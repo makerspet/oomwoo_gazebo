@@ -490,13 +490,16 @@
 
     <!-- Small appliances along the west counter, all backed up to the wall and
          all well under the wall cabinets at 1.500. West to east:
-         pressure cooker (top 1.230), coffee maker (1.255), toaster (1.089). -->
+         pressure cooker (top 1.191), coffee maker (1.255), toaster (1.085).
+         The cooker and toaster are authored from primitives - see models/ -
+         because the Fuel scans cost 25k and 48k triangles for objects a few
+         hundred pixels across, and decimating a scan destroys its UVs. -->
     <model name='pressure_cooker'>
       <static>true</static>
       <include>
         <uri>model://pressure_cooker</uri>
       </include>
-      <pose>-1.35 1.73 0.9 0 -0 0</pose>
+      <pose>-1.34 1.73 0.9 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
@@ -505,7 +508,7 @@
       <include>
         <uri>model://toaster_4_slice</uri>
       </include>
-      <pose>-0.65 1.74 0.9 0 -0 0</pose>
+      <pose>-0.65 1.78 0.9 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 
