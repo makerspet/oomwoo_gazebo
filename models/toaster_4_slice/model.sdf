@@ -94,33 +94,33 @@
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="slot0_run">
-        <pose>-0.07 0 0.17 0 0 0</pose>
-        <geometry><box><size>0.03 0.14 0.012</size></box></geometry>
+        <pose>-0.045 0 0.17 0 0 0</pose>
+        <geometry><box><size>0.032 0.17 0.012</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.060 0.060 0.070 1</ambient><diffuse>0.060 0.060 0.070 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="slot0_end0">
-        <pose>-0.07 -0.07 0.17 0 0 0</pose>
-        <geometry><cylinder><radius>0.015</radius><length>0.012</length></cylinder></geometry>
+        <pose>-0.045 -0.085 0.17 0 0 0</pose>
+        <geometry><cylinder><radius>0.016</radius><length>0.012</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.060 0.060 0.070 1</ambient><diffuse>0.060 0.060 0.070 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="slot0_end1">
-        <pose>-0.07 0.07 0.17 0 0 0</pose>
-        <geometry><cylinder><radius>0.015</radius><length>0.012</length></cylinder></geometry>
+        <pose>-0.045 0.085 0.17 0 0 0</pose>
+        <geometry><cylinder><radius>0.016</radius><length>0.012</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.060 0.060 0.070 1</ambient><diffuse>0.060 0.060 0.070 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="slot1_run">
-        <pose>0.07 0 0.17 0 0 0</pose>
-        <geometry><box><size>0.03 0.14 0.012</size></box></geometry>
+        <pose>0.045 0 0.17 0 0 0</pose>
+        <geometry><box><size>0.032 0.17 0.012</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.060 0.060 0.070 1</ambient><diffuse>0.060 0.060 0.070 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="slot1_end0">
-        <pose>0.07 -0.07 0.17 0 0 0</pose>
-        <geometry><cylinder><radius>0.015</radius><length>0.012</length></cylinder></geometry>
+        <pose>0.045 -0.085 0.17 0 0 0</pose>
+        <geometry><cylinder><radius>0.016</radius><length>0.012</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.060 0.060 0.070 1</ambient><diffuse>0.060 0.060 0.070 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="slot1_end1">
-        <pose>0.07 0.07 0.17 0 0 0</pose>
-        <geometry><cylinder><radius>0.015</radius><length>0.012</length></cylinder></geometry>
+        <pose>0.045 0.085 0.17 0 0 0</pose>
+        <geometry><cylinder><radius>0.016</radius><length>0.012</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.060 0.060 0.070 1</ambient><diffuse>0.060 0.060 0.070 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="lever_track">

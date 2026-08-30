@@ -213,12 +213,15 @@
       <self_collide>false</self_collide>
     </model>
 
-    <model name='Racoon'>
+    <!-- A decorative vase, standing in for the racoon figurine that used to sit
+         here. Same job: an object on the bookshelf's bottom shelf that the vacuum
+         can see but cannot reach. Same height (0.209 vs 0.211) so it still clears
+         the shelf above, and 9 KB of primitives instead of an 8.4 MB scan. -->
+    <model name='decor_vase'>
       <static>true</static>
-      <pose>-1.87443 2.2 0.059172 -0.005807 -0.005148 1.2</pose>
-      <!-- scale>1.5 1.5 1.5</scale -->
+      <pose>-1.87443 2.2 0.059172 0 -0 0</pose>
       <include>
-        <uri>model://racoon</uri>
+        <uri>model://decor_vase</uri>
       </include>
       <self_collide>false</self_collide>
     </model>

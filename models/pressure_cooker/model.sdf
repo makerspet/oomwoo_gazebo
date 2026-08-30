@@ -35,7 +35,7 @@
       </visual>
       <visual name="handle_bar">
         <pose>0 0 0.325 0 1.570796 0</pose>
-        <geometry><capsule><radius>0.011</radius><length>0.1</length></capsule></geometry>
+        <geometry><capsule><radius>0.011</radius><length>0.12</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="knob">
