@@ -20,7 +20,6 @@
           <pbr>
             <metal>
               <albedo_map>materials/textures/Wood_Albedo.png</albedo_map>
-              <normal_map>materials/textures/Wood_Normal.png</normal_map>
               <roughness_map>materials/textures/Wood_Roughness.png</roughness_map>
             </metal>
           </pbr>

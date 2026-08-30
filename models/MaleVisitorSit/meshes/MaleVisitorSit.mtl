@@ -1,7 +1,7 @@
 # Blender MTL File: 'MaleVisitorSit.blend'
 # Material Count: 2
 
-newmtl MaleVisitor.003
+newmtl MaleVisitorSit_MaleVisitor.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
@@ -12,7 +12,7 @@ d 1.000000
 illum 2
 map_Kd MaleVisitorSit.png
 
-newmtl Phone.001
+newmtl MaleVisitorSit_Phone.001
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
@@ -21,4 +21,4 @@ Ke 0.0 0.0 0.0
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Phone.png
+map_Kd MaleVisitorSit_Phone.png

@@ -1,7 +1,7 @@
 # Blender MTL File: 'MiniSofa.blend'
 # Material Count: 1
 
-newmtl Sofa
+newmtl MiniSofa_Sofa
 Ns 274.233586
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
