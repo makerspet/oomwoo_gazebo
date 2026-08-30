@@ -3,58 +3,73 @@
   <model name="pressure_cooker">
     <static>true</static>
     <link name="link">
-      <visual name="body">
-        <pose>0 0 0.12 0 0 0</pose>
-        <geometry><cylinder><radius>0.145</radius><length>0.24</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.060 0.060 0.070 1</ambient><diffuse>0.060 0.060 0.070 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
       <visual name="base">
         <pose>0 0 0.008 0 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.016</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="lid">
-        <pose>0 0 0.253 0 0 0</pose>
-        <geometry><cylinder><radius>0.152</radius><length>0.026</length></cylinder></geometry>
+      <visual name="body">
+        <pose>0 0 0.125 0 0 0</pose>
+        <geometry><cylinder><radius>0.145</radius><length>0.235</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.060 0.060 0.070 1</ambient><diffuse>0.060 0.060 0.070 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="lid_rim">
+        <pose>0 0 0.252 0 0 0</pose>
+        <geometry><cylinder><radius>0.151</radius><length>0.02</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="lid_handle">
-        <pose>0 0 0.278 0 0 0</pose>
-        <geometry><box><size>0.19 0.03 0.024</size></box></geometry>
+      <visual name="lid_dome">
+        <pose>0 0 0.262 0 0 0</pose>
+        <geometry><ellipsoid><radii>0.146 0.146 0.034</radii></ellipsoid></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="handle_post0">
+        <pose>-0.068 0 0.303 0 0 0</pose>
+        <geometry><capsule><radius>0.009</radius><length>0.016</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="vent">
-        <pose>0.055 0 0.283 0 0 0</pose>
-        <geometry><cylinder><radius>0.011</radius><length>0.034</length></cylinder></geometry>
+      <visual name="handle_post1">
+        <pose>0.068 0 0.303 0 0 0</pose>
+        <geometry><capsule><radius>0.009</radius><length>0.016</length></capsule></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="handle_bar">
+        <pose>0 0 0.325 0 1.570796 0</pose>
+        <geometry><capsule><radius>0.011</radius><length>0.1</length></capsule></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="knob">
+        <pose>0 0 0.292 0 0 0</pose>
+        <geometry><sphere><radius>0.019</radius></sphere></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="grip0">
-        <pose>-0.171 0 0.15 0 0 0</pose>
-        <geometry><box><size>0.058 0.088 0.032</size></box></geometry>
+        <pose>-0.155 0 0.15 1.570796 0 0</pose>
+        <geometry><capsule><radius>0.016</radius><length>0.044</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="grip1">
-        <pose>0.171 0 0.15 0 0 0</pose>
-        <geometry><box><size>0.058 0.088 0.032</size></box></geometry>
+        <pose>0.155 0 0.15 1.570796 0 0</pose>
+        <geometry><capsule><radius>0.016</radius><length>0.044</length></capsule></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="panel">
-        <pose>0 -0.14 0.105 0 0 0</pose>
-        <geometry><box><size>0.15 0.016 0.09</size></box></geometry>
+        <pose>0 -0.139 0.105 0 0 0</pose>
+        <geometry><ellipsoid><radii>0.072 0.011 0.044</radii></ellipsoid></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.45</roughness></metal></pbr><ambient>0.090 0.090 0.100 1</ambient><diffuse>0.090 0.090 0.100 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="display">
-        <pose>0 -0.148 0.128 0 0 0</pose>
-        <geometry><box><size>0.09 0.006 0.03</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.30</roughness></metal></pbr><ambient>0.100 0.350 0.220 1</ambient><diffuse>0.100 0.350 0.220 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+        <pose>0 -0.147 0.115 0 0 0</pose>
+        <geometry><ellipsoid><radii>0.042 0.004 0.016</radii></ellipsoid></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.30</roughness></metal></pbr><ambient>0.100 0.380 0.240 1</ambient><diffuse>0.100 0.380 0.240 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <collision name="body">
-        <pose>0 0 0.14 0 0 0</pose>
-        <geometry><cylinder><radius>0.152</radius><length>0.28</length></cylinder></geometry>
+        <pose>0 0 0.15 0 0 0</pose>
+        <geometry><cylinder><radius>0.151</radius><length>0.3</length></cylinder></geometry>
       </collision>
       <collision name="grips">
         <pose>0 0 0.15 0 0 0</pose>
-        <geometry><box><size>0.4 0.088 0.032</size></box></geometry>
+        <geometry><box><size>0.342 0.076 0.032</size></box></geometry>
       </collision>
     </link>
     <allow_auto_disable>1</allow_auto_disable>

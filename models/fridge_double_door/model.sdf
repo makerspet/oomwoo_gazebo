@@ -8,14 +8,64 @@
         <geometry><box><size>0.88 0.65 0.06</size></box></geometry>
         <material><ambient>0.11 0.11 0.12 1</ambient><diffuse>0.11 0.11 0.12 1</diffuse><specular>0.05 0.05 0.05 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="body">
+      <visual name="body_a">
         <pose>0 -0.35 0.92 0 0 0</pose>
-        <geometry><box><size>0.9 0.7 1.72</size></box></geometry>
+        <geometry><box><size>0.83 0.7 1.72</size></box></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="freezer_front">
+      <visual name="body_b">
+        <pose>0 -0.35 0.92 0 0 0</pose>
+        <geometry><box><size>0.9 0.63 1.72</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="body_c0">
+        <pose>-0.415 -0.665 0.92 0 0 0</pose>
+        <geometry><cylinder><radius>0.035</radius><length>1.72</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="body_c1">
+        <pose>-0.415 -0.035 0.92 0 0 0</pose>
+        <geometry><cylinder><radius>0.035</radius><length>1.72</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="body_c2">
+        <pose>0.415 -0.665 0.92 0 0 0</pose>
+        <geometry><cylinder><radius>0.035</radius><length>1.72</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="body_c3">
+        <pose>0.415 -0.035 0.92 0 0 0</pose>
+        <geometry><cylinder><radius>0.035</radius><length>1.72</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="freezer_front_a">
         <pose>0 -0.711 0.345 0 0 0</pose>
-        <geometry><box><size>0.88 0.022 0.54</size></box></geometry>
+        <geometry><box><size>0.862 0.022 0.54</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="freezer_front_b">
+        <pose>0 -0.711 0.345 0 0 0</pose>
+        <geometry><box><size>0.88 0.004 0.54</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="freezer_front_c0">
+        <pose>-0.431 -0.713 0.345 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>0.54</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="freezer_front_c1">
+        <pose>-0.431 -0.709 0.345 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>0.54</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="freezer_front_c2">
+        <pose>0.431 -0.713 0.345 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>0.54</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="freezer_front_c3">
+        <pose>0.431 -0.709 0.345 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>0.54</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="freezer_handle_bar">
@@ -33,9 +83,34 @@
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="door0">
+      <visual name="door0_a">
         <pose>-0.228 -0.711 1.19 0 0 0</pose>
-        <geometry><box><size>0.434 0.022 1.1</size></box></geometry>
+        <geometry><box><size>0.416 0.022 1.1</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door0_b">
+        <pose>-0.228 -0.711 1.19 0 0 0</pose>
+        <geometry><box><size>0.434 0.004 1.1</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door0_c0">
+        <pose>-0.436 -0.713 1.19 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>1.1</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door0_c1">
+        <pose>-0.436 -0.709 1.19 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>1.1</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door0_c2">
+        <pose>-0.02 -0.713 1.19 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>1.1</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door0_c3">
+        <pose>-0.02 -0.709 1.19 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>1.1</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door0_handle_bar">
@@ -53,9 +128,34 @@
         <geometry><cylinder><radius>0.0063</radius><length>0.038</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.25</metalness><roughness>0.15</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="door1">
+      <visual name="door1_a">
         <pose>0.228 -0.711 1.19 0 0 0</pose>
-        <geometry><box><size>0.434 0.022 1.1</size></box></geometry>
+        <geometry><box><size>0.416 0.022 1.1</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door1_b">
+        <pose>0.228 -0.711 1.19 0 0 0</pose>
+        <geometry><box><size>0.434 0.004 1.1</size></box></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door1_c0">
+        <pose>0.02 -0.713 1.19 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>1.1</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door1_c1">
+        <pose>0.02 -0.709 1.19 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>1.1</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door1_c2">
+        <pose>0.436 -0.713 1.19 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>1.1</length></cylinder></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door1_c3">
+        <pose>0.436 -0.709 1.19 0 0 0</pose>
+        <geometry><cylinder><radius>0.009</radius><length>1.1</length></cylinder></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="door1_handle_bar">
