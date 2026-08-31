@@ -109,10 +109,11 @@ for the full sim workflow.
 worlds are vendored — that repo declares a package also named `oomwoo_gazebo`,
 so the two cannot be built in one colcon workspace.
 
-They are self-contained: every model is inline `box` and `plane` geometry with
-inline colour materials — no `<include>`, `<uri>` or `<mesh>` anywhere, so unlike
-the `.world` files (`living_room.world` alone pulls in 26 models) they need
-nothing from `models/` and download nothing at run time. Each is about 6 KB.
+`multi_room.sdf` and `narrow_passage.sdf` remain self-contained with inline
+primitive geometry. `kitchen.sdf` now reuses the package-local `model://Chair`
+asset for realistic furniture instead of placeholder chair boxes. It still
+requires no network download at run time as long as this package's `models/`
+directory is available.
 
 Two things were changed in all three, to match the other worlds in this package:
 
@@ -134,7 +135,11 @@ robot's 0.349 m body (0.359 m including the bumper):
   flush against the right wall, leaving a single 0.60 m gap (0.12 m either side
   of the robot). Keep the clear gap above ~0.40 m.
 
-`kitchen.sdf` and `multi_room.sdf` are geometrically unmodified.
+`multi_room.sdf` remains geometrically unmodified. `kitchen.sdf` received a
+manual dimensional cleanup: its 1.5 m partition-like walls are now 2.4 m high
+and its placeholder box chairs use the existing Chair model. See
+[`docs/kitchen-scale-audit.md`](docs/kitchen-scale-audit.md). A Gazebo GUI
+visual pass is still required before calling the world visually validated.
 
 ```
 ros2 launch oomwoo_gazebo world.launch.py world:=multi_room.sdf
