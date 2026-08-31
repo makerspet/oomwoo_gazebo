@@ -3,10 +3,11 @@
   Contributed by Alvaro Samudio, from
   https://github.com/alvarosamudio/oomwoo_gazebo (Apache-2.0).
 
-  Vendored into oomwoo_gazebo. The world geometry is unmodified. Two things
-  were changed, both to match this package's other worlds on Gazebo Harmonic /
-  ROS 2 Jazzy: the world-level plugin block, and the physics block (the
-  original declared dart + bullet collision detector). See README.md.
+  Vendored into oomwoo_gazebo. The world-level plugin and physics blocks were
+  adapted for Gazebo Harmonic / ROS 2 Jazzy. A later manual dimensional pass
+  raised the kitchen walls to a realistic residential height and replaced the
+  placeholder box chairs with the package's existing Chair asset. See
+  docs/kitchen-scale-audit.md.
 -->
 <sdf version="1.8">
   <world name="kitchen">
@@ -100,42 +101,43 @@
       </link>
     </model>
 
+    <!-- 2.4 m residential wall height; center is half-height at z=1.2 m. -->
     <model name="wall_back">
       <static>true</static>
-      <pose>3.0 0 0.75 0 0 0</pose>
+      <pose>3.0 0 1.2 0 0 0</pose>
       <link name="link">
-        <collision name="collision"><geometry><box><size>0.2 6.0 1.5</size></box></geometry></collision>
-        <visual name="visual"><geometry><box><size>0.2 6.0 1.5</size></box></geometry>
+        <collision name="collision"><geometry><box><size>0.2 6.0 2.4</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.2 6.0 2.4</size></box></geometry>
           <material><ambient>0.8 0.8 0.8</ambient><diffuse>0.8 0.8 0.8</diffuse></material>
         </visual>
       </link>
     </model>
     <model name="wall_front">
       <static>true</static>
-      <pose>-3.0 0 0.75 0 0 0</pose>
+      <pose>-3.0 0 1.2 0 0 0</pose>
       <link name="link">
-        <collision name="collision"><geometry><box><size>0.2 6.0 1.5</size></box></geometry></collision>
-        <visual name="visual"><geometry><box><size>0.2 6.0 1.5</size></box></geometry>
+        <collision name="collision"><geometry><box><size>0.2 6.0 2.4</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.2 6.0 2.4</size></box></geometry>
           <material><ambient>0.8 0.8 0.8</ambient><diffuse>0.8 0.8 0.8</diffuse></material>
         </visual>
       </link>
     </model>
     <model name="wall_left">
       <static>true</static>
-      <pose>0 3.0 0.75 0 0 1.5708</pose>
+      <pose>0 3.0 1.2 0 0 1.5708</pose>
       <link name="link">
-        <collision name="collision"><geometry><box><size>0.2 6.0 1.5</size></box></geometry></collision>
-        <visual name="visual"><geometry><box><size>0.2 6.0 1.5</size></box></geometry>
+        <collision name="collision"><geometry><box><size>0.2 6.0 2.4</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.2 6.0 2.4</size></box></geometry>
           <material><ambient>0.8 0.8 0.8</ambient><diffuse>0.8 0.8 0.8</diffuse></material>
         </visual>
       </link>
     </model>
     <model name="wall_right">
       <static>true</static>
-      <pose>0 -3.0 0.75 0 0 1.5708</pose>
+      <pose>0 -3.0 1.2 0 0 1.5708</pose>
       <link name="link">
-        <collision name="collision"><geometry><box><size>0.2 6.0 1.5</size></box></geometry></collision>
-        <visual name="visual"><geometry><box><size>0.2 6.0 1.5</size></box></geometry>
+        <collision name="collision"><geometry><box><size>0.2 6.0 2.4</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.2 6.0 2.4</size></box></geometry>
           <material><ambient>0.8 0.8 0.8</ambient><diffuse>0.8 0.8 0.8</diffuse></material>
         </visual>
       </link>
@@ -163,26 +165,23 @@
       </link>
     </model>
 
+    <!-- Use the same real chair asset already exercised by living_room.world. -->
     <model name="chair_1">
       <static>true</static>
-      <pose>-1.5 -0.6 0.2 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.35 0.35 0.4</size></box></geometry></collision>
-        <visual name="visual"><geometry><box><size>0.35 0.35 0.4</size></box></geometry>
-          <material><ambient>0.2 0.2 0.8</ambient><diffuse>0.2 0.2 0.8</diffuse></material>
-        </visual>
-      </link>
+      <pose>-1.5 -0.6 0 0 0 3.14159</pose>
+      <include>
+        <uri>model://Chair</uri>
+      </include>
+      <self_collide>false</self_collide>
     </model>
 
     <model name="chair_2">
       <static>true</static>
-      <pose>1.2 1.8 0.2 0 0 0.3</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.35 0.35 0.4</size></box></geometry></collision>
-        <visual name="visual"><geometry><box><size>0.35 0.35 0.4</size></box></geometry>
-          <material><ambient>0.2 0.2 0.8</ambient><diffuse>0.2 0.2 0.8</diffuse></material>
-        </visual>
-      </link>
+      <pose>1.2 1.8 0 0 0 0.3</pose>
+      <include>
+        <uri>model://Chair</uri>
+      </include>
+      <self_collide>false</self_collide>
     </model>
   </world>
 </sdf>
