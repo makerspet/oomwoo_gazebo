@@ -203,24 +203,46 @@
     </model>
 
     <!-- Auto-empty / mop-wash dock, backed against the WEST wall and centred on
-         the default spawn line y = -0.5 - so it sits directly behind the robot,
-         which spawns at (-2.0, -0.5) facing +x. The robot reverses west into it.
+         the default spawn line y = -0.5 - directly behind the robot, which
+         spawns at (-2.0, -0.5) facing +x and reverses west into it.
 
-         Dock occupies x -2.450..-1.950, y -0.720..-0.280, z 0..0.580.
-         Its bay interior is x -2.420..-1.950, y -0.700..-0.300, z 0..0.170, so
-         the spawned robot (x -2.180..-1.820, y -0.680..-0.320) sits with its
-         back half already inside the bay, 20 mm clear of each side wall. The
-         bay carries NO collision geometry, so that overlap is free - only the
-         tower, back panel and side walls collide.
+         Dock occupies x -2.450..-2.110, y -0.730..-0.270, z 0..0.580.
+         Bay interior  x -2.320..-2.110, y -0.700..-0.300, z 0..0.170.
 
-         It fits under the poster above (z 1.000..2.000) and clears the door
-         (y 0.100..0.900) entirely. -->
+         Bay depth (0.210) is set by the LiDAR: the turret sits 0.0745 m forward
+         of the robot centre, so backed fully in it lands 0.254 m from the bay's
+         back face - 44 mm clear of the mouth - with 58% of the robot inside.
+         The bay carries NO collision geometry (only the tower, back block and
+         side walls do), so the robot can sit in it freely.
+
+         At the default x_pose the robot's tail is 69 mm into the mouth, i.e.
+         just pulled out. Set x_pose:=-2.14 to have it spawn fully docked.
+
+         It clears the door (y 0.100..0.900) and tucks under the poster above
+         (z 1.000..2.000). -->
     <model name='vacuum_dock'>
       <static>true</static>
       <include>
         <uri>model://vacuum_dock</uri>
       </include>
       <pose>-2.45 -0.5 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- Basic charging dock - the pad style, the simple alternative to the
+         auto-empty dock above. The robot drives ONTO this one, so it needs
+         approach room rather than a bay. Against the SOUTH wall facing north,
+         occupying x -2.010..-1.790, y -1.900..-1.755, z 0..0.098.
+
+         It sits under the south-west curtain, which starts at z 0.250, and
+         has 0.705 m of open floor in front of it before the dining table at
+         y -1.050 - ample for a 0.359 m robot to line up and drive in. -->
+    <model name='charging_dock_basic'>
+      <static>true</static>
+      <include>
+        <uri>model://charging_dock_basic</uri>
+      </include>
+      <pose>-1.9 -1.9 0 0 -0 3.1416</pose>
       <self_collide>false</self_collide>
     </model>
 
