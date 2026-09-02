@@ -8,29 +8,34 @@
         <geometry><box><size>0.279 0.442 0.022</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="tray_b">
-        <pose>0 0 0.011 0 0 0</pose>
-        <geometry><box><size>0.339 0.382 0.022</size></box></geometry>
+      <visual name="tray_b0">
+        <pose>-0.1545 0 0.011 0 0 0</pose>
+        <geometry><box><size>0.03 0.382 0.022</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tray_b1">
+        <pose>0.1545 0 0.011 0 0 0</pose>
+        <geometry><box><size>0.03 0.382 0.022</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="tray_c0">
         <pose>-0.1395 -0.191 0.011 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.022</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.03</radius><length>0.0226</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="tray_c1">
         <pose>-0.1395 0.191 0.011 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.022</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.03</radius><length>0.02278</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="tray_c2">
         <pose>0.1395 -0.191 0.011 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.022</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.03</radius><length>0.02296</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="tray_c3">
         <pose>0.1395 0.191 0.011 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.022</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.03</radius><length>0.02314</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="wall_n">
@@ -55,22 +60,22 @@
       </visual>
       <visual name="wall_corner0">
         <pose>-0.1395 -0.191 0.0445 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.045</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.03</radius><length>0.0456</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="wall_corner1">
         <pose>-0.1395 0.191 0.0445 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.045</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.03</radius><length>0.0456</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="wall_corner2">
         <pose>0.1395 -0.191 0.0445 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.045</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.03</radius><length>0.0456</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="wall_corner3">
         <pose>0.1395 0.191 0.0445 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.045</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.03</radius><length>0.0456</length></cylinder></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.860 0.870 0.880 1</ambient><diffuse>0.860 0.870 0.880 1</diffuse><specular>0.3 0.3 0.3 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="div0_post0">

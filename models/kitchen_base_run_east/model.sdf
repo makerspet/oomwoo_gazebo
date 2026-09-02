@@ -55,7 +55,7 @@
       </visual>
       <visual name="basin_floor">
         <pose>-0.425 -0.3 0.704 0 0 0</pose>
-        <geometry><box><size>0.76 0.42 0.012</size></box></geometry>
+        <geometry><box><size>0.736 0.396 0.012</size></box></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="basin_back">
@@ -70,17 +70,17 @@
       </visual>
       <visual name="basin_west">
         <pose>-0.799 -0.3 0.8 0 0 0</pose>
-        <geometry><box><size>0.012 0.42 0.19</size></box></geometry>
+        <geometry><box><size>0.012 0.396 0.19</size></box></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="basin_east">
         <pose>-0.051 -0.3 0.8 0 0 0</pose>
-        <geometry><box><size>0.012 0.42 0.19</size></box></geometry>
+        <geometry><box><size>0.012 0.396 0.19</size></box></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="basin_divider">
-        <pose>-0.425 -0.3 0.785 0 0 0</pose>
-        <geometry><box><size>0.02 0.396 0.16</size></box></geometry>
+        <pose>-0.425 -0.3 0.7875 0 0 0</pose>
+        <geometry><box><size>0.02 0.396 0.155</size></box></geometry>
         <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="faucet_body">
