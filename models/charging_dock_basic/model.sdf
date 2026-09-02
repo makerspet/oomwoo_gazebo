@@ -5,17 +5,17 @@
     <link name="link">
       <visual name="core">
         <pose>0 -0.024 0.049 0 0 0</pose>
-        <geometry><box><size>0.172 0.048 0.098</size></box></geometry>
+        <geometry><box><size>0.196 0.048 0.098</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="side0">
-        <pose>-0.098 -0.024 0.049 0 0 0</pose>
-        <geometry><box><size>0.024 0.024 0.098</size></box></geometry>
+        <pose>-0.104 -0.024 0.049 0 0 0</pose>
+        <geometry><box><size>0.012 0.024 0.098</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="side1">
-        <pose>0.098 -0.024 0.049 0 0 0</pose>
-        <geometry><box><size>0.024 0.024 0.098</size></box></geometry>
+        <pose>0.104 -0.024 0.049 0 0 0</pose>
+        <geometry><box><size>0.012 0.024 0.098</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="tube0">

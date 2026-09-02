@@ -5,17 +5,17 @@
     <link name="link">
       <visual name="core">
         <pose>0 -0.17 0.375 0 0 0</pose>
-        <geometry><box><size>0.4 0.34 0.41</size></box></geometry>
+        <geometry><box><size>0.43 0.34 0.41</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="side0">
-        <pose>-0.215 -0.17 0.29 0 0 0</pose>
-        <geometry><box><size>0.03 0.31 0.58</size></box></geometry>
+        <pose>-0.2225 -0.17 0.29 0 0 0</pose>
+        <geometry><box><size>0.015 0.31 0.58</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="side1">
-        <pose>0.215 -0.17 0.29 0 0 0</pose>
-        <geometry><box><size>0.03 0.31 0.58</size></box></geometry>
+        <pose>0.2225 -0.17 0.29 0 0 0</pose>
+        <geometry><box><size>0.015 0.31 0.58</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <visual name="tube0">
@@ -40,12 +40,12 @@
       </visual>
       <visual name="back_spacer">
         <pose>0 -0.05 0.085 0 0 0</pose>
-        <geometry><box><size>0.4 0.1 0.17</size></box></geometry>
+        <geometry><box><size>0.43 0.1 0.17</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
       <collision name="core">
         <pose>0 -0.17 0.375 0 0 0</pose>
-        <geometry><box><size>0.4 0.34 0.41</size></box></geometry>
+        <geometry><box><size>0.43 0.34 0.41</size></box></geometry>
       </collision>
       <collision name="side0">
         <pose>-0.215 -0.17 0.29 0 0 0</pose>
@@ -57,7 +57,7 @@
       </collision>
       <collision name="back_spacer">
         <pose>0 -0.05 0.085 0 0 0</pose>
-        <geometry><box><size>0.4 0.1 0.17</size></box></geometry>
+        <geometry><box><size>0.43 0.1 0.17</size></box></geometry>
       </collision>
     </link>
     <allow_auto_disable>1</allow_auto_disable>
