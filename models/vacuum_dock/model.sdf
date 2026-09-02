@@ -3,141 +3,61 @@
   <model name="vacuum_dock">
     <static>true</static>
     <link name="link">
-      <visual name="tower_a">
+      <visual name="core">
         <pose>0 -0.17 0.375 0 0 0</pose>
         <geometry><box><size>0.4 0.34 0.41</size></box></geometry>
         <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
       </visual>
-      <visual name="tower_b">
+      <visual name="side0">
+        <pose>-0.215 -0.17 0.29 0 0 0</pose>
+        <geometry><box><size>0.03 0.31 0.58</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="side1">
+        <pose>0.215 -0.17 0.29 0 0 0</pose>
+        <geometry><box><size>0.03 0.31 0.58</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tube0">
+        <pose>-0.215 -0.015 0.29 0 0 0</pose>
+        <geometry><cylinder><radius>0.015</radius><length>0.584</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tube1">
+        <pose>-0.215 -0.325 0.29 0 0 0</pose>
+        <geometry><cylinder><radius>0.015</radius><length>0.584</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tube2">
+        <pose>0.215 -0.015 0.29 0 0 0</pose>
+        <geometry><cylinder><radius>0.015</radius><length>0.584</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tube3">
+        <pose>0.215 -0.325 0.29 0 0 0</pose>
+        <geometry><cylinder><radius>0.015</radius><length>0.584</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="back_spacer">
+        <pose>0 -0.05 0.085 0 0 0</pose>
+        <geometry><box><size>0.4 0.1 0.17</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <collision name="core">
         <pose>0 -0.17 0.375 0 0 0</pose>
-        <geometry><box><size>0.46 0.28 0.41</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="tower_c0">
-        <pose>-0.2 -0.31 0.375 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.41</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="tower_c1">
-        <pose>-0.2 -0.03 0.375 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.41</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="tower_c2">
-        <pose>0.2 -0.31 0.375 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.41</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="tower_c3">
-        <pose>0.2 -0.03 0.375 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.41</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_back_a">
-        <pose>0 -0.065 0.085 0 0 0</pose>
-        <geometry><box><size>0.4 0.13 0.17</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_back_b">
-        <pose>0 -0.065 0.085 0 0 0</pose>
-        <geometry><box><size>0.46 0.07 0.17</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_back_c0">
-        <pose>-0.2 -0.1 0.085 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.17</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_back_c1">
-        <pose>-0.2 -0.03 0.085 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.17</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_back_c2">
-        <pose>0.2 -0.1 0.085 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.17</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_back_c3">
-        <pose>0.2 -0.03 0.085 0 0 0</pose>
-        <geometry><cylinder><radius>0.03</radius><length>0.17</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_back_face">
-        <pose>0 -0.124 0.085 0 0 0</pose>
-        <geometry><box><size>0.4 0.012 0.158</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_wall0">
-        <pose>-0.215 -0.235 0.085 0 0 0</pose>
-        <geometry><box><size>0.03 0.21 0.17</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_wall0_tip">
-        <pose>-0.215 -0.325 0.085 0 0 0</pose>
-        <geometry><cylinder><radius>0.015</radius><length>0.17</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_wall0_in">
-        <pose>-0.2045 -0.235 0.085 0 0 0</pose>
-        <geometry><box><size>0.009 0.21 0.158</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_wall1">
-        <pose>0.215 -0.235 0.085 0 0 0</pose>
-        <geometry><box><size>0.03 0.21 0.17</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_wall1_tip">
-        <pose>0.215 -0.325 0.085 0 0 0</pose>
-        <geometry><cylinder><radius>0.015</radius><length>0.17</length></cylinder></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="bay_wall1_in">
-        <pose>0.2045 -0.235 0.085 0 0 0</pose>
-        <geometry><box><size>0.009 0.21 0.158</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="contact0">
-        <pose>-0.055 -0.134 0.03 0 0 0</pose>
-        <geometry><box><size>0.036 0.008 0.022</size></box></geometry>
-        <material><pbr><metal><metalness>0.70</metalness><roughness>0.20</roughness></metal></pbr><ambient>0.720 0.550 0.300 1</ambient><diffuse>0.720 0.550 0.300 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="contact1">
-        <pose>0.055 -0.134 0.03 0 0 0</pose>
-        <geometry><box><size>0.036 0.008 0.022</size></box></geometry>
-        <material><pbr><metal><metalness>0.70</metalness><roughness>0.20</roughness></metal></pbr><ambient>0.720 0.550 0.300 1</ambient><diffuse>0.720 0.550 0.300 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="wash_tray">
-        <pose>0 -0.235 0.004 0 0 0</pose>
-        <geometry><box><size>0.39 0.18 0.008</size></box></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="wash_rib0">
-        <pose>0 -0.19 0.011 0 1.570796 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.33</length></capsule></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <visual name="wash_rib1">
-        <pose>0 -0.28 0.011 0 1.570796 0</pose>
-        <geometry><capsule><radius>0.005</radius><length>0.33</length></capsule></geometry>
-        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
-      </visual>
-      <collision name="tower">
-        <pose>0 -0.17 0.375 0 0 0</pose>
-        <geometry><box><size>0.46 0.34 0.41</size></box></geometry>
+        <geometry><box><size>0.4 0.34 0.41</size></box></geometry>
       </collision>
-      <collision name="bay_back">
-        <pose>0 -0.065 0.085 0 0 0</pose>
-        <geometry><box><size>0.46 0.13 0.17</size></box></geometry>
+      <collision name="side0">
+        <pose>-0.215 -0.17 0.29 0 0 0</pose>
+        <geometry><box><size>0.03 0.34 0.58</size></box></geometry>
       </collision>
-      <collision name="bay_wall0">
-        <pose>-0.215 -0.235 0.085 0 0 0</pose>
-        <geometry><box><size>0.03 0.21 0.17</size></box></geometry>
+      <collision name="side1">
+        <pose>0.215 -0.17 0.29 0 0 0</pose>
+        <geometry><box><size>0.03 0.34 0.58</size></box></geometry>
       </collision>
-      <collision name="bay_wall1">
-        <pose>0.215 -0.235 0.085 0 0 0</pose>
-        <geometry><box><size>0.03 0.21 0.17</size></box></geometry>
+      <collision name="back_spacer">
+        <pose>0 -0.05 0.085 0 0 0</pose>
+        <geometry><box><size>0.4 0.1 0.17</size></box></geometry>
       </collision>
     </link>
     <allow_auto_disable>1</allow_auto_disable>

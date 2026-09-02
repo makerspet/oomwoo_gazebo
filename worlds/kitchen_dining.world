@@ -207,16 +207,15 @@
          spawns at (-2.0, -0.5) facing +x and reverses west into it.
 
          Dock occupies x -2.450..-2.110, y -0.730..-0.270, z 0..0.580.
-         Bay interior  x -2.320..-2.110, y -0.700..-0.300, z 0..0.170.
+         Bay interior  x -2.350..-2.110, y -0.700..-0.300, z 0..0.170,
+         closed at the back by a 0.100 m spacer block for charging contacts.
 
-         Bay depth (0.210) is set by the LiDAR: the turret sits 0.0745 m forward
-         of the robot centre, so backed fully in it lands 0.254 m from the bay's
-         back face - 44 mm clear of the mouth - with 58% of the robot inside.
-         The bay carries NO collision geometry (only the tower, back block and
-         side walls do), so the robot can sit in it freely.
+         Backed fully in the robot is 67% inside and its LiDAR clears the mouth
+         by 14 mm (the turret sits 0.0745 m forward of centre). The bay carries
+         NO collision geometry, so the robot can sit in it freely.
 
          At the default x_pose the robot's tail is 69 mm into the mouth, i.e.
-         just pulled out. Set x_pose:=-2.14 to have it spawn fully docked.
+         just pulled out. Set x_pose:=-2.17 to have it spawn fully docked.
 
          It clears the door (y 0.100..0.900) and tucks under the poster above
          (z 1.000..2.000). -->
