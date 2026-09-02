@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="vacuum_dock">
+    <static>true</static>
+    <link name="link">
+      <visual name="tower_a">
+        <pose>0 -0.25 0.375 0 0 0</pose>
+        <geometry><box><size>0.38 0.5 0.41</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tower_b">
+        <pose>0 -0.25 0.375 0 0 0</pose>
+        <geometry><box><size>0.44 0.44 0.41</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tower_c0">
+        <pose>-0.19 -0.47 0.375 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.41</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tower_c1">
+        <pose>-0.19 -0.03 0.375 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.41</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tower_c2">
+        <pose>0.19 -0.47 0.375 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.41</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tower_c3">
+        <pose>0.19 -0.03 0.375 0 0 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.41</length></cylinder></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="lid">
+        <pose>0 -0.25 0.57 0 0 0</pose>
+        <geometry><ellipsoid><radii>0.19 0.22 0.032</radii></ellipsoid></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="lid_seam">
+        <pose>0 -0.25 0.554 0 0 0</pose>
+        <geometry><box><size>0.37 0.43 0.004</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.40</roughness></metal></pbr><ambient>0.200 0.210 0.220 1</ambient><diffuse>0.200 0.210 0.220 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door_dust">
+        <pose>0 -0.501 0.47 0 0 0</pose>
+        <geometry><box><size>0.37 0.01 0.15</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.40</roughness></metal></pbr><ambient>0.200 0.210 0.220 1</ambient><diffuse>0.200 0.210 0.220 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="door_dust_grip">
+        <pose>0 -0.511 0.4 0 1.570796 0</pose>
+        <geometry><capsule><radius>0.008</radius><length>0.09</length></capsule></geometry>
+        <material><pbr><metal><albedo_map>textures/stainless.png</albedo_map><metalness>0.15</metalness><roughness>0.25</roughness></metal></pbr><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>1 1 1 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tank0">
+        <pose>-0.098 -0.501 0.29 0 0 0</pose>
+        <geometry><box><size>0.16 0.01 0.17</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.12</roughness></metal></pbr><ambient>0.550 0.680 0.720 1</ambient><diffuse>0.550 0.680 0.720 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tank0_frame">
+        <pose>-0.098 -0.499 0.29 0 0 0</pose>
+        <geometry><box><size>0.176 0.008 0.186</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.40</roughness></metal></pbr><ambient>0.200 0.210 0.220 1</ambient><diffuse>0.200 0.210 0.220 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tank1">
+        <pose>0.098 -0.501 0.29 0 0 0</pose>
+        <geometry><box><size>0.16 0.01 0.17</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.12</roughness></metal></pbr><ambient>0.550 0.680 0.720 1</ambient><diffuse>0.550 0.680 0.720 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="tank1_frame">
+        <pose>0.098 -0.499 0.29 0 0 0</pose>
+        <geometry><box><size>0.176 0.008 0.186</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.40</roughness></metal></pbr><ambient>0.200 0.210 0.220 1</ambient><diffuse>0.200 0.210 0.220 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="status_led">
+        <pose>0 -0.505 0.545 0 0 0</pose>
+        <geometry><ellipsoid><radii>0.02 0.006 0.02</radii></ellipsoid></geometry>
+        <material><ambient>0.100 0.550 0.500 1</ambient><diffuse>0.100 0.550 0.500 1</diffuse><specular>0.2 0.2 0.2 1</specular><emissive>0.100 0.550 0.500 1</emissive></material>
+      </visual>
+      <visual name="bay_back">
+        <pose>0 -0.015 0.085 0 0 0</pose>
+        <geometry><box><size>0.44 0.03 0.17</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="bay_wall0">
+        <pose>-0.21 -0.25 0.085 0 0 0</pose>
+        <geometry><box><size>0.02 0.5 0.17</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="bay_wall0_in">
+        <pose>-0.204 -0.25 0.085 0 0 0</pose>
+        <geometry><box><size>0.006 0.48 0.15</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="bay_wall1">
+        <pose>0.21 -0.25 0.085 0 0 0</pose>
+        <geometry><box><size>0.02 0.5 0.17</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.35</roughness></metal></pbr><ambient>0.880 0.880 0.870 1</ambient><diffuse>0.880 0.880 0.870 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="bay_wall1_in">
+        <pose>0.204 -0.25 0.085 0 0 0</pose>
+        <geometry><box><size>0.006 0.48 0.15</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="contact0">
+        <pose>-0.055 -0.034 0.03 0 0 0</pose>
+        <geometry><box><size>0.036 0.008 0.022</size></box></geometry>
+        <material><pbr><metal><metalness>0.70</metalness><roughness>0.20</roughness></metal></pbr><ambient>0.720 0.550 0.300 1</ambient><diffuse>0.720 0.550 0.300 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="contact1">
+        <pose>0.055 -0.034 0.03 0 0 0</pose>
+        <geometry><box><size>0.036 0.008 0.022</size></box></geometry>
+        <material><pbr><metal><metalness>0.70</metalness><roughness>0.20</roughness></metal></pbr><ambient>0.720 0.550 0.300 1</ambient><diffuse>0.720 0.550 0.300 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="wash_tray">
+        <pose>0 -0.185 0.004 0 0 0</pose>
+        <geometry><box><size>0.39 0.23 0.008</size></box></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="wash_rib0">
+        <pose>0 -0.105 0.011 0 1.570796 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.33</length></capsule></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <visual name="wash_rib1">
+        <pose>0 -0.265 0.011 0 1.570796 0</pose>
+        <geometry><capsule><radius>0.005</radius><length>0.33</length></capsule></geometry>
+        <material><pbr><metal><metalness>0.00</metalness><roughness>0.55</roughness></metal></pbr><ambient>0.130 0.130 0.140 1</ambient><diffuse>0.130 0.130 0.140 1</diffuse><specular>0.35 0.35 0.35 1</specular><emissive>0 0 0 1</emissive></material>
+      </visual>
+      <collision name="tower">
+        <pose>0 -0.25 0.375 0 0 0</pose>
+        <geometry><box><size>0.44 0.5 0.41</size></box></geometry>
+      </collision>
+      <collision name="bay_back">
+        <pose>0 -0.015 0.085 0 0 0</pose>
+        <geometry><box><size>0.44 0.03 0.17</size></box></geometry>
+      </collision>
+      <collision name="bay_wall0">
+        <pose>-0.21 -0.25 0.085 0 0 0</pose>
+        <geometry><box><size>0.02 0.5 0.17</size></box></geometry>
+      </collision>
+      <collision name="bay_wall1">
+        <pose>0.21 -0.25 0.085 0 0 0</pose>
+        <geometry><box><size>0.02 0.5 0.17</size></box></geometry>
+      </collision>
+    </link>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>

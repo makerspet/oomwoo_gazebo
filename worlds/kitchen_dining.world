@@ -202,6 +202,28 @@
       <self_collide>false</self_collide>
     </model>
 
+    <!-- Auto-empty / mop-wash dock, backed against the WEST wall and centred on
+         the default spawn line y = -0.5 - so it sits directly behind the robot,
+         which spawns at (-2.0, -0.5) facing +x. The robot reverses west into it.
+
+         Dock occupies x -2.450..-1.950, y -0.720..-0.280, z 0..0.580.
+         Its bay interior is x -2.420..-1.950, y -0.700..-0.300, z 0..0.170, so
+         the spawned robot (x -2.180..-1.820, y -0.680..-0.320) sits with its
+         back half already inside the bay, 20 mm clear of each side wall. The
+         bay carries NO collision geometry, so that overlap is free - only the
+         tower, back panel and side walls collide.
+
+         It fits under the poster above (z 1.000..2.000) and clears the door
+         (y 0.100..0.900) entirely. -->
+    <model name='vacuum_dock'>
+      <static>true</static>
+      <include>
+        <uri>model://vacuum_dock</uri>
+      </include>
+      <pose>-2.45 -0.5 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+
     <!-- Makerspet decoration, west wall, south of the door: spans y
          -1.029..-0.171 at eye level (z 1.000..2.000). -->
     <model name='makerspet_poster'>
