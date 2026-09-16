@@ -16,11 +16,17 @@
                      follower can orbit one forever and the next one is not in
                      the follow-side sector until it is too close
     diagonal         a 45 deg wall: neither axis-aligned nor curved
-    corridor         two fins 0.5 m apart, walls on both sides at once
+    corridor         a fin 0.5 m off the south wall: walls on both sides
     alcove           a concave U: three inside corners in a row
     low_lip          6 cm tall, and the scan plane is at 8.8 cm, so the LiDAR
                      CANNOT see it. Only the bumper can. Expected to fail until
                      the bumper handoff exists, and it keeps that honest
+
+  Every gap between obstacles is at least 0.45 m, against a 0.349 m robot, so
+  nothing here is a slot the robot cannot physically fit through: a crash
+  should mean the follower failed, not that the course was unwinnable. (The
+  low lip is the one deliberate exception.) An earlier version broke this rule
+  with a panel 0.275 m off the wall, and the robot duly drove into it.
 
   Grid squares are 1 m, so RViz gives a free ruler.
 -->
@@ -226,39 +232,27 @@
       <pose>1.5 -1.5 0.25 0 0 0.7854</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>0.05 1.4 0.5</size></box></geometry>
+          <geometry><box><size>0.05 1.0 0.5</size></box></geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.05 1.4 0.5</size></box></geometry>
+          <geometry><box><size>0.05 1.0 0.5</size></box></geometry>
           <material><diffuse>0.6 0.6 0.4 1</diffuse></material>
         </visual>
       </link>
     </model>
 
-    <!-- S: a 0.5 m corridor. Walls on both sides at once, so the nearest
-         surface can swap sides mid-run. -->
-    <model name="corridor_a">
+    <!-- S: a 0.5 m corridor, formed by one fin and the south wall itself (inner
+         face y = -2.40), so the robot has walls on both sides at once and the
+         nearest surface can swap sides mid-run. -->
+    <model name="corridor">
       <static>true</static>
-      <pose>-0.4 -1.6 0.25 0 0 0</pose>
+      <pose>-0.1 -1.875 0.25 0 0 0</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>1.2 0.05 0.5</size></box></geometry>
+          <geometry><box><size>1.0 0.05 0.5</size></box></geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>1.2 0.05 0.5</size></box></geometry>
-          <material><diffuse>0.7 0.7 0.75 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-    <model name="corridor_b">
-      <static>true</static>
-      <pose>-0.4 -2.1 0.25 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry><box><size>1.2 0.05 0.5</size></box></geometry>
-        </collision>
-        <visual name="visual">
-          <geometry><box><size>1.2 0.05 0.5</size></box></geometry>
+          <geometry><box><size>1.0 0.05 0.5</size></box></geometry>
           <material><diffuse>0.7 0.7 0.75 1</diffuse></material>
         </visual>
       </link>
