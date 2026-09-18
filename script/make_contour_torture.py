@@ -23,16 +23,27 @@ eye. Edit the layout here, not in the .world file.
     python3 script/make_contour_torture.py            # write the world + audit
     python3 script/make_contour_torture.py --png FILE  # also draw the layout
 
-The room is 12 x 6 m, x in [-6, 6], y in [-3, 3]. The follower keeps the wall on
-its RIGHT, and the robot spawns facing +x, so it runs the course anticlockwise:
+The room is a compact 6 x 6 m, x and y in [-3, 3], with a PENINSULA jutting in
+from the east wall that folds the course back on itself: the boundary stays one
+continuous wall, so the follower traces the perimeter and both faces of the
+peninsula without ever having to choose. That packs 33 m of wall into 36 m^2,
+and the whole course fits on screen.
 
-    SOUTH wall, heading +x  ("right" wall)    comb A: square teeth, narrowing gaps
-    EAST wall,  heading +y  ("distant" wall)  comb B: blocks, then table legs
-    NORTH wall, heading -x  ("left" wall)     comb C: wedge, gaps, arcs, V trap
-    WEST wall,  heading -y                    plain, back to the start
+The follower keeps the wall on its RIGHT and the robot spawns facing +x, so it
+runs anticlockwise:
+
+    south wall, heading +x    comb A: four square teeth, gaps 2.0d, 1.1d, 0.9d
+    east wall, heading +y     comb B: a small block, then a wide one
+    peninsula south face      comb B: a leg, two legs in a row, two thick legs
+    peninsula tip             a 180 deg wrap, the sharpest convex turn here
+    peninsula north face      comb C: blocks standing 0.25 m and 0.50 m off it
+    east wall again           a convex half-cylinder
+    north wall, heading -x    comb C: wedge, concave bay R 0.35, convex R 0.15
+    west wall, heading -y     comb C: concave bay R 0.17 (too tight), V trap
+    south wall again          back to the start
 
     ros2 launch oomwoo_gazebo world.launch.py world:=contour_torture.world \\
-        x_pose:=-5.4 y_pose:=-2.77 odom_source:=robot_wheels
+        x_pose:=-2.6 y_pose:=-2.77 odom_source:=robot_wheels
 """
 
 import argparse
@@ -46,7 +57,8 @@ STANDOFF = 0.23            # contour_follower default
 WALL_T = 0.4               # thick, so half-buried wedges and arcs stay hidden
 WALL_H = 0.5
 OBST_H = 0.3               # everything is well above the 8.8 cm scan plane
-X0, X1, Y0, Y1 = -6.0, 6.0, -3.0, 3.0
+X0, X1, Y0, Y1 = -3.0, 3.0, -3.0, 3.0
+FIN_Y, FIN_T, FIN_X = 0.0, 0.10, -1.4   # peninsula: centre line, thickness, tip
 
 # ---------------------------------------------------------------- primitives
 # ('box', cx, cy, sx, sy, yaw) or ('cyl', cx, cy, r); grouped into features.
@@ -113,65 +125,75 @@ feature('wall_east', 'wall', [box(X1, X1 + WALL_T, Y0, Y1)])
 # the path is: CCW 90, straight D, CW 90, straight D, CW 90, straight D, CCW 90,
 # then along the wall for the gap W before the next tooth. Four teeth give three
 # gaps, narrowing from roomy to impossible.
-D = 0.6
+D = 0.45
 gaps = [('2.0d', 2.0 * ROBOT_D), ('1.1d', 1.1 * ROBOT_D), ('0.9d', 0.9 * ROBOT_D)]
-x = -4.4
+x = -1.8
 for i in range(4):
-    note = ''
-    if i < 3:
-        note = 'gap after it: %s = %.3f m' % (gaps[i][0], gaps[i][1])
+    note = 'gap after it: %s = %.3f m' % gaps[i] if i < 3 else ''
     feature('A%d_tooth' % (i + 1), 'combA', [box(x, x + D, Y0, Y0 + D)], note)
     if i < 3:
         x += D + gaps[i][1]
 
+# ------------------------------------------------------------- the peninsula
+# Juts in from the east wall and folds the course: the robot follows the east
+# wall north, turns in along the south face, wraps the tip, and comes back east
+# along the north face before carrying on up the east wall.
+feature('peninsula', 'wall',
+        [box(FIN_X, X1, FIN_Y - FIN_T / 2, FIN_Y + FIN_T / 2)],
+        '4.4 m x 0.1 m; its tip is a 180 deg wrap')
+
 # ---------------------------------------------------------------- comb B
-# East wall, robot heading +y. Things that jut from, or stand just off, the wall.
-feature('B1_block_small', 'combB', [box(X1 - 0.3, X1, -2.0, -1.8)],
+# East wall below the peninsula, then along the peninsula's south face.
+feature('B1_block_small', 'combB', [box(X1 - 0.3, X1, -2.3, -2.1)],
         '0.3 deep x 0.2 wide')
-feature('B2_block_wide', 'combB', [box(X1 - 0.3, X1, -1.1, -0.5)],
+feature('B2_block_wide', 'combB', [box(X1 - 0.3, X1, -1.5, -0.9)],
         '0.3 deep x 0.6 wide')
-leg_gap = 0.25                     # leg to wall: too narrow to pass behind
-feature('B3_leg', 'leg', [('cyl', X1 - leg_gap - 0.02, 0.2, 0.02)],
-        '4 cm leg, %.2f m off the wall' % leg_gap)
-feature('B4_legs_pair', 'leg', [('cyl', X1 - leg_gap - 0.02, 1.0, 0.02),
-                                ('cyl', X1 - leg_gap - 0.02 - 0.5, 1.0, 0.02)],
-        'two 4 cm legs in a row out from the wall, 0.46 m apart (passable)')
-feature('B5_thick_legs_pair', 'leg', [('cyl', X1 - leg_gap - 0.05, 2.1, 0.05),
-                                      ('cyl', X1 - leg_gap - 0.05 - 0.5, 2.1, 0.05)],
+leg_gap = 0.25                     # leg to surface: too narrow to pass behind
+ly = FIN_Y - FIN_T / 2 - leg_gap - 0.02
+feature('B3_leg', 'leg', [('cyl', 2.3, ly, 0.02)],
+        '4 cm leg, %.2f m below the peninsula' % leg_gap)
+feature('B4_legs_pair', 'leg', [('cyl', 1.3, ly, 0.02), ('cyl', 1.3, ly - 0.5, 0.02)],
+        'two 4 cm legs in a row, 0.46 m apart (passable between)')
+feature('B5_thick_legs_pair', 'leg',
+        [('cyl', 0.2, ly - 0.03, 0.05), ('cyl', 0.2, ly - 0.53, 0.05)],
         'two 10 cm legs in a row, 0.40 m apart (tight)')
 
 # ---------------------------------------------------------------- comb C
-# North wall, robot heading -x.
-feature('C1_wedge', 'combC', [('box', 4.8, Y1, 0.5, 0.5, math.pi / 4)],
-        '90 deg wedge jutting 0.35 m (a square half buried in the wall)')
-feature('C2_block_gap_025', 'combC', [box(3.2, 3.7, Y1 - 0.25 - 0.2, Y1 - 0.25)],
-        'free-standing, 0.25 m off the wall: too narrow to pass behind')
-feature('C3_block_gap_050', 'combC', [box(1.9, 2.4, Y1 - 0.5 - 0.2, Y1 - 0.5)],
-        'free-standing, 0.50 m off the wall: passable behind')
-feature('C4_convex_R035', 'combC', [('cyl', 0.8, Y1, 0.35)],
-        'convex half-cylinder, R = 0.35 (two robot radii)')
-# concave bay R 0.35 set into a 0.5 m ledge
-xc, front = -0.9, Y1 - 0.5
+# The peninsula's north face, then the east, north and west walls.
+nf = FIN_Y + FIN_T / 2
+feature('C2_block_gap_025', 'combC', [box(-0.85, -0.35, nf + 0.25, nf + 0.45)],
+        'free-standing, 0.25 m off the peninsula: too narrow to pass behind')
+feature('C3_block_gap_050', 'combC', [box(0.55, 1.05, nf + 0.50, nf + 0.70)],
+        'free-standing, 0.50 m off the peninsula: passable behind')
+feature('C4_convex_R035', 'combC', [('cyl', X1, 1.5, 0.35)],
+        'convex half-cylinder, R = 0.35 (two robot radii), on the east wall')
+feature('C1_wedge', 'combC', [('box', 1.6, Y1, 0.4, 0.4, math.pi / 4)],
+        '90 deg wedge jutting 0.28 m (a square half buried in the wall)')
+# concave bay R 0.35 set into a 0.5 m ledge on the north wall
+xc, front = 0.0, Y1 - 0.5
 feature('C5_concave_R035', 'combC',
         [box(xc + 0.35, xc + 0.65, front, Y1), box(xc - 0.65, xc - 0.35, front, Y1)]
         + bay(xc, front, 0.35, +1),
         'concave bay, R = 0.35: the robot fits, with ~5 cm to spare')
-feature('C6_convex_R015', 'combC', [('cyl', -2.4, Y1, 0.15)],
+feature('C6_convex_R015', 'combC', [('cyl', -1.6, Y1, 0.15)],
         'convex half-cylinder, R = 0.15: a tight outside curve')
-# concave bay R 0.17 in a 0.3 m ledge; its left block runs on to meet the trap's
-# deeper ledge, so the step between them is a plain inside corner, not a slot
-xc, front = -3.6, Y1 - 0.3
+# West wall, robot heading -y: a bay it cannot enter, then the trap. The bay is
+# the north-wall one turned a quarter turn, hence the swapped box dimensions.
+# Both sit in the northern half, so the run back to the start stays plain wall.
+yc, wfront = 1.6, X0 + 0.3
 feature('C7_concave_R017', 'combC',
-        [box(xc + 0.17, xc + 0.47, front, Y1), box(-4.2, xc - 0.17, front, Y1)]
-        + bay(xc, front, 0.17, +1),
+        [box(X0, wfront, yc + 0.17, yc + 0.47), box(X0, wfront, yc - 0.47, yc - 0.17)]
+        + [('box', p[2], p[1], p[4], p[3], -p[5]) for p in bay(yc, wfront, 0.17, +1)],
         'concave bay, R = 0.17: 0.34 m wide, the robot does NOT fit')
-# V trap in a 0.8 m ledge that runs to the west wall, so there are no side pockets
-front, xv, half = Y1 - 0.8, -5.0, 0.4
+# V trap in a 0.5 m ledge. Its ledge runs up to meet the bay's, so the step
+# between them is an inside corner rather than a slot, and stops short of the
+# south-west corner, so the robot's way home is clear wall.
+yv, half, vfront = 0.2, 0.4, X0 + 0.5
 feature('C8_v_trap', 'combC',
-        [box(X0, xv - half, front, Y1), box(xv + half, -4.2, front, Y1),
-         board((xv - half, front), (xv, Y1), 0.08, +1),
-         board((xv, Y1), (xv + half, front), 0.08, +1)],
-        'V pocket 0.8 m wide x 0.8 m deep (53 deg): in you go, and it narrows')
+        [box(X0, vfront, yv + half, yc - 0.47), box(X0, vfront, -0.6, yv - half),
+         board((vfront, yv - half), (X0, yv), 0.08, -1),
+         board((X0, yv), (vfront, yv + half), 0.08, -1)],
+        'V pocket 0.8 m wide x 0.5 m deep: in you go, and it narrows')
 
 # ---------------------------------------------------------------- output
 
@@ -184,18 +206,24 @@ HEADER = """<?xml version="1.0" ?>
   Contour-following torture course, generated by script/make_contour_torture.py.
   Edit the layout there and re-run it; hand edits here will be overwritten.
 
-  A 12 x 6 m room. The follower keeps the wall on its right and the robot spawns
-  facing +x, so it runs the course anticlockwise:
+  A compact 6 x 6 m room with a PENINSULA jutting in from the east wall, which
+  folds the course back on itself: one continuous boundary, 33 m of wall inside
+  36 m^2, and it all fits on screen. The follower keeps the wall on its right and
+  the robot spawns facing +x, so it runs anticlockwise:
 
-    south wall ("right")    comb A: square teeth, gaps 2.0d, 1.1d, 0.9d
-    east wall ("distant")   comb B: blocks, a leg, legs in a row, thick legs
-    north wall ("left")     comb C: wedge, blocks off the wall, convex and concave
-                            arcs (one too tight to enter), and a V trap
-    west wall               plain, back to the start
+    south wall          comb A: four square teeth, gaps 2.0d, 1.1d, 0.9d
+    east wall           comb B: a small block, then a wide one
+    peninsula, south    comb B: a leg, two legs in a row, two thick legs
+    peninsula tip       a 180 deg wrap, the sharpest convex turn here
+    peninsula, north    comb C: blocks standing 0.25 m and 0.50 m off it
+    east wall again     a convex half-cylinder
+    north wall          comb C: wedge, concave bay R 0.35, convex R 0.15
+    west wall           comb C: concave bay R 0.17 (too tight), then the V trap
+    south wall again    back to the start
 
   Start it on the south wall:
     ros2 launch oomwoo_gazebo world.launch.py world:=contour_torture.world
-        x_pose:=-5.4 y_pose:=-2.77 odom_source:=robot_wheels
+        x_pose:=-2.6 y_pose:=-2.77 odom_source:=robot_wheels
 
   Some gaps are deliberately too narrow (d = robot diameter, 0.349 m):
 %(squeezes)s
@@ -209,7 +237,7 @@ HEADER = """<?xml version="1.0" ?>
     </scene>
     <gui fullscreen="false">
       <camera name="user_camera">
-        <pose>-9 0 9 0 0.75 0</pose>
+        <pose>-6 0 7 0 0.85 0</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -357,7 +385,7 @@ def draw(path):
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     from matplotlib.patches import Circle, Polygon
-    fig, ax = plt.subplots(figsize=(14, 7.5))
+    fig, ax = plt.subplots(figsize=(9.5, 9.5))
     fills = {'wall': '#bfc0c6', 'combA': '#8c5a33', 'combB': '#4d80b3',
              'leg': '#66402a', 'combC': '#80a073'}
     for name, colour, prims, _t in FEATURES:
@@ -376,19 +404,19 @@ def draw(path):
             xs = [p[1] for p in prims]
             ys = [p[2] for p in prims]
             lx, ly = sum(xs) / len(xs), sum(ys) / len(ys)
-            if lx > 5:                                   # east wall: label inward
+            if lx > 2.2:                                 # east wall: label inward
                 pos, ha = (lx - 1.2, ly), 'right'
             else:
                 pos, ha = (lx, ly + (0.55 if ly < 0 else -0.55)), 'center'
             ax.annotate(name, (lx, ly), pos, fontsize=7, ha=ha, va='center',
                         arrowprops=dict(arrowstyle='-', lw=0.4))
-    ax.add_patch(Circle((-5.4, -2.77), ROBOT_D / 2, fc='#e8b400', ec='k', lw=0.6))
-    ax.annotate('start, facing +x', (-5.4, -2.77), (-5.0, -1.9), fontsize=8,
+    ax.add_patch(Circle((-2.6, -2.77), ROBOT_D / 2, fc='#e8b400', ec='k', lw=0.6))
+    ax.annotate('start, facing +x', (-2.6, -2.77), (-2.1, -1.9), fontsize=8,
                 arrowprops=dict(arrowstyle='->', lw=0.6))
     ax.set_xlim(X0 - 0.6, X1 + 0.6)
     ax.set_ylim(Y0 - 0.6, Y1 + 0.6)
     ax.set_aspect('equal')
-    ax.set_xticks(range(-6, 7))
+    ax.set_xticks(range(-3, 4))
     ax.set_yticks(range(-3, 4))
     ax.grid(True, lw=0.3)
     ax.set_title('contour_torture.world (top view, +x right). Robot runs anticlockwise.')
