@@ -52,7 +52,7 @@ import os
 import sys
 
 ROBOT_D = 0.349            # oomwoo-one base diameter
-BUMPER_R = 0.1814          # what touches first: the bumper facets' corners
+BUMPER_R = 0.1745          # the flush bumper: the robot's outline is a circle
 STANDOFF = 0.23            # contour_follower default
 WALL_T = 0.4               # thick, so half-buried wedges and arcs stay hidden
 WALL_H = 0.5
