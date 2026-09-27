@@ -22,6 +22,7 @@ eye. Edit the layout here, not in the .world file.
 
     python3 script/make_contour_torture.py            # write the world + audit
     python3 script/make_contour_torture.py --png FILE  # also draw the layout
+    python3 script/make_contour_torture.py --map DIR   # also a Nav2 map (.pgm/.yaml)
 
 The room is a compact 6 x 6 m, x and y in [-3, 3], with a PENINSULA jutting in
 from the east wall that folds the course back on itself: the boundary stays one
@@ -380,6 +381,52 @@ def to_segments_and_circles():
     return segs, circs
 
 
+def inside(prim, x, y):
+    """Return True if (x, y) lies inside a box or cylinder primitive."""
+    if prim[0] == 'box':
+        _, cx, cy, sx, sy, yaw = prim
+        c, s = math.cos(yaw), math.sin(yaw)
+        u = (x - cx) * c + (y - cy) * s
+        v = -(x - cx) * s + (y - cy) * c
+        return abs(u) <= sx / 2 and abs(v) <= sy / 2
+    _, cx, cy, r = prim
+    return math.hypot(x - cx, y - cy) <= r
+
+
+def write_map(folder, res=0.05, margin=0.25):
+    """
+    Rasterize the layout into a Nav2 map, exactly as the world is built.
+
+    A cell is occupied if its centre is inside a primitive or any point of a
+    primitive's outline falls in it, so a 4 cm leg still marks the cell it
+    stands in. The map is world-aligned: map frame == Gazebo world frame, which
+    is what nav.launch.py's auto_localize and localization:=truth assume.
+    """
+    x0, y0 = X0 - margin, Y0 - margin
+    w = int(round((X1 - X0 + 2 * margin) / res))
+    h = int(round((Y1 - Y0 + 2 * margin) / res))
+    occ = [[False] * w for _ in range(h)]
+    prims = [p for _n, _c, ps, _t in FEATURES for p in ps]
+    for j in range(h):
+        for i in range(w):
+            x, y = x0 + (i + 0.5) * res, y0 + (j + 0.5) * res
+            occ[j][i] = any(inside(p, x, y) for p in prims)
+    for x, y in outline(prims, step=res / 4):
+        i, j = int((x - x0) / res), int((y - y0) / res)
+        if 0 <= i < w and 0 <= j < h:
+            occ[j][i] = True
+    os.makedirs(folder, exist_ok=True)
+    with open(os.path.join(folder, 'contour_torture.pgm'), 'wb') as f:
+        f.write(b'P5\n%d %d\n255\n' % (w, h))
+        for j in reversed(range(h)):            # PGM rows run top (max y) down
+            f.write(bytes(0 if occ[j][i] else 254 for i in range(w)))
+    with open(os.path.join(folder, 'contour_torture.yaml'), 'w', newline='\n') as f:
+        f.write('image: contour_torture.pgm\nmode: trinary\nresolution: %.3f\n'
+                'origin: [%.3f, %.3f, 0]\nnegate: 0\noccupied_thresh: 0.65\n'
+                'free_thresh: 0.196\n' % (res, x0, y0))
+    return w, h
+
+
 def draw(path):
     import matplotlib
     matplotlib.use('Agg')
@@ -427,6 +474,7 @@ def draw(path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[1])
     ap.add_argument('--png', help='also draw the layout to this file')
+    ap.add_argument('--map', help='also write contour_torture.pgm/.yaml into this folder')
     ap.add_argument('--out', default=os.path.join(
         os.path.dirname(os.path.abspath(__file__)), '..', 'worlds',
         'contour_torture.world'))
@@ -449,6 +497,9 @@ def main():
     print('gaps narrower than the robot + 10 cm (all intended):')
     for line in lines:
         print(line)
+    if a.map:
+        w, h = write_map(a.map)
+        print('wrote a %dx%d map into %s' % (w, h, a.map))
     if a.png:
         draw(a.png)
         print('drew %s' % a.png)
