@@ -227,7 +227,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             name='enable_cameras', default_value='false',
             choices=['true', 'false'],
-            description='stereo cameras /camera_left|right (off by default: heavy, unused for now)'),
+            description='front floor camera /camera/image (off by default: heavy, unused for now)'),
         DeclareLaunchArgument(
             name='enable_imu', default_value='true',
             choices=['true', 'false'], description='IMU /imu'),

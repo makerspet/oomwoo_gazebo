@@ -65,7 +65,7 @@ description and spawns the robot.
 | `enable_lidar` | `true` | `true` `false` | 2D LiDAR `/scan` |
 | `enable_ranges` | `true` | `true` `false` | Side distance sensors `/range_left`, `/range_right` |
 | `enable_tof` | `true` | `true` `false` | Front ToF `/tof_front/points` |
-| `enable_cameras` | `false` | `true` `false` | Stereo `/camera_left`, `/camera_right` — **off by default** (heavy, unused for now) |
+| `enable_cameras` | `false` | `true` `false` | Front floor camera `/camera/image` — **off by default** (heavy, unused for now) |
 | `enable_imu` | `true` | `true` `false` | IMU `/imu` |
 
 #### Headless
